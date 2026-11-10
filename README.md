@@ -11,11 +11,11 @@ The research implementation by **Arjun Vijay Prakash** covers four connected tas
 - Check fundamental-diagram feasibility while distinguishing it from vehicle conservation.
 - Estimate path demand against observed link counts and a weak prior.
 
-The manuscript is [paper/working_notes.tex](paper/working_notes.tex), with its compiled PDF at [paper/working_notes.pdf](paper/working_notes.pdf).
+The manuscript is [paper/main.tex](paper/main.tex), with its compiled PDF at [paper/main.pdf](paper/main.pdf).
 
 ## Submission context
 
-CREST was developed for **IEEE Big Data Cup 2026, Challenge 06, Track 2: TrafficFlowBench**, associated with the IEEE International Conference on Big Data 2026. Predictions were submitted through the [Kaggle competition](https://www.kaggle.com/competitions/2026-ieee-big-data-traffic-flow-bench), with final selected entries `58067798` and `58063635`. The accompanying code package and IEEE two-column Working Notes were emailed to the organizers on November 7, 2026. This records the competition submission and technical handoff; it does not imply paper acceptance, publication, or an award.
+CREST was developed for **IEEE Big Data Cup 2026, Challenge 06, Track 2: TrafficFlowBench**, associated with the IEEE International Conference on Big Data 2026. Predictions were submitted through the [Kaggle competition](https://www.kaggle.com/competitions/2026-ieee-big-data-traffic-flow-bench), with final selected entries `58067798` and `58063635`. The accompanying code package and IEEE two-column manuscript were emailed to the organizers on November 7, 2026. This records the competition submission and technical handoff; it does not imply paper acceptance, publication, or an award.
 
 ## Key achievements
 
@@ -108,7 +108,7 @@ Build the manuscript with a local TeX installation containing IEEEtran and BibTe
 
 ```powershell
 cd paper
-latexmk -pdf -interaction=nonstopmode -halt-on-error working_notes.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 ```
 
 Committed figure and table inputs support manuscript compilation. Regenerating their numerical content requires matching experiment artifacts, as described in the reproduction guide.

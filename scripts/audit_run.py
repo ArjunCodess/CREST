@@ -51,7 +51,7 @@ def main():
         link_scores[split] = float(score.loc[score.level.eq('overall'), 'S_link'].iloc[0])
     with (output / 'submission.csv').open('rb') as source:
         digest = hashlib.file_digest(source, 'sha256').hexdigest()
-    with (root / 'paper/working_notes.pdf').open('rb') as source:
+    with (root / 'paper/main.pdf').open('rb') as source:
         paper_digest = hashlib.file_digest(source, 'sha256').hexdigest()
     summary = json.loads((output / 'report/evidence.json').read_text())
     audit = {'checked_utc': datetime.now(timezone.utc).isoformat(), 'rows': counts, 'submission_sha256': digest,

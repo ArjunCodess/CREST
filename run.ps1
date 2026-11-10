@@ -28,5 +28,5 @@ try {
     if ($LASTEXITCODE) { throw 'Training failed' }
     python scripts/finish_run.py --release-root $ReleaseRoot --output $Output
     if ($LASTEXITCODE) { throw 'Completion failed. Inspect completion_status.json and stage logs in the output folder.' }
-    Write-Host "Submission and results are in $Output; the compiled manuscript is in paper/working_notes.pdf."
+    Write-Host "Submission and results are in $Output; the compiled manuscript is in paper/main.pdf."
 } finally { Pop-Location }

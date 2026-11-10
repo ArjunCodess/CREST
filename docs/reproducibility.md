@@ -64,7 +64,7 @@ Fixtures are marked explicitly. Their outputs are software checks, not scientifi
 
 ```powershell
 cd paper
-latexmk -pdf -interaction=nonstopmode -halt-on-error working_notes.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 ```
 
 IEEEtran, BibTeX, and the referenced figures/tables are required. Saved figure and table inputs are included for document builds. To regenerate plots from measurements, set `TRAFFICFLOW_ARTIFACTS_OFFICIAL` to an original experiment directory containing `*_validation_states.npz` and `temporal_cv.csv`, and `TRAFFICFLOW_ARTIFACTS_CONTENDER` to the corresponding refinement artifacts, then run `python paper/make_figures.py` and `python paper/make_tables.py` from the project root. Missing artifacts must fail rather than invent results.

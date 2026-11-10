@@ -8,7 +8,7 @@ import pymupdf as fitz
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--pdf', type=Path, default=Path('paper/working_notes.pdf'))
+    ap.add_argument('--pdf', type=Path, default=Path('paper/main.pdf'))
     ap.add_argument('--output', type=Path, required=True)
     args = ap.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)

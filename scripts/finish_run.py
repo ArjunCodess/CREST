@@ -91,7 +91,7 @@ def main():
               '--output', str(output / f'official_link_score_{split}.csv')])
     stage('spatial_validation', [sys.executable, '-u', '-m', 'src.pipeline', 'spatial-cv', *common, '--rounds', '80'])
     stage('experiment_report', [sys.executable, '-u', '-m', 'src.report', '--run', str(output), '--output', str(output / 'report')])
-    tex = root / 'paper/working_notes.tex'
+    tex = root / 'paper/main.tex'
     compiler = find_compile_latex()
     latexmk = shutil.which('latexmk')
     if compiler:
