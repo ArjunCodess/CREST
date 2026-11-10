@@ -1,0 +1,15 @@
+numpy==2.4.0
+pandas==2.3.3
+pyarrow==22.0.0
+scipy==1.16.3
+threadpoolctl==3.6.0
+scikit-learn==1.8.0
+lightgbm==4.6.0
+torch==2.10.0
+polars==2.1.0
+catboost==1.2.10
+PyYAML==6.0.3
+pytest==9.0.2
+matplotlib==3.11.2
+requests==2.32.5
+stream-unzip==0.0.101
