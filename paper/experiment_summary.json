@@ -1,0 +1,12 @@
+﻿{
+    "S_state":  0.8955396770932775,
+    "historical_mean_S_state":  0.7143504762399961,
+    "neural_only_S_state":  0.4595156461336963,
+    "tree_only_S_state":  0.8910894442718824,
+    "neural_panels":  9,
+    "tree_panels":  10,
+    "refined_panels":  2,
+    "S_link":  0.9999313217753873,
+    "spatial_S_state":  0.8798409101911485,
+    "official_overall_score":  null
+}

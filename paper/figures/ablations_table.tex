@@ -1,0 +1,17 @@
+\begin{table}[t]
+\caption{Family-macro artificial-mask holdout scores. Panel coverage varies, so partial-panel scores are not directly comparable with ten-panel scores. Model selection uses this same validation set.}
+\centering\begin{tabular}{llrr}
+\hline Model & FD map & Panels & $S_{state}$ \\
+\hline
+historical\_mean & raw & 10 & 0.7144 \\
+hybrid & fd & 9 & 0.8076 \\
+hybrid & raw & 9 & 0.8043 \\
+interpolation & fd & 10 & 0.9113 \\
+interpolation & raw & 10 & 0.9108 \\
+neural\_only & raw & 9 & 0.4595 \\
+residual & fd & 10 & 0.9198 \\
+residual & raw & 10 & 0.9211 \\
+tree\_only & fd & 10 & 0.8903 \\
+tree\_only & raw & 10 & 0.8911 \\
+\hline\end{tabular}
+\end{table}

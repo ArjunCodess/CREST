@@ -1,0 +1,53 @@
+{
+  "data_kind": "official_public_release",
+  "temporal_family_macro_S_state": 0.9198469947371457,
+  "task1": "Artificial-mask purged holdout available",
+  "task2": "Official labels withheld; official score unavailable",
+  "task3": "Official boundary fluxes withheld; official score unavailable",
+  "task4": "S_link computable; S_od/S_dev/S_attr unavailable",
+  "overall_official_score": null,
+  "figure_source": "D12_I5_N_validation_states.npz",
+  "heatmap_interval_start": "2031-03-20 21:45:00+00:00",
+  "selected_models": [
+    {
+      "panel": "D12_I405_N",
+      "model": "residual"
+    },
+    {
+      "panel": "D12_I405_S",
+      "model": "residual"
+    },
+    {
+      "panel": "D12_I5_N",
+      "model": "residual"
+    },
+    {
+      "panel": "D12_I5_S",
+      "model": "residual"
+    },
+    {
+      "panel": "D7_I10_E",
+      "model": "residual"
+    },
+    {
+      "panel": "D7_I10_W",
+      "model": "residual"
+    },
+    {
+      "panel": "D7_I210_E",
+      "model": "residual"
+    },
+    {
+      "panel": "D7_I210_W",
+      "model": "residual"
+    },
+    {
+      "panel": "D7_I405_N",
+      "model": "residual"
+    },
+    {
+      "panel": "D7_I405_S",
+      "model": "residual"
+    }
+  ]
+}

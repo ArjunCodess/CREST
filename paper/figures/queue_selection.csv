@@ -1,0 +1,9 @@
+panel,block,windows,onset_windows,ongoing_windows,regressor_proxy_IoU,classifier_proxy_IoU,accepted,thresholds,force_nonempty
+D12_I5_N,untouched,10,5,5,0.3453508846447741,0.357674091141833,False,"{'queue_onset': 0.2, 'queue_ongoing': 0.1}",False
+D12_I5_S,untouched,10,5,5,0.2332616107458934,0.251303652774241,False,"{'queue_onset': 0.2, 'queue_ongoing': 0.1}",True
+D7_I10_E,untouched,10,5,5,0.409843741363933,0.5399415101102835,True,"{'queue_onset': 0.1, 'queue_ongoing': 0.3}",False
+D7_I10_W,untouched,6,3,3,0.3247863247863248,0.7485754985754985,True,"{'queue_onset': 0.5, 'queue_ongoing': 0.6}",True
+D7_I210_E,untouched,10,5,5,0.3986111111111111,0.6487619047619048,True,"{'queue_onset': 0.1, 'queue_ongoing': 0.1}",False
+D7_I210_W,untouched,10,5,5,0.4091039170817068,0.4730070602196305,True,"{'queue_onset': 0.4, 'queue_ongoing': 0.1}",False
+D7_I405_N,untouched,10,5,5,0.3941654256676356,0.4047876738924869,False,"{'queue_onset': 0.9, 'queue_ongoing': 0.6}",False
+D7_I405_S,untouched,10,5,5,0.3979111082118355,0.5959035815200184,True,"{'queue_onset': 0.1, 'queue_ongoing': 0.4}",False
