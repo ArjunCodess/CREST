@@ -1,0 +1,13 @@
+﻿cff-version: 1.2.0
+message: Please cite the CREST software and acknowledge the upstream components used in your experiment.
+title: 'CREST: Constrained Reconstruction and Estimation of Spatiotemporal Traffic'
+type: software
+authors:
+  - family-names: Prakash
+    given-names: Arjun Vijay
+abstract: Graph-temporal traffic reconstruction, queue prediction, physical feasibility, and nonnegative path estimation with attributed checkpoint replay.
+keywords:
+  - traffic state estimation
+  - graph temporal learning
+  - physical constraints
+  - reproducibility

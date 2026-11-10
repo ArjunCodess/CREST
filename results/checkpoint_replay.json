@@ -1,0 +1,111 @@
+﻿{
+    "kind":  "independent_check_of_existing_checkpoint_replay",
+    "not_a_training_run":  true,
+    "public_scores_are_prior_kaggle_receipts":  true,
+    "archive":  {
+                    "bytes":  184888151,
+                    "sha256":  "37ad5f2b02fc62791a83dbc0cb8b75cd265454cbfcdd6cd4d2317ac7259c0d72",
+                    "sha_matches_package_audit":  true,
+                    "members":  554,
+                    "manifest_members":  554,
+                    "mismatched_members":  [
+
+                                           ],
+                    "forbidden_members":  [
+
+                                          ],
+                    "missing_required":  [
+
+                                         ],
+                    "submission_in_manifest":  58067798,
+                    "raw_competition_data_included":  false,
+                    "prediction_csv_included":  false
+                },
+    "comparisons":  {
+                        "58067798":  {
+                                         "replay_sha256":  "d7bdfad11df85b8d6924c591c15ad2e410fa1f32d807140bb828b7313c9e0267",
+                                         "reference_sha256":  "64e75136662687d559ef7353dcc7b2ee5c10d857e0a10ae074de33aeffec1379",
+                                         "replay_sha_matches_recorded":  true,
+                                         "reference_sha_matches_recorded":  true,
+                                         "numeric":  {
+                                                         "rows":  6980503,
+                                                         "chunks":  70,
+                                                         "identifier_chunks_differ":  0,
+                                                         "replay_longer":  false,
+                                                         "reference_longer":  false,
+                                                         "max_absolute_difference":  [
+                                                                                         4.2632564145606011E-14,
+                                                                                         5.4569682106375694E-12,
+                                                                                         0.0,
+                                                                                         0.0
+                                                                                     ],
+                                                         "matches_within_1e_6":  true,
+                                                         "task_rows":  {
+                                                                           "state":  6735795,
+                                                                           "queue":  174000,
+                                                                           "odme":  70708
+                                                                       },
+                                                         "nonfinite_state_values":  0,
+                                                         "bad_queue_values":  0,
+                                                         "negative_or_nonfinite_od":  0,
+                                                         "nonblank_unused_queue_placeholders":  522000,
+                                                         "placeholder_note":  "174000 queue rows times 3 unused columns. The merger writes 0 for columns the task does not score, because Kaggle rejects blanks. This is not a leaked prediction."
+                                                     },
+                                         "note":  "checkpoint replay of selected hybrid, not a training run and not a new score"
+                                     },
+                        "58063635":  {
+                                         "replay_sha256":  "c6dce088b78d53fcf4c00897b7a9498ffd5e19b1027a08c7465a2754b4f166fb",
+                                         "reference_sha256":  "9ac9072798f4b1cf5d55d1e1bdcd35d34b09ba258b3d12ff16c07db4cf19a45d",
+                                         "recorded_presplice_sha256":  "c7a06ea038c6110a8741d62a5b4538db5ee7b25ea0ce888f4ed3364a6197b061",
+                                         "postsplice_equals_recorded_presplice_hash":  false,
+                                         "prior_audit_recorded_this_variant":  false,
+                                         "numeric":  {
+                                                         "rows":  6980503,
+                                                         "chunks":  70,
+                                                         "identifier_chunks_differ":  0,
+                                                         "replay_longer":  false,
+                                                         "reference_longer":  false,
+                                                         "max_absolute_difference":  [
+                                                                                         4.2632564145606011E-14,
+                                                                                         5.4569682106375694E-12,
+                                                                                         0.0,
+                                                                                         0.0
+                                                                                     ],
+                                                         "matches_within_1e_6":  true,
+                                                         "task_rows":  {
+                                                                           "state":  6735795,
+                                                                           "queue":  174000,
+                                                                           "odme":  70708
+                                                                       },
+                                                         "nonfinite_state_values":  0,
+                                                         "bad_queue_values":  0,
+                                                         "negative_or_nonfinite_od":  0,
+                                                         "nonblank_unused_queue_placeholders":  522000,
+                                                         "placeholder_note":  "174000 queue rows times 3 unused columns. The merger writes 0 for columns the task does not score, because Kaggle rejects blanks. This is not a leaked prediction."
+                                                     },
+                                         "note":  "post-splice cat blend from the same checkpoint replay. The earlier reproduction_audit.json recorded only the unet variant. Byte hashes differ from the uploaded CSV; parsed values match within 1e-6. This is not a training run and not a new score."
+                                     }
+                    },
+    "anubisyy":  {
+                     "packaged_metadata_licenses":  [
+                                                        {
+                                                            "name":  "CC0-1.0"
+                                                        }
+                                                    ],
+                     "manifest_files_match":  true,
+                     "manifest_mismatches":  [
+
+                                             ],
+                     "live_page_recheck":  "The public dataset page returned a rate-limit page. A Kaggle CLI metadata download on 2026-11-07 listed licenses CC0-1.0, matching the packaged dataset-metadata.json. The companion notebook\u0027s kernel metadata was previously recorded without a license field and is not the grant for these files."
+                 },
+    "bizai":  {
+                  "packaged_license_is_mit":  true,
+                  "weight_hashes_match_inference_receipt":  true,
+                  "weight_mismatches":  [
+
+                                        ],
+                  "upstream_commit_checked":  "7ad3632d77a8393d715a7ca7ad314f0277ccbbd9"
+              },
+    "v7_archive_present":  true,
+    "v7_archive_bytes":  49080678
+}
