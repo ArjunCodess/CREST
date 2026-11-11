@@ -1,0 +1,17 @@
+{
+  "mode": "final",
+  "status": "failed",
+  "protocol_id": "final_holdout_v3",
+  "fingerprint": "5da3b1d664faf594",
+  "code_hash": "07a399f8e9550149",
+  "registry_path": ".crest_research_protocol_registry.json",
+  "output_dir": "results/research_final_v3",
+  "started_utc": "2026-11-11T11:11:12Z",
+  "finished_utc": "2026-11-11T11:11:29Z",
+  "error": "generative flows violate capacity; reduce demand or widen capacity",
+  "error_stage": "generate_scenario during run_experiment_matrix",
+  "n_rows_written": 0,
+  "override_final": false,
+  "no_retry_authorization": "Single final attempt per pre-freeze declaration; registry records failed status",
+  "protocol_note": "Final scenario_params used n_links=7 with development-tuned demand_vph/capacity_volumes; some holdout seeds violate generative capacity checks before any estimator metrics were emitted."
+}
