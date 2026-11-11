@@ -113,9 +113,26 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 
 Committed figure and table inputs support manuscript compilation. Regenerating their numerical content requires matching experiment artifacts, as described in the reproduction guide.
 
+## Research: identifiability-aware inference (V1 pilot)
+
+A separate synthetic stack under [`src/research/`](src/research/) studies **partial identification of OD/path flows under count intervals** and **discrete boundary-aware conservation** with masked storage observations. It does not replace the competition pipeline and does not reproduce historical leaderboard composites (0.83220 / 0.87387).
+
+- Formulation and limits: [docs/research_formulation.md](docs/research_formulation.md)
+- Development vs final protocol: [docs/research_protocol.md](docs/research_protocol.md)
+- Outcomes and commands: [docs/research_results.md](docs/research_results.md)
+- Configs: [configs/research/](configs/research/)
+
+```powershell
+python -m pytest tests/test_research_conservation.py tests/test_research_partial_id.py tests/test_research_protocol.py tests/test_research_runner.py tests/test_research_simulator.py
+python -m src.research.runner --mode development --output results/research --force
+```
+
+Default runner mode is **development** (bundled `dev_pilot.json` when `--config` is omitted). Development overwrites require `--force`. Final holdout **v3** is **archived** (`retired_failed`, not rerun). **v4** is the amended active reserve (`configs/research/final_protocol_v4.json`); a single completed run is recorded under `results/research_final_v4/` with receipt and registry guard (repeat blocked without override). See [docs/research_results.md](docs/research_results.md).
+
 ## Repository layout
 
 - [src/](src/): ingestion, graph features, reconstruction, queues, physics, path estimation, and upload contracts.
+- [src/research/](src/research/): identifiability pilot (synthetic simulator, LP bounds, conservation estimator, CLI).
 - [scripts/](scripts/): reusable training, replay, comparison, and verification commands.
 - [tests/](tests/): contract, solver, causal-history, and reproduction checks.
 - [paper/](paper/): one current manuscript, bibliography, and figure/table inputs.

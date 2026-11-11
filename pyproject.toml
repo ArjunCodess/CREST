@@ -19,6 +19,7 @@ include = ["src*", "starter*"]
 
 [tool.setuptools.package-data]
 starter = ["LICENSE"]
+"src.research" = ["bundled_configs/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
