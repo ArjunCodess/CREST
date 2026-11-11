@@ -1,0 +1,28 @@
+{
+  "protocol_id": "dev_pilot",
+  "protocol_role": "development",
+  "description": "Development-only seeds and layouts; not for frozen final reporting",
+  "seeds": [11, 22, 33, 44, 55],
+  "scenario_params": {
+    "n_links": 5,
+    "n_steps": 8,
+    "demand_vph": 750.0,
+    "noise_std": 12.0,
+    "obs_noise_model": "uniform_bounded",
+    "obs_noise_scale": 12.0,
+    "missing_rate": 0.15,
+    "capacity_vehicles": 180.0
+  },
+  "stress_variants": [
+    "baseline",
+    "random_missing",
+    "contiguous_dropout",
+    "shifted_demand",
+    "wrong_interval",
+    "truth_outside_interval",
+    "od_prior_shift",
+    "gaussian_misspecification",
+    "inconsistent_od_counts",
+    "intentional_boundary_inconsistency"
+  ]
+}

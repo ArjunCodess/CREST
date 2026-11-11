@@ -1,0 +1,68 @@
+{
+  "protocol_id": "final_holdout_v4",
+  "protocol_role": "final",
+  "holdout_status": "active",
+  "holdout_amendment_utc": "2026-11-11T17:30:00Z",
+  "holdout_amendment_reason": "Amended final evaluation after generative supply-cap repair; v3 reserve retired_failed and not rerun.",
+  "description": "Amended synthetic final evaluation (v4). Independent RNG seeds from final_holdout_v4_seed_manifest.json; chain layout n_links=7 (disjoint from dev n_links=5). Stress families match archived v3 declaration. Not a real-world generalization claim.",
+  "seed_manifest": "configs/research/final_holdout_v4_seed_manifest.json",
+  "seeds": [
+    7783114929623311505,
+    6242675308882067067,
+    7603013050274570249,
+    5561420057320424089,
+    6031017206454009675,
+    4905457364178722424,
+    5597043143875218530,
+    7244826587779272624,
+    5757910615864632253,
+    7205798323138762989
+  ],
+  "primary_metric": "bounded_state_rmse_missing",
+  "analysis_predeclaration": {
+    "conditional_paired_comparison": "Means on shared valid subset where bounded_status is optimal and primal violation <= 1e-5",
+    "uncertainty_if_reported": "Paired seed/scenario cluster resampling with resampling_seed=424242 and n_independent_seed_clusters=10 (precision-limited, not cell-level)",
+    "oracle_separation": "oracle_* metrics are diagnostic upper bounds, not deployable estimators"
+  },
+  "archived_holdout_v3": {
+    "protocol_id": "final_holdout_v3",
+    "status": "retired_failed",
+    "manifest": "configs/research/final_holdout_v3_seed_manifest.json",
+    "failure_receipt": "results/research_final_v3/final_attempt_failure.json"
+  },
+  "retired_holdout_v1": {
+    "protocol_id": "final_holdout_v1",
+    "status": "retired_exposed",
+    "seeds": [101, 202, 303, 404, 505]
+  },
+  "retired_holdout_v2": {
+    "protocol_id": "final_holdout_v2",
+    "status": "retired_exposed",
+    "seeds": [701, 802, 903, 1004, 1105],
+    "exposed_subset": [701, 802]
+  },
+  "scenario_params": {
+    "layout": "chain",
+    "n_links": 7,
+    "n_steps": 8,
+    "demand_vph": 750.0,
+    "noise_std": 12.0,
+    "obs_noise_model": "uniform_bounded",
+    "obs_noise_scale": 12.0,
+    "missing_rate": 0.15,
+    "capacity_vehicles": 180.0
+  },
+  "stress_variants": [
+    "baseline",
+    "random_missing",
+    "contiguous_dropout",
+    "shifted_demand",
+    "wrong_interval",
+    "truth_outside_interval",
+    "od_prior_shift",
+    "gaussian_misspecification",
+    "inconsistent_od_counts",
+    "intentional_boundary_inconsistency"
+  ],
+  "selection_history_note": "v4 seeds minted once post generative repair; stress list unchanged from archived v3 protocol; no post-peek selection."
+}
