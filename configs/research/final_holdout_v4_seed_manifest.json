@@ -1,0 +1,21 @@
+{
+  "protocol_id": "final_holdout_v4",
+  "generated_utc": "2026-11-11T17:30:00Z",
+  "generator": "secrets.randbelow",
+  "n_seeds": 10,
+  "seeds": [
+    7783114929623311505,
+    6242675308882067067,
+    7603013050274570249,
+    5561420057320424089,
+    6031017206454009675,
+    4905457364178722424,
+    5597043143875218530,
+    7244826587779272624,
+    5757910615864632253,
+    7205798323138762989
+  ],
+  "excluded_registry_note": "Disjoint from dev (11-55), retired v1 (101-505), retired v2 (701-1105), archived v3 holdout (manifest on disk), and pytest fixture holdout (9901-9905).",
+  "amendment_note": "Transparent amended v4 reserve after repaired generative integrator; not a rerun of preregistered v3.",
+  "written_before_scenario_execution": true
+}

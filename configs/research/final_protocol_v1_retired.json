@@ -1,0 +1,26 @@
+{
+  "protocol_id": "final_holdout_v1",
+  "protocol_role": "final",
+  "status": "retired_exposed",
+  "description": "Historical final protocol whose seeds were exposed during integration review (DO NOT RUN)",
+  "exposure_note": "Original seeds executed in development mode during review; see docs/research_protocol.md",
+  "seeds": [101, 202, 303, 404, 505],
+  "scenario_params": {
+    "n_links": 6,
+    "n_steps": 10,
+    "demand_vph": 820.0,
+    "noise_std": 18.0,
+    "missing_rate": 0.18,
+    "capacity_vehicles": 200.0
+  },
+  "stress_variants": [
+    "baseline",
+    "random_missing",
+    "contiguous_dropout",
+    "missing_boundary",
+    "shifted_demand",
+    "wrong_interval",
+    "truth_outside_interval",
+    "od_prior_shift"
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "manifest_version": "1.0.0",
+  "project": "CREST",
+  "component": "measured_data_feasibility_provenance",
+  "generated_utc": "2026-11-11T06:40:00Z",
+  "policy": {
+    "no_synthetic_masquerading": true,
+    "no_reidentification": true,
+    "no_unauthorized_credentials": true,
+    "max_download_budget_bytes": 104857600
+  },
+  "verified_fetched_sources": {
+    "ngsim_i80_slice": {
+      "status": "verified_fetched",
+      "source_name": "USDOT NGSIM I-80 Vehicle Trajectories",
+      "curator": "U.S. Department of Transportation, Federal Highway Administration (FHWA)",
+      "catalog_url": "https://catalog.data.gov/dataset/next-generation-simulation-ngsim-vehicle-trajectories-and-supporting-data",
+      "soda_endpoint_url": "https://data.transportation.gov/resource/8ect-6jqj.csv",
+      "query_url": "https://data.transportation.gov/resource/8ect-6jqj.csv?%24where=location%3D%27i-80%27&%24order=global_time%2Cvehicle_id&%24limit=25000",
+      "local_relative_path": "data/research_external/ngsim_i80_slice.csv",
+      "retrieved_utc": "2026-11-11T06:37:07.346784+00:00",
+      "size_bytes": 4369161,
+      "sha256": "38173aad33806922b4f22f516363f8a4fce53038554e6d85744e151f05870d1b",
+      "record_count": 25000,
+      "geography": {
+        "corridor": "Interstate 80 Eastbound, Emeryville, California, USA",
+        "length_ft": 1650,
+        "length_m": 500,
+        "lanes": 6,
+        "ramps": "Powell Street on-ramp and off-ramp"
+      },
+      "time_interval": {
+        "date": "2005-04-13",
+        "raw_global_time_ms": [1113433135300, 1113433200900],
+        "raw_duration_s": 65.6,
+        "local_time_pdt": "2005-04-13 15:58:55.300 .. 16:00:00.900 PDT",
+        "local_time_utc": "2005-04-13 22:58:55.300 .. 23:00:00.900 UTC",
+        "unique_global_timestamps": 657,
+        "unique_vehicle_ids": 86,
+        "sampling_frequency_hz": 10.0,
+        "adapter_retained_time_range_ms_note": "See measured pilot provenance coverage_flags.retained_time_range_ms after conservative edge-only trim"
+      },
+      "license": {
+        "type": "Public Domain (U.S. Federal Government Open Data)",
+        "terms_url": "https://data.transportation.gov/stories/s/NGSIM-Open-Data/7c2n-ki8h",
+        "redistribution_permitted": true,
+        "commercial_use_permitted": true,
+        "citation_required": true,
+        "citation": "Federal Highway Administration (FHWA). Next Generation Simulation (NGSIM) Vehicle Trajectories. USDOT ITS DataHub."
+      },
+      "fields": {
+        "vehicle_id": {"type": "integer", "units": "identifier", "description": "Unique vehicle identifier within recording period"},
+        "frame_id": {"type": "integer", "units": "index", "description": "Frame index at 10 frames per second (0.1 s increments)"},
+        "total_frames": {"type": "integer", "units": "count", "description": "Total frames vehicle appears in sensor zone"},
+        "global_time": {"type": "integer", "units": "milliseconds", "description": "Epoch timestamp in milliseconds"},
+        "local_x": {"type": "float", "units": "feet", "description": "Lateral distance relative to left-most lane edge"},
+        "local_y": {"type": "float", "units": "feet", "description": "Longitudinal distance along corridor from section entry"},
+        "global_x": {"type": "float", "units": "feet", "description": "California State Plane NAD83 Easting"},
+        "global_y": {"type": "float", "units": "feet", "description": "California State Plane NAD83 Northing"},
+        "v_length": {"type": "float", "units": "feet", "description": "Vehicle bounding length"},
+        "v_width": {"type": "float", "units": "feet", "description": "Vehicle bounding width"},
+        "v_class": {"type": "integer", "units": "categorical", "description": "Vehicle class (1=motorcycle, 2=passenger car, 3=heavy truck/bus)"},
+        "v_vel": {"type": "float", "units": "ft/s", "description": "Instantaneous longitudinal velocity"},
+        "v_acc": {"type": "float", "units": "ft/s^2", "description": "Instantaneous longitudinal acceleration"},
+        "lane_id": {"type": "integer", "units": "index", "description": "Lane index (1=leftmost HOV, 2-5=mainline, 6=auxiliary, 7=on-ramp)"},
+        "o_zone": {"type": "float", "units": "identifier", "description": "Origin zone (arterial intersections only; null on freeway I-80)"},
+        "d_zone": {"type": "float", "units": "identifier", "description": "Destination zone (arterial intersections only; null on freeway I-80)"},
+        "int_id": {"type": "float", "units": "identifier", "description": "Intersection identifier (arterial only; null on freeway I-80)"},
+        "section_id": {"type": "float", "units": "identifier", "description": "Corridor section identifier (null on freeway I-80)"},
+        "direction": {"type": "float", "units": "code", "description": "Direction of travel (null on freeway I-80)"},
+        "movement": {"type": "float", "units": "code", "description": "Turning movement code (null on freeway I-80)"},
+        "preceding": {"type": "integer", "units": "identifier", "description": "Vehicle ID of lead vehicle in current lane (0 if none)"},
+        "following": {"type": "integer", "units": "identifier", "description": "Vehicle ID of following vehicle in current lane (0 if none)"},
+        "space_headway": {"type": "float", "units": "feet", "description": "Front-bumper to front-bumper distance to lead vehicle"},
+        "time_headway": {"type": "float", "units": "seconds", "description": "Time clearance to lead vehicle"},
+        "location": {"type": "string", "units": "label", "description": "Location tag ('i-80')"}
+      },
+      "identifiability_capabilities": {
+        "task1_state_reconstruction": {
+          "status": "supported",
+          "method": "Edie generalized macro aggregation (space-mean speed ΣD/ΣT, spatial density, volume per interval)",
+          "caveats": "Covers ~1650 ft micro section; does not provide regional corridor networks"
+        },
+        "task2_queue_prediction": {
+          "status": "proxy_only",
+          "method": "Physical speed breakdown threshold (< 25 mph) or headway collapse (< 30 ft)",
+          "caveats": "Official binary queue ground-truth labels are unstandardized and unidentifiable without arbitrary researcher thresholds"
+        },
+        "task3_conservation_fd": {
+          "status": "partial_proxy_only",
+          "method": "Cumulative boundary counting vs interior occupancy delta",
+          "caveats": "Camera tracking occlusion, lane-change clipping, and track fragmentation violate numerical conservation; exact conservation cannot be claimed without synthetic boundary assumptions"
+        },
+        "task4_od_path_estimation": {
+          "status": "unidentifiable",
+          "method": "none",
+          "caveats": "Linear weaving section with single corridor; no alternative routes or network path incidence matrix. Freeway records have null o_zone/d_zone fields"
+        }
+      }
+    },
+    "i24_motion_sample_3": {
+      "status": "verified_fetched",
+      "source_name": "I-24 MOTION Feasibility Multi-Camera Trajectory Sample",
+      "curator": "I-24 MOTION Team (Vanderbilt University / TDOT / Gresham Smith)",
+      "download_url": "https://raw.githubusercontent.com/DerekGloudemans/I24-MOTION-examples/master/example_data/trajectory_data_3.json",
+      "local_relative_path": "data/research_external/i24_motion_sample_3.json",
+      "retrieved_utc": "2026-11-11T06:37:15.722830+00:00",
+      "size_bytes": 5532215,
+      "sha256": "857ee641cbcff3b56974bde323fcb8c126dddccca9ae0f336b559a4027e8cc17",
+      "record_count": 1801,
+      "geography": {
+        "corridor": "Interstate 24, Nashville, Tennessee, USA",
+        "description": "Feasibility camera deployment (Pole 1, Camera 3)"
+      },
+      "time_interval": {
+        "sampling_frequency_hz": 30.0,
+        "duration_sec": 60.0
+      },
+      "license": {
+        "software_repository": {
+          "type": "MIT License",
+          "holder": "Derek Gloudemans / I-24 MOTION examples repository",
+          "terms_url": "https://github.com/DerekGloudemans/I24-MOTION-examples",
+          "applies_to": "Example code in GitHub repository only"
+        },
+        "trajectory_data_sample": {
+          "redistribution_terms": "unverified_for_this_json_blob",
+          "note": "MIT on the repo does not by itself certify redistribution rights for trajectory pixels/coordinates. Full INCEPTION portal Data Use Agreement is separate (registration required). Do not redistribute derived trajectory products without primary agreement text.",
+          "no_reidentification": "as-is sample policy not independently verified from primary PDF in this manifest",
+          "commercial_repackaging": "unverified"
+        },
+        "citation": "Gloudemans, D., Wang, Y., Ji, J., Zachar, G., Barbour, W., Hall, E., Cebelak, M., Smith, L. and Work, D.B., 2023. I-24 MOTION: An instrument for freeway traffic science. Transportation Research Part C: Emerging Technologies, 155, p.104311."
+      },
+      "fields": {
+        "metadata": {
+          "camera_id": "integer index",
+          "num_frames": "integer (1801)",
+          "frame_rate": "integer (30 fps)"
+        },
+        "data_per_frame": {
+          "id_num": "integer vehicle tracking ID",
+          "class": "string ('car', 'truck', 'bus')",
+          "detected": "integer (1=detected, 0=interpolated/tracked)",
+          "image_position": "array of float [x, y, width, height] in 4K pixel coordinates",
+          "world_position": "array of float [x, y]; axis units unverified in open sample (may be pipeline world points, not surveyed meters)",
+          "gps_position": "array of float [latitude, longitude]"
+        }
+      },
+      "identifiability_capabilities": {
+        "task1_state_reconstruction": {
+          "status": "supported_micro_only",
+          "method": "Speed and trajectory estimation from world/GPS positions across consecutive frames",
+          "caveats": "Short duration (60 s) from single pole; micro-scale only"
+        },
+        "task2_queue_prediction": {
+          "status": "unidentifiable_in_sample",
+          "method": "none",
+          "caveats": "60 s interval is too short to observe queue onset transitions"
+        },
+        "task3_conservation_fd": {
+          "status": "unidentifiable_without_full_poles",
+          "method": "none",
+          "caveats": "Single-camera view cannot close corridor mass balance"
+        },
+        "task4_od_path_estimation": {
+          "status": "unidentifiable",
+          "method": "none",
+          "caveats": "Single camera view does not contain network origin-destination pairs"
+        }
+      }
+    }
+  },
+  "blocked_candidate_sources": {
+    "caltrans_pems_portal": {
+      "status": "blocked_prerequisite_required",
+      "source_name": "Caltrans Performance Measurement System (PeMS)",
+      "url": "https://pems.dot.ca.gov/",
+      "blocker_category": "Authentication and Account Approval Gate",
+      "blocker_details": "PeMS requires user registration and account approval; session authentication blocks unattended CLI export. Automated redistribution terms for exported loop data were not verified from primary Caltrans text in this review.",
+      "prerequisites_needed": [
+        "Approved Caltrans PeMS account credentials",
+        "Authorized session token / clearance for research export",
+        "Explicit verified redistribution license for secondary sharing"
+      ],
+      "metrics_supported_if_unblocked": [
+        "Task 1: Macro 5-minute loop speed and flow reconstruction",
+        "Task 3: Fundamental diagram calibration per detector station"
+      ],
+      "metrics_unidentifiable_even_if_unblocked": [
+        "Task 3: Exact conservation (loop pulse count drift over hours prevents closed mass balance)",
+        "Task 4: Ground-truth path flows (point detectors do not observe vehicle paths without license plate re-identification)"
+      ]
+    },
+    "i24_motion_inception_portal": {
+      "status": "blocked_prerequisite_required",
+      "source_name": "I-24 MOTION Full INCEPTION Dataset Portal",
+      "url": "https://i24motion.org/data",
+      "access_url": "https://i24motion.org/access_data",
+      "blocker_category": "WAF Rate Gate and Manual Approval Workflow",
+      "blocker_details": "Automated requests from standard CLI agents trigger security appliance rejection (WAF support ID). Web requests navigate to /user/register where account creation states: 'New accounts will gain access after site approval within one business day.' Direct automated anonymous bulk download is blocked.",
+      "prerequisites_needed": [
+        "Registered i24motion.org account",
+        "Manual administrator approval from Vanderbilt / TDOT team",
+        "Signed compliance with Data Use Agreement (no re-identification, cite Gloudemans et al. 2023)"
+      ],
+      "metrics_supported_if_unblocked": [
+        "Task 1: Full 4.2-mile trajectory speed/density fields",
+        "Task 2: Wave propagation and queue shockwave tracing"
+      ],
+      "metrics_unidentifiable_even_if_unblocked": [
+        "Task 4: Network path choice (linear freeway corridor does not contain route choice alternatives)"
+      ]
+    },
+    "metr_la_generic_loop": {
+      "status": "excluded_scientifically_unsuitable",
+      "source_name": "METR-LA Speed-Only Benchmark",
+      "url": "https://github.com/liyaguang/DCRNN",
+      "blocker_category": "Scientific Inadequacy for Conservation Ground Truth",
+      "blocker_details": "METR-LA provides only aggregated speed measurements at loop sensors without flow, volume, density, ramp meters, or boundary counts. Substituting speed-only METR-LA for physical conservation ground truth is mathematically invalid.",
+      "metrics_supported_if_unblocked": [
+        "Task 1: Speed forecasting/imputation benchmark only"
+      ],
+      "metrics_unidentifiable_even_if_unblocked": [
+        "Task 1: Flow reconstruction (no flow data)",
+        "Task 3: Conservation law and flux-storage balance (no vehicle counts)",
+        "Task 4: Path flow estimation (no link counts or OD matrices)"
+      ]
+    }
+  },
+  "reproducibility_steps": [
+    "Run: python scripts/fetch_research_data.py --source ngsim_i80",
+    "Run: python scripts/fetch_research_data.py --source i24_sample",
+    "Verify integrity: python scripts/fetch_research_data.py --verify-only",
+    "Execute test suite: python -m pytest tests/test_research_data_sources.py"
+  ]
+}

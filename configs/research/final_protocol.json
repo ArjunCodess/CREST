@@ -1,0 +1,61 @@
+{
+  "protocol_id": "final_holdout_v3",
+  "protocol_role": "final",
+  "holdout_status": "retired_failed",
+  "holdout_amendment_utc": "2026-11-11T17:00:00Z",
+  "holdout_amendment_reason": "Failed final attempt (generative domain bug under n_links=7); reserve archived, not active for rerun.",
+  "description": "Post-freeze synthetic final evaluation (v3). Independent RNG seeds; chain layout with n_links=7 (not used in dev n_links=5 tuning). Stress families match development registry. Not a real-world generalization claim.",
+  "seeds": [
+    1010559880036807,
+    1101903413522210,
+    1261258823614491,
+    1297921224299534,
+    1418734052312821,
+    1521028319156996,
+    1536129947884980,
+    1549975720351840,
+    1583044294401646,
+    1628714462425246
+  ],
+  "primary_metric": "bounded_state_rmse_missing",
+  "analysis_predeclaration": {
+    "conditional_paired_comparison": "Means on shared valid subset where bounded_status is optimal and primal violation <= 1e-5",
+    "uncertainty_if_reported": "Paired seed/scenario cluster resampling with resampling_seed=424242 and n_independent_seed_clusters=10 (precision-limited, not cell-level)",
+    "oracle_separation": "oracle_* metrics are diagnostic upper bounds, not deployable estimators"
+  },
+  "retired_holdout_v1": {
+    "protocol_id": "final_holdout_v1",
+    "status": "retired_exposed",
+    "seeds": [101, 202, 303, 404, 505]
+  },
+  "retired_holdout_v2": {
+    "protocol_id": "final_holdout_v2",
+    "status": "retired_exposed",
+    "seeds": [701, 802, 903, 1004, 1105],
+    "exposed_subset": [701, 802]
+  },
+  "scenario_params": {
+    "layout": "chain",
+    "n_links": 7,
+    "n_steps": 8,
+    "demand_vph": 750.0,
+    "noise_std": 12.0,
+    "obs_noise_model": "uniform_bounded",
+    "obs_noise_scale": 12.0,
+    "missing_rate": 0.15,
+    "capacity_vehicles": 180.0
+  },
+  "stress_variants": [
+    "baseline",
+    "random_missing",
+    "contiguous_dropout",
+    "shifted_demand",
+    "wrong_interval",
+    "truth_outside_interval",
+    "od_prior_shift",
+    "gaussian_misspecification",
+    "inconsistent_od_counts",
+    "intentional_boundary_inconsistency"
+  ],
+  "selection_history_note": "No seed or scenario selection after peek; v3 seeds minted once post method freeze."
+}

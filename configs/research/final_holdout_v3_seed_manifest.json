@@ -1,0 +1,20 @@
+{
+  "protocol_id": "final_holdout_v3",
+  "generated_utc": "2026-11-11T11:20:00Z",
+  "generator": "secrets.SystemRandom via secrets.randbelow",
+  "n_seeds": 10,
+  "seeds": [
+    1010559880036807,
+    1101903413522210,
+    1261258823614491,
+    1297921224299534,
+    1418734052312821,
+    1521028319156996,
+    1536129947884980,
+    1549975720351840,
+    1583044294401646,
+    1628714462425246
+  ],
+  "excluded_registry_note": "Disjoint from dev (11-55), retired v1 (101-505), retired v2 (701-1105), and pytest fixture holdout (9901-9905).",
+  "written_before_scenario_execution": true
+}

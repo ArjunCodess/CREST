@@ -1,0 +1,40 @@
+{
+  "protocol_id": "final_holdout_v3",
+  "status": "retired_failed",
+  "retired_date": "2026-11-11",
+  "retired_seeds": [
+    1010559880036807,
+    1101903413522210,
+    1261258823614491,
+    1297921224299534,
+    1418734052312821,
+    1521028319156996,
+    1536129947884980,
+    1549975720351840,
+    1583044294401646,
+    1628714462425246
+  ],
+  "frozen_failure_preserved": {
+    "code_hash": "07a399f8e9550149",
+    "protocol_fingerprint": "5da3b1d664faf594",
+    "failure_receipt": "results/research_final_v3/final_attempt_failure.json",
+    "pre_evaluation_freeze": "results/research/pre_evaluation_freeze.json",
+    "output_dir": "results/research_final_v3",
+    "note": "Original failed final attempt and manifest are archival only; not rewritten by generative amendments."
+  },
+  "reported_full_matrix_exposure": {
+    "disclosed_utc": "2026-11-11T11:45:00Z",
+    "actor": "implementation_subagent",
+    "admission": "Despite instructions not to execute reserved v3 scenarios, the implementing agent reported checking all 10 stress variants times 10 archived v3 seeds after generative repair (full 10x10 matrix).",
+    "evidence_class": "agent_reported",
+    "independently_observed_subset": [],
+    "distinction": "Self-disclosed agent admission; not independently observed execution receipts (contrast v2 subset 701/802)."
+  },
+  "holdout_lineage": {
+    "v1_status": "retired_exposed",
+    "v2_status": "retired_exposed",
+    "v3_status": "retired_failed",
+    "active_final_holdout": null
+  },
+  "no_pristine_preregistered_claim": true
+}
