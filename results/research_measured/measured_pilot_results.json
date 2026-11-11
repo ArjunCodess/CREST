@@ -1,0 +1,624 @@
+{
+  "status": "dev_pilot_complete",
+  "protocol_role": "development_measured",
+  "supersedes_note": "Prior measured artifacts used R[:,0] shared inlet/outlet (constant corridor sum N); superseded by independent inlet/outlet channels R[:,0], R[:,1].",
+  "limitations": [
+    "NGSIM slice capped at 25000 rows; development-only \u2014 not independent measured validation or real OD.",
+    "storage_count_identity is exact track bookkeeping (births/deaths) on the adapter grid, not proof of physical conservation.",
+    "prefix_empirical with calibration_prefix_steps < sample windows falls back to physical 15k vph \u2014 often identical to physical_envelope on this pilot; see flow_assumption_scenarios.",
+    "prefix_empirical z_upper can under-cap later windows (compare observed_peak_internal_vph).",
+    "Declared per-lane capacity metadata is envelope metadata, not empirical calibration from these windows.",
+    "No OD / route truth \u2014 boundary inference only on corridor chain.",
+    "Edie q= k_vpkm * v_kmh is definitional, not fundamental-diagram validation.",
+    "Temporal carry-in/out are accounting labels, not physical boundary sources.",
+    "obs_tolerance_veh and R\u00b2-style storage fits on this slice are debug/development metrics only."
+  ],
+  "provenance": {
+    "source_id": "ngsim_i80_slice",
+    "raw_sha256": "38173aad33806922b4f22f516363f8a4fce53038554e6d85744e151f05870d1b",
+    "adapter_source_hash": "5f695b368ba6119bf5d59cb8e8a425245e045ab08a682f47e372d0ff30d4e60c",
+    "units": {
+      "time": "ms",
+      "longitudinal": "m",
+      "trajectory_speed": "m/s",
+      "edie_flow": "vph_all_lanes_corridor",
+      "edie_density": "veh_per_km_all_lanes",
+      "edie_speed": "km_per_h_space_mean",
+      "flow_scope": "all_lanes_corridor_cross_section",
+      "edie_qkv_units_note": "q_vph = k_vpkm * v_kmh when all three finite (definitional)"
+    },
+    "coverage_flags": {
+      "source_rows": 24999,
+      "n_trajectories": 86,
+      "time_range_ms": [
+        1113433135400,
+        1113433200900
+      ],
+      "duration_s": 65.5,
+      "slice_limit_rows": 25000,
+      "truncation_note": "SODA $limit=25000 may truncate mid-recording; conservative edge-only trim only.",
+      "removed_edge_times_ms": [
+        1113433135300
+      ],
+      "edge_trim_policy": "conservative_first_last_sparse_only",
+      "raw_time_range_ms": [
+        1113433135300,
+        1113433200900
+      ],
+      "per_frame_count_summary": {
+        "n_frames": 657,
+        "min": 1,
+        "max": 86,
+        "median": 37.0,
+        "first_ms": 1113433135300,
+        "last_ms": 1113433200900,
+        "first_n": 1,
+        "last_n": 23,
+        "max_count_ms": 1113433200500,
+        "max_count_n": 86
+      },
+      "drop_rationale": [
+        {
+          "global_time_ms": 1113433135300,
+          "reason": "sparse_first_timestamp",
+          "vehicle_count": 1,
+          "median_count": 37.0
+        }
+      ],
+      "frame_count_median": 37.0,
+      "retained_rows": 24999,
+      "dropped_rows": 1,
+      "retained_time_range_ms": [
+        1113433135400,
+        1113433200900
+      ],
+      "frame_completeness_guarantee": "none \u2014 edge trim is count-heuristic on first/last timestamps only; interior frames kept verbatim"
+    },
+    "policy": {
+      "speed_negative_policy": "nan_derivative",
+      "min_trajectory_points": 3,
+      "max_gap_ms": 250,
+      "longitudinal_column": "local_y",
+      "longitudinal_units_in": "feet"
+    }
+  },
+  "research_code_hash": "c15d37e54fe38d63",
+  "config_echo": {
+    "pilot_id": "measured_dev_pilot_v1",
+    "protocol_role": "development",
+    "description": "Development-only NGSIM I-80 slice; not for final holdout reporting",
+    "repo_root": ".",
+    "ngsim_path": "data/research_external/ngsim_i80_slice.csv",
+    "ngsim_sha256": "38173aad33806922b4f22f516363f8a4fce53038554e6d85744e151f05870d1b",
+    "i24_path": "data/research_external/i24_motion_sample_3.json",
+    "probe_i24": true,
+    "n_spatial_cells": 3,
+    "dt_ms": 20000,
+    "x_min_m": 91.44,
+    "x_max_m": 274.32,
+    "calibration_prefix_steps": 2,
+    "flow_flux_scope": "all_lanes_corridor_cross_section",
+    "mainline_lane_count": 6,
+    "per_lane_capacity_vph": 2500.0,
+    "per_lane_capacity_rationale": "FHWA NGSIM I-80 Emeryville corridor: six mainline lanes in study geometry (docs/research_data.md); order-of-magnitude saturation flow per lane, not fit from eval windows",
+    "fallback_u_lower_vph": 0.0,
+    "fallback_u_upper_vph": 3000.0,
+    "max_edge_flow_vph": 2500.0,
+    "max_edge_flow_vph_note": "legacy alias for per_lane_capacity_vph; runner converts to all-lane z/u envelope",
+    "obs_tolerance_veh": 4.0,
+    "mask_seed": 7019,
+    "missing_rate": 0.25
+  },
+  "adapter_source_hash": "5f695b368ba6119bf5d59cb8e8a425245e045ab08a682f47e372d0ff30d4e60c",
+  "mask_seed": 7019,
+  "split_times_ms": [
+    1113433135400,
+    1113433200900
+  ],
+  "units": {
+    "time": "ms",
+    "longitudinal": "m",
+    "trajectory_speed": "m/s",
+    "edie_flow": "vph_all_lanes_corridor",
+    "edie_density": "veh_per_km_all_lanes",
+    "edie_speed": "km_per_h_space_mean",
+    "flow_scope": "all_lanes_corridor_cross_section",
+    "edie_qkv_units_note": "q_vph = k_vpkm * v_kmh when all three finite (definitional)"
+  },
+  "coverage_flags": {
+    "source_rows": 24999,
+    "n_trajectories": 86,
+    "time_range_ms": [
+      1113433135400,
+      1113433200900
+    ],
+    "duration_s": 65.5,
+    "slice_limit_rows": 25000,
+    "truncation_note": "SODA $limit=25000 may truncate mid-recording; conservative edge-only trim only.",
+    "removed_edge_times_ms": [
+      1113433135300
+    ],
+    "edge_trim_policy": "conservative_first_last_sparse_only",
+    "raw_time_range_ms": [
+      1113433135300,
+      1113433200900
+    ],
+    "per_frame_count_summary": {
+      "n_frames": 657,
+      "min": 1,
+      "max": 86,
+      "median": 37.0,
+      "first_ms": 1113433135300,
+      "last_ms": 1113433200900,
+      "first_n": 1,
+      "last_n": 23,
+      "max_count_ms": 1113433200500,
+      "max_count_n": 86
+    },
+    "drop_rationale": [
+      {
+        "global_time_ms": 1113433135300,
+        "reason": "sparse_first_timestamp",
+        "vehicle_count": 1,
+        "median_count": 37.0
+      }
+    ],
+    "frame_count_median": 37.0,
+    "retained_rows": 24999,
+    "dropped_rows": 1,
+    "retained_time_range_ms": [
+      1113433135400,
+      1113433200900
+    ],
+    "frame_completeness_guarantee": "none \u2014 edge trim is count-heuristic on first/last timestamps only; interior frames kept verbatim"
+  },
+  "grid_meta": {
+    "n_spatial_cells": 3,
+    "n_time_windows": 3,
+    "x_range_m": [
+      91.44,
+      274.32
+    ],
+    "t_range_ms": [
+      1113433135400,
+      1113433200900
+    ],
+    "dt_ms": 20000,
+    "cells_non_overlapping": true
+  },
+  "boundary_operators": {
+    "n_bound": 2,
+    "inlet_channel": 0,
+    "outlet_channel": 1
+  },
+  "empirical_boundary_flux_totals": {
+    "cumulative_inflow_vehicles": 53.0,
+    "cumulative_outflow_vehicles": 0.0,
+    "net_inflow_vehicles": 53.0
+  },
+  "flow_capacity_metadata": {
+    "flow_flux_scope": "all_lanes_corridor_cross_section",
+    "mainline_lane_count": 6,
+    "per_lane_capacity_vph": 2500.0,
+    "all_lane_capacity_vph": 15000.0,
+    "per_lane_capacity_rationale": "FHWA NGSIM I-80 Emeryville corridor: six mainline lanes in study geometry (docs/research_data.md); order-of-magnitude saturation flow per lane, not fit from eval windows",
+    "corridor_longitudinal_coverage_m": 182.88,
+    "spatial_cell_scope": "longitudinal_bins_aggregate_all_lane_crossings_and_snapshots",
+    "note": "Adapter crossing_flux_*_vph counts all vehicles crossing a plane (all lanes), not per-lane."
+  },
+  "flow_assumption_scenarios": [
+    {
+      "scenario_id": "physical_envelope",
+      "internal_flow_bounds_status": "declared_physical_envelope_all_lanes",
+      "internal_flow_upper_vph": 15000.0,
+      "lp_infeasibility_diagnosis": {
+        "feasible_at_config_tolerance": true,
+        "feasible_dynamics_only_no_storage_observations": true,
+        "feasible_with_unbounded_internal_flow_at_config_tolerance": true,
+        "approx_min_obs_tolerance_veh_for_lp_feasibility": 1.1920928955078125e-05,
+        "n_observation_inequalities_at_config_tolerance": 9,
+        "constraint_witness": "feasible_under_declared_bounds"
+      },
+      "boundary_aggregate_lp_data_conditioned": {
+        "inflow": {
+          "status": "optimal",
+          "lower": 42.0,
+          "upper": 250.00000000000003,
+          "width": 208.00000000000003,
+          "message": "ok",
+          "n_observation_rows": 9,
+          "vehicles_aggregate": true,
+          "include_observations": true
+        },
+        "outflow": {
+          "status": "optimal",
+          "lower": 0.0,
+          "upper": 208.00000000000003,
+          "width": 208.00000000000003,
+          "message": "ok",
+          "n_observation_rows": 9,
+          "vehicles_aggregate": true,
+          "include_observations": true
+        },
+        "net": {
+          "status": "optimal",
+          "lower": 42.0,
+          "upper": 66.0,
+          "width": 24.0,
+          "message": "ok",
+          "n_observation_rows": 9,
+          "vehicles_aggregate": true,
+          "include_observations": true
+        }
+      },
+      "boundary_aggregate_lp_box_only": {
+        "inflow": {
+          "status": "optimal",
+          "lower": 0.0,
+          "upper": 250.00000000000003,
+          "width": 250.00000000000003,
+          "message": "ok",
+          "n_observation_rows": 0,
+          "vehicles_aggregate": true,
+          "include_observations": false
+        },
+        "outflow": {
+          "status": "optimal",
+          "lower": 0.0,
+          "upper": 250.00000000000003,
+          "width": 250.00000000000003,
+          "message": "ok",
+          "n_observation_rows": 0,
+          "vehicles_aggregate": true,
+          "include_observations": false
+        },
+        "net": {
+          "status": "optimal",
+          "lower": -250.00000000000003,
+          "upper": 250.00000000000003,
+          "width": 500.00000000000006,
+          "message": "ok",
+          "n_observation_rows": 0,
+          "vehicles_aggregate": true,
+          "include_observations": false
+        }
+      },
+      "feasibility_lp_witness_full_obs": {
+        "lp_status": "optimal",
+        "n_vars": 12,
+        "n_observation_inequalities": 12,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "feasible": true,
+        "max_affine_violation": -0.0,
+        "max_box_violation": 0.0
+      },
+      "feasibility_lp_witness_masked": {
+        "lp_status": "optimal",
+        "n_vars": 12,
+        "n_observation_inequalities": 9,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "feasible": true,
+        "max_affine_violation": -0.0,
+        "max_box_violation": 0.0
+      },
+      "inference_attempts": [
+        {
+          "label": "full_obs",
+          "status": "optimal",
+          "elapsed_s": 0.04547420000017155,
+          "dynamics_algebraic_residual_rmse": 5.932743016072494e-16,
+          "primal_feasibility_max_violation": 0.0,
+          "lp_feasible_witness": {
+            "lp_status": "optimal",
+            "n_vars": 12,
+            "n_observation_inequalities": 12,
+            "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+            "feasible": true,
+            "max_affine_violation": -0.0,
+            "max_box_violation": 0.0
+          },
+          "failure_category": "ok"
+        },
+        {
+          "label": "masked",
+          "status": "optimal",
+          "elapsed_s": 0.05153029999928549,
+          "dynamics_algebraic_residual_rmse": 3.700743415417188e-17,
+          "primal_feasibility_max_violation": 0.0,
+          "lp_feasible_witness": {
+            "lp_status": "optimal",
+            "n_vars": 12,
+            "n_observation_inequalities": 9,
+            "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+            "feasible": true,
+            "max_affine_violation": -0.0,
+            "max_box_violation": 0.0
+          },
+          "failure_category": "ok"
+        }
+      ],
+      "numerical_failure_rate": 0.0,
+      "conditional_performance": {
+        "note": "RMSE only when masked attempt is optimal; same mask_seed as baseline imputer",
+        "missing_region_storage_rmse": 3.7279802880848285,
+        "observed_region_storage_rmse": 3.4982455658210196,
+        "masked_mean_imputer_missing_rmse": 6.4323401651343035,
+        "dynamics_balance_rmse_masked": 3.700743415417188e-17
+      },
+      "boundary_status": "declared_physical_envelope_all_lanes"
+    },
+    {
+      "scenario_id": "prefix_empirical",
+      "internal_flow_bounds_status": "prefix_internal_crossing_calibration",
+      "internal_flow_upper_vph": 15000.0,
+      "lp_infeasibility_diagnosis": {
+        "feasible_at_config_tolerance": true,
+        "feasible_dynamics_only_no_storage_observations": true,
+        "feasible_with_unbounded_internal_flow_at_config_tolerance": true,
+        "approx_min_obs_tolerance_veh_for_lp_feasibility": 1.1920928955078125e-05,
+        "n_observation_inequalities_at_config_tolerance": 9,
+        "constraint_witness": "feasible_under_declared_bounds"
+      },
+      "boundary_aggregate_lp_data_conditioned": {
+        "inflow": {
+          "status": "optimal",
+          "lower": 42.0,
+          "upper": 250.00000000000003,
+          "width": 208.00000000000003,
+          "message": "ok",
+          "n_observation_rows": 9,
+          "vehicles_aggregate": true,
+          "include_observations": true
+        },
+        "outflow": {
+          "status": "optimal",
+          "lower": 0.0,
+          "upper": 208.00000000000003,
+          "width": 208.00000000000003,
+          "message": "ok",
+          "n_observation_rows": 9,
+          "vehicles_aggregate": true,
+          "include_observations": true
+        },
+        "net": {
+          "status": "optimal",
+          "lower": 42.0,
+          "upper": 66.0,
+          "width": 24.0,
+          "message": "ok",
+          "n_observation_rows": 9,
+          "vehicles_aggregate": true,
+          "include_observations": true
+        }
+      },
+      "boundary_aggregate_lp_box_only": {
+        "inflow": {
+          "status": "optimal",
+          "lower": 0.0,
+          "upper": 250.00000000000003,
+          "width": 250.00000000000003,
+          "message": "ok",
+          "n_observation_rows": 0,
+          "vehicles_aggregate": true,
+          "include_observations": false
+        },
+        "outflow": {
+          "status": "optimal",
+          "lower": 0.0,
+          "upper": 250.00000000000003,
+          "width": 250.00000000000003,
+          "message": "ok",
+          "n_observation_rows": 0,
+          "vehicles_aggregate": true,
+          "include_observations": false
+        },
+        "net": {
+          "status": "optimal",
+          "lower": -250.00000000000003,
+          "upper": 250.00000000000003,
+          "width": 500.00000000000006,
+          "message": "ok",
+          "n_observation_rows": 0,
+          "vehicles_aggregate": true,
+          "include_observations": false
+        }
+      },
+      "feasibility_lp_witness_full_obs": {
+        "lp_status": "optimal",
+        "n_vars": 12,
+        "n_observation_inequalities": 12,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "feasible": true,
+        "max_affine_violation": -0.0,
+        "max_box_violation": 0.0
+      },
+      "feasibility_lp_witness_masked": {
+        "lp_status": "optimal",
+        "n_vars": 12,
+        "n_observation_inequalities": 9,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "feasible": true,
+        "max_affine_violation": -0.0,
+        "max_box_violation": 0.0
+      },
+      "inference_attempts": [
+        {
+          "label": "full_obs",
+          "status": "optimal",
+          "elapsed_s": 0.04457389999879524,
+          "dynamics_algebraic_residual_rmse": 5.932743016072494e-16,
+          "primal_feasibility_max_violation": 0.0,
+          "lp_feasible_witness": {
+            "lp_status": "optimal",
+            "n_vars": 12,
+            "n_observation_inequalities": 12,
+            "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+            "feasible": true,
+            "max_affine_violation": -0.0,
+            "max_box_violation": 0.0
+          },
+          "failure_category": "ok"
+        },
+        {
+          "label": "masked",
+          "status": "optimal",
+          "elapsed_s": 0.05182330000025104,
+          "dynamics_algebraic_residual_rmse": 3.700743415417188e-17,
+          "primal_feasibility_max_violation": 0.0,
+          "lp_feasible_witness": {
+            "lp_status": "optimal",
+            "n_vars": 12,
+            "n_observation_inequalities": 9,
+            "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+            "feasible": true,
+            "max_affine_violation": -0.0,
+            "max_box_violation": 0.0
+          },
+          "failure_category": "ok"
+        }
+      ],
+      "numerical_failure_rate": 0.0,
+      "conditional_performance": {
+        "note": "RMSE only when masked attempt is optimal; same mask_seed as baseline imputer",
+        "missing_region_storage_rmse": 3.7279802880848285,
+        "observed_region_storage_rmse": 3.4982455658210196,
+        "masked_mean_imputer_missing_rmse": 6.4323401651343035,
+        "dynamics_balance_rmse_masked": 3.700743415417188e-17
+      },
+      "boundary_status": "insufficient_calibration_fixed_broad",
+      "prefix_calibration": {
+        "calibration_prefix_steps": 2,
+        "margin": 1.25,
+        "all_lane_fallback_vph": 15000.0,
+        "prefix_sample_count": 4,
+        "prefix_max_observed_vph": 0.0,
+        "applied_all_lane_floor_vph": 15000.0,
+        "legacy_mis_scoped_per_lane_as_all_lane_vph": 2500.0,
+        "observed_peak_internal_vph": 6300.0,
+        "prefix_under_observed_peak": false
+      }
+    }
+  ],
+  "calibration_status": "insufficient_calibration_fixed_broad",
+  "internal_flow_bounds_status": "declared_physical_envelope_all_lanes",
+  "internal_flow_upper_vph": 15000.0,
+  "observed_peak_internal_vph": 6300.0,
+  "feasibility_lp_witness": {
+    "lp_status": "optimal",
+    "n_vars": 12,
+    "n_observation_inequalities": 9,
+    "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "feasible": true,
+    "max_affine_violation": -0.0,
+    "max_box_violation": 0.0
+  },
+  "storage_count_identity": {
+    "n_cells": 9,
+    "mean_residual_veh": 0.0,
+    "mean_abs_residual_veh": 0.0,
+    "rmse_residual_veh": 0.0,
+    "max_abs_residual_veh": 0,
+    "n_exact_matches": 9,
+    "identity": "N_end - N_start == crossing_in - crossing_out + births - deaths"
+  },
+  "sample_durations": {
+    "n_snapshot_times": 4,
+    "n_intervals": 3,
+    "dt_ms": 20000,
+    "wall_duration_s": 65.5,
+    "n_trajectories": 86,
+    "n_spatial_cells": 3
+  },
+  "track_derived_observations": {
+    "storage_T_plus_1_boundary_snapshots": true,
+    "flux_interval_aligns_with_snapshot_deltas": true,
+    "density_edie_separate_from_snapshot_fd": true
+  },
+  "flux_and_tracking_residual": {
+    "mean_residual_veh": 0.1111111111111111,
+    "rmse_residual_veh": 0.3333333333333333,
+    "n_cells": 9,
+    "note": "ignores interior births/deaths; see storage_identity_residual for full balance"
+  },
+  "snapshot_flux_fd_residual": {
+    "n_steps": 9,
+    "mean_abs_residual_veh": 0.1111111111111111,
+    "rmse_residual_veh": 0.3333333333333333,
+    "max_abs_residual_veh": 1.0,
+    "mean_abs_birth_death_excluded_veh": 0.1111111111111111,
+    "continuous_flux_max_abs_veh": 1.0,
+    "interpretation": "integer residual excludes births/deaths; nonzero \u21d2 track events or grid boundary"
+  },
+  "track_accounting_summary": {
+    "internal_appearances": 0,
+    "internal_disappearances": 0,
+    "time_window_carry_in": 18,
+    "time_window_carry_out": 72,
+    "fragmentation_events": 0,
+    "dataset_boundary_births": 1,
+    "dataset_boundary_deaths": 0,
+    "negative_speed_samples": 0,
+    "stationary_samples": 2664,
+    "aggregation_scope": "summed_over_all_spacetime_cells_not_unique_vehicles",
+    "n_spacetime_cells": 9
+  },
+  "trace_accounting_discrepancy": {
+    "unobserved_track_events": {
+      "internal_appearances_cell_sum": 0,
+      "internal_disappearances_cell_sum": 0,
+      "time_window_carry_in_sum": 18,
+      "time_window_carry_out_sum": 72
+    },
+    "note": "Appearances are not fed as estimator slack; boundary conservation uses snapshots and flux only."
+  },
+  "inference_attempts": [
+    {
+      "label": "full_obs",
+      "status": "optimal",
+      "elapsed_s": 0.04547420000017155,
+      "dynamics_algebraic_residual_rmse": 5.932743016072494e-16,
+      "primal_feasibility_max_violation": 0.0,
+      "lp_feasible_witness": {
+        "lp_status": "optimal",
+        "n_vars": 12,
+        "n_observation_inequalities": 12,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "feasible": true,
+        "max_affine_violation": -0.0,
+        "max_box_violation": 0.0
+      },
+      "failure_category": "ok"
+    },
+    {
+      "label": "masked",
+      "status": "optimal",
+      "elapsed_s": 0.05153029999928549,
+      "dynamics_algebraic_residual_rmse": 3.700743415417188e-17,
+      "primal_feasibility_max_violation": 0.0,
+      "lp_feasible_witness": {
+        "lp_status": "optimal",
+        "n_vars": 12,
+        "n_observation_inequalities": 9,
+        "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "feasible": true,
+        "max_affine_violation": -0.0,
+        "max_box_violation": 0.0
+      },
+      "failure_category": "ok"
+    }
+  ],
+  "numerical_failure_rate": 0.0,
+  "conditional_performance": {
+    "note": "RMSE only when masked attempt is optimal; same mask_seed as baseline imputer",
+    "missing_region_storage_rmse": 3.7279802880848285,
+    "observed_region_storage_rmse": 3.4982455658210196,
+    "masked_mean_imputer_missing_rmse": 6.4323401651343035,
+    "dynamics_balance_rmse_masked": 3.700743415417188e-17
+  },
+  "i24_probe": {
+    "status": "skipped",
+    "reason": "world_position present but longitudinal axis units are unverified (metadata world_position_units=None; 21053 detections, 0 image_position-only). Example-repo values may be satellite/pipeline world points, not surveyed meters; refusing blind unit conversion.",
+    "fail_closed": true
+  },
+  "no_od_evaluation": true
+}
