@@ -1,0 +1,19 @@
+{
+  "record_type": "final_v4_analysis_posthoc_correction",
+  "archived_utc": "2026-11-11T17:32:20Z",
+  "reason": "Gemini audit: bootstrap used 10 draws, discarded cluster multiplicity, omitted paired-difference resampling.",
+  "prior_analysis_script_sha256": "e00d4da51c0b965e36b89313b7d721f420bde09f45a0ead909971cc55687c6ea",
+  "prior_analysis_script_sha256_prefix": "e00d4da51c0b965e",
+  "frozen_inference_source_hash_unchanged": "c15d37e54fe38d63",
+  "immutable_raw_sha256_at_archive": {
+    "pilot_results.json": "b0fbf985a4722f419bf5f8e46a0da0e3c8d184b58bde8b61b43eee56325bc4aa",
+    "pilot_metrics.csv": "3ec551e351603670107eefecd095f27d7751076ac17642ac789da70b67e42221",
+    "final_receipt.json": "7ff9d41b3974f8f853491f001c84ddf459cecd429385249e286dc39475756cb9",
+    "pre_evaluation_freeze_v4.json": "4348dcbbb09d97ebfbd462dce2d134fc4655517ec7afbb2c6d316a4eb8f7f92b",
+    "registry": "2af523575f83b2ae5d3e2ca727fa7f4b431224fa450b09e03bd9ef43019b310e"
+  },
+  "not_frozen_at_preregistration": [
+    "scripts/analyze_final_holdout_v4.py bootstrap loop",
+    "derived final_analysis.json aggregates"
+  ]
+}

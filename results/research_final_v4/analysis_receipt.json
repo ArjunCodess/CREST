@@ -1,0 +1,20 @@
+{
+  "receipt_type": "crest_research_final_analysis_correction",
+  "correction_utc": "2026-11-11T12:03:08Z",
+  "prior_analysis_script_sha256": "e00d4da51c0b965e36b89313b7d721f420bde09f45a0ead909971cc55687c6ea",
+  "corrected_analysis_script_sha256": "8ac2ca5f2b8136d8f54940ebd93729432071911f34c888206988ce00532346eb",
+  "inference_source_hash": "c15d37e54fe38d63",
+  "immutable_input_sha256": {
+    "pilot_results.json": "b0fbf985a4722f419bf5f8e46a0da0e3c8d184b58bde8b61b43eee56325bc4aa",
+    "pilot_metrics.csv": "3ec551e351603670107eefecd095f27d7751076ac17642ac789da70b67e42221",
+    "final_receipt.json": "7ff9d41b3974f8f853491f001c84ddf459cecd429385249e286dc39475756cb9",
+    "pre_evaluation_freeze_v4.json": "4348dcbbb09d97ebfbd462dce2d134fc4655517ec7afbb2c6d316a4eb8f7f92b",
+    "registry": "2af523575f83b2ae5d3e2ca727fa7f4b431224fa450b09e03bd9ef43019b310e"
+  },
+  "immutable_verified_unchanged": true,
+  "posthoc_note": "Bootstrap and reconciliation corrected after final v4 execution; prior bootstrap loop was not part of frozen inference hash c15d37e54fe38d63.",
+  "outputs": {
+    "final_analysis_json": "results/research_final_v4/final_analysis.json",
+    "final_analysis_csv": "results/research_final_v4/final_analysis.csv"
+  }
+}

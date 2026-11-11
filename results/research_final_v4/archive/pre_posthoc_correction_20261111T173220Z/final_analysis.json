@@ -1,0 +1,195 @@
+{
+  "receipt_type": "crest_research_final_analysis_v4",
+  "generated_utc": "2026-11-11T11:49:49Z",
+  "analysis_script": "scripts\\analyze_final_holdout_v4.py",
+  "analysis_script_sha256_prefix": "e00d4da51c0b965e",
+  "inference_source_hash_at_analysis": "c15d37e54fe38d63",
+  "variant_denominators": [
+    {
+      "stress_variant": "baseline",
+      "n_planned": 10,
+      "n_completed": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_numerical_failure": 0,
+      "n_generative_capacity_violation": 0,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 27.28543786976087,
+      "primary_std_conditional": 9.17473356697174
+    },
+    {
+      "stress_variant": "contiguous_dropout",
+      "n_planned": 10,
+      "n_completed": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_numerical_failure": 0,
+      "n_generative_capacity_violation": 0,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 35.551589856047094,
+      "primary_std_conditional": 3.148702326904782
+    },
+    {
+      "stress_variant": "gaussian_misspecification",
+      "n_planned": 10,
+      "n_completed": 10,
+      "n_bounded_point_valid": 9,
+      "n_infeasible_polytope": 1,
+      "n_numerical_failure": 0,
+      "n_generative_capacity_violation": 0,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 9,
+      "primary_mean_conditional": 42.28638787833237,
+      "primary_std_conditional": 14.563277994725402
+    },
+    {
+      "stress_variant": "inconsistent_od_counts",
+      "n_planned": 10,
+      "n_completed": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_numerical_failure": 0,
+      "n_generative_capacity_violation": 0,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 27.28543786976087,
+      "primary_std_conditional": 9.17473356697174
+    },
+    {
+      "stress_variant": "intentional_boundary_inconsistency",
+      "n_planned": 10,
+      "n_completed": 10,
+      "n_bounded_point_valid": 2,
+      "n_infeasible_polytope": 8,
+      "n_numerical_failure": 0,
+      "n_generative_capacity_violation": 0,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 2,
+      "primary_mean_conditional": 46.33254326859672,
+      "primary_std_conditional": 1.834679399114517
+    },
+    {
+      "stress_variant": "od_prior_shift",
+      "n_planned": 10,
+      "n_completed": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_numerical_failure": 0,
+      "n_generative_capacity_violation": 0,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 29.92914650674863,
+      "primary_std_conditional": 10.67969112475415
+    },
+    {
+      "stress_variant": "random_missing",
+      "n_planned": 10,
+      "n_completed": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_numerical_failure": 0,
+      "n_generative_capacity_violation": 0,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 38.19351330036158,
+      "primary_std_conditional": 12.797036793898926
+    },
+    {
+      "stress_variant": "shifted_demand",
+      "n_planned": 10,
+      "n_completed": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_numerical_failure": 0,
+      "n_generative_capacity_violation": 0,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 29.138823942705812,
+      "primary_std_conditional": 8.16774611775845
+    },
+    {
+      "stress_variant": "truth_outside_interval",
+      "n_planned": 10,
+      "n_completed": 10,
+      "n_bounded_point_valid": 0,
+      "n_infeasible_polytope": 10,
+      "n_numerical_failure": 0,
+      "n_generative_capacity_violation": 0,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 0
+    },
+    {
+      "stress_variant": "wrong_interval",
+      "n_planned": 10,
+      "n_completed": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_numerical_failure": 0,
+      "n_generative_capacity_violation": 0,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 27.81943321139475,
+      "primary_std_conditional": 8.854066421549994
+    }
+  ],
+  "paired_conditional_comparisons": {
+    "bounded_deployable": {
+      "metric": "bounded_state_rmse_missing",
+      "n_shared_valid": 81,
+      "mean_conditional": 32.41081979024668,
+      "note": "Conditional on bounded optimal + primal <= 1e-5; infeasible rows excluded."
+    },
+    "masked_mean": {
+      "metric": "masked_mean_state_rmse_missing",
+      "n_shared_valid": 81,
+      "mean_conditional": 6.659078005740088,
+      "note": "Conditional on bounded optimal + primal <= 1e-5; infeasible rows excluded."
+    },
+    "forward_fill": {
+      "metric": "forward_fill_state_rmse_missing",
+      "n_shared_valid": 81,
+      "mean_conditional": 20.60454570732829,
+      "note": "Conditional on bounded optimal + primal <= 1e-5; infeasible rows excluded."
+    },
+    "interval_midpoint": {
+      "metric": "midpoint_state_rmse_missing",
+      "n_shared_valid": 81,
+      "mean_conditional": 66.13587327798459,
+      "note": "Conditional on bounded optimal + primal <= 1e-5; infeasible rows excluded."
+    },
+    "oracle_diagnostic": {
+      "metric": "oracle_state_rmse_missing",
+      "n_shared_valid": 81,
+      "mean_conditional": 0.0,
+      "note": "Conditional on bounded optimal + primal <= 1e-5; infeasible rows excluded."
+    }
+  },
+  "uncertainty_bootstrap": {
+    "resampling_seed": 424242,
+    "n_clusters": 10,
+    "n_bootstrap_draws": 10,
+    "primary_mean_bootstrap": 31.734743204337157,
+    "primary_ci95_low": 28.863626337769382,
+    "primary_ci95_high": 35.15717351122963,
+    "precision_limitation": "Cluster bootstrap at independent seed level; not cell-level inference."
+  },
+  "partial_identification_coverage_note": "Coverage widths conditional on stated truth-assumption flags; excluded when LP infeasible.",
+  "partial_identification_rows": 100,
+  "oracle_metrics": {
+    "oracle_state_rmse_missing": "diagnostic_only_not_deployable",
+    "oracle_state_rmse_all": "diagnostic_only_not_deployable",
+    "oracle_state_rmse_observed": "diagnostic_only_not_deployable"
+  },
+  "matrix_summary": {
+    "n_rows": 100,
+    "n_point_estimate_valid": 81,
+    "n_point_estimate_failed": 0,
+    "n_point_estimate_infeasible_polytope": 19,
+    "n_point_estimate_other_nonoptimal": 0,
+    "point_estimate_failure_rate": 0.19,
+    "paired_comparison_note": "Conditional means use identical seeds where bounded_status is optimal and primal violation <= 1e-5; failures are excluded, not imputed."
+  },
+  "figure": "results\\research_final_v4\\final_primary_by_variant.png"
+}

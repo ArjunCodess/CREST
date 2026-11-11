@@ -1,0 +1,16 @@
+baseline,boundary_interval_covers_truth_net_vehicles_n_covered,boundary_interval_covers_truth_net_vehicles_n_eligible,denominator_label,display_note_wrong_interval,lp_box_covers_truth_net_vehicles_n_covered,lp_box_covers_truth_net_vehicles_n_eligible,lp_data_covers_truth_net_vehicles_n_covered,lp_data_covers_truth_net_vehicles_n_eligible,mean,metric,n_boundary_truth_in_interval,n_bounded_point_valid,n_finite,n_infeasible_polytope,n_initial_truth_in_polytope,n_joint_within_assumption,n_planned,n_rows,note,primary_mean_conditional,primary_metric,primary_metric_denom_valid_bounded,primary_std_conditional,section,stress_variant
+,10,10,,,10,10,10,10,,,10,10,,0,10,10,10,,,27.28543786976087,bounded_state_rmse_missing,10,9.17473356697174,variant,baseline
+,10,10,,,10,10,10,10,,,10,10,,0,10,10,10,,,35.551589856047094,bounded_state_rmse_missing,10,3.148702326904782,variant,contiguous_dropout
+,10,10,,,10,10,9,9,,,10,9,,1,7,7,10,,,42.28638787833237,bounded_state_rmse_missing,9,14.563277994725402,variant,gaussian_misspecification
+,10,10,,,10,10,10,10,,,10,10,,0,10,0,10,,,27.28543786976087,bounded_state_rmse_missing,10,9.17473356697174,variant,inconsistent_od_counts
+,0,10,,,0,10,0,2,,,0,2,,8,0,0,10,,,46.33254326859672,bounded_state_rmse_missing,2,1.834679399114517,variant,intentional_boundary_inconsistency
+,10,10,,,10,10,10,10,,,10,10,,0,10,10,10,,,29.92914650674863,bounded_state_rmse_missing,10,10.67969112475415,variant,od_prior_shift
+,10,10,,,10,10,10,10,,,10,10,,0,10,10,10,,,38.19351330036158,bounded_state_rmse_missing,10,12.797036793898926,variant,random_missing
+,10,10,,,10,10,10,10,,,10,10,,0,10,10,10,,,29.138823942705812,bounded_state_rmse_missing,10,8.16774611775845,variant,shifted_demand
+,0,10,,,0,0,0,0,,,0,0,,10,0,0,10,,,,bounded_state_rmse_missing,0,,variant,truth_outside_interval
+,10,10,,Stress identifier wrong_interval: generative truth remains inside the stated boundary box (narrower truth-containing interval); not a misspecified empty set.,10,10,10,10,,,10,10,,0,10,10,10,,,27.81943321139475,bounded_state_rmse_missing,10,8.854066421549994,variant,wrong_interval
+bounded_deployable,,,shared_valid_bounded_optimal,,,,,,32.41081979024668,bounded_state_rmse_missing,,,81,,,,,81,Conditional on bounded_status optimal and primal violation <= 1e-5.,,,,,paired_shared_valid,
+masked_mean,,,shared_valid_bounded_optimal,,,,,,6.659078005740088,masked_mean_state_rmse_missing,,,81,,,,,81,Conditional on bounded_status optimal and primal violation <= 1e-5.,,,,,paired_shared_valid,
+forward_fill,,,shared_valid_bounded_optimal,,,,,,20.60454570732829,forward_fill_state_rmse_missing,,,81,,,,,81,Conditional on bounded_status optimal and primal violation <= 1e-5.,,,,,paired_shared_valid,
+interval_midpoint,,,shared_valid_bounded_optimal,,,,,,66.13587327798459,midpoint_state_rmse_missing,,,81,,,,,81,Conditional on bounded_status optimal and primal violation <= 1e-5.,,,,,paired_shared_valid,
+oracle_diagnostic,,,shared_valid_bounded_optimal,,,,,,0.0,oracle_state_rmse_missing,,,81,,,,,81,Conditional on bounded_status optimal and primal violation <= 1e-5.,,,,,paired_shared_valid,

@@ -1,0 +1,2275 @@
+{
+  "receipt_type": "crest_research_final_analysis_v4",
+  "analysis_revision": "posthoc_bootstrap_and_reconciliation_v1",
+  "generated_utc": "2026-11-11T12:03:08Z",
+  "analysis_script": "scripts\\analyze_final_holdout_v4.py",
+  "analysis_script_sha256_prefix": "8ac2ca5f2b8136d8",
+  "inference_source_hash_at_analysis": "c15d37e54fe38d63",
+  "immutable_raw_inputs_note": "Metrics recomputed from frozen pilot_results.json rows only; no scenario rerun.",
+  "variant_denominators": [
+    {
+      "stress_variant": "baseline",
+      "n_planned": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_boundary_truth_in_interval": 10,
+      "n_joint_within_assumption": 10,
+      "n_initial_truth_in_polytope": 10,
+      "display_note_wrong_interval": null,
+      "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+      "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+      "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_data_covers_truth_net_vehicles_n_covered": 10,
+      "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_box_covers_truth_net_vehicles_n_covered": 10,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 27.28543786976087,
+      "primary_std_conditional": 9.17473356697174
+    },
+    {
+      "stress_variant": "contiguous_dropout",
+      "n_planned": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_boundary_truth_in_interval": 10,
+      "n_joint_within_assumption": 10,
+      "n_initial_truth_in_polytope": 10,
+      "display_note_wrong_interval": null,
+      "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+      "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+      "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_data_covers_truth_net_vehicles_n_covered": 10,
+      "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_box_covers_truth_net_vehicles_n_covered": 10,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 35.551589856047094,
+      "primary_std_conditional": 3.148702326904782
+    },
+    {
+      "stress_variant": "gaussian_misspecification",
+      "n_planned": 10,
+      "n_bounded_point_valid": 9,
+      "n_infeasible_polytope": 1,
+      "n_boundary_truth_in_interval": 10,
+      "n_joint_within_assumption": 7,
+      "n_initial_truth_in_polytope": 7,
+      "display_note_wrong_interval": null,
+      "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+      "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+      "lp_data_covers_truth_net_vehicles_n_eligible": 9,
+      "lp_data_covers_truth_net_vehicles_n_covered": 9,
+      "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_box_covers_truth_net_vehicles_n_covered": 10,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 9,
+      "primary_mean_conditional": 42.28638787833237,
+      "primary_std_conditional": 14.563277994725402
+    },
+    {
+      "stress_variant": "inconsistent_od_counts",
+      "n_planned": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_boundary_truth_in_interval": 10,
+      "n_joint_within_assumption": 0,
+      "n_initial_truth_in_polytope": 10,
+      "display_note_wrong_interval": null,
+      "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+      "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+      "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_data_covers_truth_net_vehicles_n_covered": 10,
+      "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_box_covers_truth_net_vehicles_n_covered": 10,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 27.28543786976087,
+      "primary_std_conditional": 9.17473356697174
+    },
+    {
+      "stress_variant": "intentional_boundary_inconsistency",
+      "n_planned": 10,
+      "n_bounded_point_valid": 2,
+      "n_infeasible_polytope": 8,
+      "n_boundary_truth_in_interval": 0,
+      "n_joint_within_assumption": 0,
+      "n_initial_truth_in_polytope": 0,
+      "display_note_wrong_interval": null,
+      "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+      "boundary_interval_covers_truth_net_vehicles_n_covered": 0,
+      "lp_data_covers_truth_net_vehicles_n_eligible": 2,
+      "lp_data_covers_truth_net_vehicles_n_covered": 0,
+      "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_box_covers_truth_net_vehicles_n_covered": 0,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 2,
+      "primary_mean_conditional": 46.33254326859672,
+      "primary_std_conditional": 1.834679399114517
+    },
+    {
+      "stress_variant": "od_prior_shift",
+      "n_planned": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_boundary_truth_in_interval": 10,
+      "n_joint_within_assumption": 10,
+      "n_initial_truth_in_polytope": 10,
+      "display_note_wrong_interval": null,
+      "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+      "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+      "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_data_covers_truth_net_vehicles_n_covered": 10,
+      "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_box_covers_truth_net_vehicles_n_covered": 10,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 29.92914650674863,
+      "primary_std_conditional": 10.67969112475415
+    },
+    {
+      "stress_variant": "random_missing",
+      "n_planned": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_boundary_truth_in_interval": 10,
+      "n_joint_within_assumption": 10,
+      "n_initial_truth_in_polytope": 10,
+      "display_note_wrong_interval": null,
+      "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+      "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+      "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_data_covers_truth_net_vehicles_n_covered": 10,
+      "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_box_covers_truth_net_vehicles_n_covered": 10,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 38.19351330036158,
+      "primary_std_conditional": 12.797036793898926
+    },
+    {
+      "stress_variant": "shifted_demand",
+      "n_planned": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_boundary_truth_in_interval": 10,
+      "n_joint_within_assumption": 10,
+      "n_initial_truth_in_polytope": 10,
+      "display_note_wrong_interval": null,
+      "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+      "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+      "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_data_covers_truth_net_vehicles_n_covered": 10,
+      "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_box_covers_truth_net_vehicles_n_covered": 10,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 29.138823942705812,
+      "primary_std_conditional": 8.16774611775845
+    },
+    {
+      "stress_variant": "truth_outside_interval",
+      "n_planned": 10,
+      "n_bounded_point_valid": 0,
+      "n_infeasible_polytope": 10,
+      "n_boundary_truth_in_interval": 0,
+      "n_joint_within_assumption": 0,
+      "n_initial_truth_in_polytope": 0,
+      "display_note_wrong_interval": null,
+      "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+      "boundary_interval_covers_truth_net_vehicles_n_covered": 0,
+      "lp_data_covers_truth_net_vehicles_n_eligible": 0,
+      "lp_data_covers_truth_net_vehicles_n_covered": 0,
+      "lp_box_covers_truth_net_vehicles_n_eligible": 0,
+      "lp_box_covers_truth_net_vehicles_n_covered": 0,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 0,
+      "primary_mean_conditional": null,
+      "primary_std_conditional": null
+    },
+    {
+      "stress_variant": "wrong_interval",
+      "n_planned": 10,
+      "n_bounded_point_valid": 10,
+      "n_infeasible_polytope": 0,
+      "n_boundary_truth_in_interval": 10,
+      "n_joint_within_assumption": 10,
+      "n_initial_truth_in_polytope": 10,
+      "display_note_wrong_interval": "Stress identifier wrong_interval: generative truth remains inside the stated boundary box (narrower truth-containing interval); not a misspecified empty set.",
+      "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+      "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+      "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_data_covers_truth_net_vehicles_n_covered": 10,
+      "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+      "lp_box_covers_truth_net_vehicles_n_covered": 10,
+      "primary_metric": "bounded_state_rmse_missing",
+      "primary_metric_denom_valid_bounded": 10,
+      "primary_mean_conditional": 27.81943321139475,
+      "primary_std_conditional": 8.854066421549994
+    }
+  ],
+  "denominator_reconciliation": {
+    "per_variant": [
+      {
+        "stress_variant": "baseline",
+        "n_planned": 10,
+        "n_bounded_point_valid": 10,
+        "n_infeasible_polytope": 0,
+        "n_boundary_truth_in_interval": 10,
+        "n_joint_within_assumption": 10,
+        "n_initial_truth_in_polytope": 10,
+        "display_note_wrong_interval": null,
+        "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+        "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+        "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_data_covers_truth_net_vehicles_n_covered": 10,
+        "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_box_covers_truth_net_vehicles_n_covered": 10
+      },
+      {
+        "stress_variant": "contiguous_dropout",
+        "n_planned": 10,
+        "n_bounded_point_valid": 10,
+        "n_infeasible_polytope": 0,
+        "n_boundary_truth_in_interval": 10,
+        "n_joint_within_assumption": 10,
+        "n_initial_truth_in_polytope": 10,
+        "display_note_wrong_interval": null,
+        "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+        "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+        "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_data_covers_truth_net_vehicles_n_covered": 10,
+        "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_box_covers_truth_net_vehicles_n_covered": 10
+      },
+      {
+        "stress_variant": "gaussian_misspecification",
+        "n_planned": 10,
+        "n_bounded_point_valid": 9,
+        "n_infeasible_polytope": 1,
+        "n_boundary_truth_in_interval": 10,
+        "n_joint_within_assumption": 7,
+        "n_initial_truth_in_polytope": 7,
+        "display_note_wrong_interval": null,
+        "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+        "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+        "lp_data_covers_truth_net_vehicles_n_eligible": 9,
+        "lp_data_covers_truth_net_vehicles_n_covered": 9,
+        "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_box_covers_truth_net_vehicles_n_covered": 10
+      },
+      {
+        "stress_variant": "inconsistent_od_counts",
+        "n_planned": 10,
+        "n_bounded_point_valid": 10,
+        "n_infeasible_polytope": 0,
+        "n_boundary_truth_in_interval": 10,
+        "n_joint_within_assumption": 0,
+        "n_initial_truth_in_polytope": 10,
+        "display_note_wrong_interval": null,
+        "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+        "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+        "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_data_covers_truth_net_vehicles_n_covered": 10,
+        "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_box_covers_truth_net_vehicles_n_covered": 10
+      },
+      {
+        "stress_variant": "intentional_boundary_inconsistency",
+        "n_planned": 10,
+        "n_bounded_point_valid": 2,
+        "n_infeasible_polytope": 8,
+        "n_boundary_truth_in_interval": 0,
+        "n_joint_within_assumption": 0,
+        "n_initial_truth_in_polytope": 0,
+        "display_note_wrong_interval": null,
+        "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+        "boundary_interval_covers_truth_net_vehicles_n_covered": 0,
+        "lp_data_covers_truth_net_vehicles_n_eligible": 2,
+        "lp_data_covers_truth_net_vehicles_n_covered": 0,
+        "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_box_covers_truth_net_vehicles_n_covered": 0
+      },
+      {
+        "stress_variant": "od_prior_shift",
+        "n_planned": 10,
+        "n_bounded_point_valid": 10,
+        "n_infeasible_polytope": 0,
+        "n_boundary_truth_in_interval": 10,
+        "n_joint_within_assumption": 10,
+        "n_initial_truth_in_polytope": 10,
+        "display_note_wrong_interval": null,
+        "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+        "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+        "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_data_covers_truth_net_vehicles_n_covered": 10,
+        "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_box_covers_truth_net_vehicles_n_covered": 10
+      },
+      {
+        "stress_variant": "random_missing",
+        "n_planned": 10,
+        "n_bounded_point_valid": 10,
+        "n_infeasible_polytope": 0,
+        "n_boundary_truth_in_interval": 10,
+        "n_joint_within_assumption": 10,
+        "n_initial_truth_in_polytope": 10,
+        "display_note_wrong_interval": null,
+        "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+        "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+        "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_data_covers_truth_net_vehicles_n_covered": 10,
+        "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_box_covers_truth_net_vehicles_n_covered": 10
+      },
+      {
+        "stress_variant": "shifted_demand",
+        "n_planned": 10,
+        "n_bounded_point_valid": 10,
+        "n_infeasible_polytope": 0,
+        "n_boundary_truth_in_interval": 10,
+        "n_joint_within_assumption": 10,
+        "n_initial_truth_in_polytope": 10,
+        "display_note_wrong_interval": null,
+        "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+        "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+        "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_data_covers_truth_net_vehicles_n_covered": 10,
+        "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_box_covers_truth_net_vehicles_n_covered": 10
+      },
+      {
+        "stress_variant": "truth_outside_interval",
+        "n_planned": 10,
+        "n_bounded_point_valid": 0,
+        "n_infeasible_polytope": 10,
+        "n_boundary_truth_in_interval": 0,
+        "n_joint_within_assumption": 0,
+        "n_initial_truth_in_polytope": 0,
+        "display_note_wrong_interval": null,
+        "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+        "boundary_interval_covers_truth_net_vehicles_n_covered": 0,
+        "lp_data_covers_truth_net_vehicles_n_eligible": 0,
+        "lp_data_covers_truth_net_vehicles_n_covered": 0,
+        "lp_box_covers_truth_net_vehicles_n_eligible": 0,
+        "lp_box_covers_truth_net_vehicles_n_covered": 0
+      },
+      {
+        "stress_variant": "wrong_interval",
+        "n_planned": 10,
+        "n_bounded_point_valid": 10,
+        "n_infeasible_polytope": 0,
+        "n_boundary_truth_in_interval": 10,
+        "n_joint_within_assumption": 10,
+        "n_initial_truth_in_polytope": 10,
+        "display_note_wrong_interval": "Stress identifier wrong_interval: generative truth remains inside the stated boundary box (narrower truth-containing interval); not a misspecified empty set.",
+        "boundary_interval_covers_truth_net_vehicles_n_eligible": 10,
+        "boundary_interval_covers_truth_net_vehicles_n_covered": 10,
+        "lp_data_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_data_covers_truth_net_vehicles_n_covered": 10,
+        "lp_box_covers_truth_net_vehicles_n_eligible": 10,
+        "lp_box_covers_truth_net_vehicles_n_covered": 10
+      }
+    ],
+    "totals": {
+      "n_rows_matrix": 100,
+      "n_bounded_point_valid": 81,
+      "n_infeasible_polytope": 19,
+      "n_generative_capacity_violation": 0,
+      "n_boundary_truth_in_interval_rows": 80,
+      "n_variants_with_generative_truth_in_boundary_box": 8,
+      "expected_infeasible_breakdown": {
+        "truth_outside_interval": 10,
+        "intentional_boundary_inconsistency": 8,
+        "gaussian_misspecification": 1,
+        "sum_assert_infeasible": 19
+      },
+      "feasibility_note": "LP feasibility / optimal bounded point estimates do not imply the generative truth witness lies in the stated identification polytope; feasible alternative trajectories may exclude the true state trajectory.",
+      "boundary_interval_covers_truth_net_vehicles": {
+        "unconditional_matrix": {
+          "n_eligible": 100,
+          "n_covered": 80
+        },
+        "conditional_on_bounded_point_valid": {
+          "n_eligible": 81,
+          "n_covered": 79
+        },
+        "conditional_on_joint_within_assumption": {
+          "n_eligible": 67,
+          "n_covered": 67
+        }
+      },
+      "lp_data_covers_truth_net_vehicles": {
+        "unconditional_matrix": {
+          "n_eligible": 81,
+          "n_covered": 79
+        },
+        "conditional_on_bounded_point_valid": {
+          "n_eligible": 81,
+          "n_covered": 79
+        },
+        "conditional_on_joint_within_assumption": {
+          "n_eligible": 67,
+          "n_covered": 67
+        }
+      },
+      "lp_box_covers_truth_net_vehicles": {
+        "unconditional_matrix": {
+          "n_eligible": 90,
+          "n_covered": 80
+        },
+        "conditional_on_bounded_point_valid": {
+          "n_eligible": 81,
+          "n_covered": 79
+        },
+        "conditional_on_joint_within_assumption": {
+          "n_eligible": 67,
+          "n_covered": 67
+        }
+      }
+    },
+    "sum_assertions": {
+      "sum_variant_n_planned_eq_matrix_rows": true,
+      "sum_variant_valid_eq_matrix_valid": true,
+      "sum_variant_infeasible_eq_matrix_infeasible": true,
+      "infeasible_breakdown_eq_total_infeasible": true,
+      "boundary_truth_in_interval_leq_rows": true
+    },
+    "all_sum_assertions_pass": true
+  },
+  "paired_conditional_comparisons_shared_valid": {
+    "bounded_deployable": {
+      "metric": "bounded_state_rmse_missing",
+      "n_finite": 81,
+      "mean": 32.41081979024668,
+      "denominator_label": "shared_valid_bounded_optimal",
+      "n_rows": 81,
+      "note": "Conditional on bounded_status optimal and primal violation <= 1e-5."
+    },
+    "masked_mean": {
+      "metric": "masked_mean_state_rmse_missing",
+      "n_finite": 81,
+      "mean": 6.659078005740088,
+      "denominator_label": "shared_valid_bounded_optimal",
+      "n_rows": 81,
+      "note": "Conditional on bounded_status optimal and primal violation <= 1e-5."
+    },
+    "forward_fill": {
+      "metric": "forward_fill_state_rmse_missing",
+      "n_finite": 81,
+      "mean": 20.60454570732829,
+      "denominator_label": "shared_valid_bounded_optimal",
+      "n_rows": 81,
+      "note": "Conditional on bounded_status optimal and primal violation <= 1e-5."
+    },
+    "interval_midpoint": {
+      "metric": "midpoint_state_rmse_missing",
+      "n_finite": 81,
+      "mean": 66.13587327798459,
+      "denominator_label": "shared_valid_bounded_optimal",
+      "n_rows": 81,
+      "note": "Conditional on bounded_status optimal and primal violation <= 1e-5."
+    },
+    "oracle_diagnostic": {
+      "metric": "oracle_state_rmse_missing",
+      "n_finite": 81,
+      "mean": 0.0,
+      "denominator_label": "shared_valid_bounded_optimal",
+      "n_rows": 81,
+      "note": "Conditional on bounded_status optimal and primal violation <= 1e-5."
+    }
+  },
+  "paired_full_matrix_baselines": {
+    "bounded_deployable": {
+      "metric": "bounded_state_rmse_missing",
+      "n_finite": 81,
+      "mean": 32.41081979024668,
+      "denominator_label": "shared_valid_only"
+    },
+    "masked_mean": {
+      "metric": "masked_mean_state_rmse_missing",
+      "n_finite": 100,
+      "mean": 6.663620710196746,
+      "denominator_label": "all_matrix_rows_finite_metric"
+    },
+    "forward_fill": {
+      "metric": "forward_fill_state_rmse_missing",
+      "n_finite": 100,
+      "mean": 20.667263947610195,
+      "denominator_label": "all_matrix_rows_finite_metric"
+    },
+    "interval_midpoint": {
+      "metric": "midpoint_state_rmse_missing",
+      "n_finite": 100,
+      "mean": 71.73916525665676,
+      "denominator_label": "all_matrix_rows_finite_metric"
+    },
+    "oracle_diagnostic": {
+      "metric": "oracle_state_rmse_missing",
+      "n_finite": 100,
+      "mean": 0.0,
+      "denominator_label": "all_matrix_rows_finite_metric"
+    }
+  },
+  "paired_diff_bounded_minus_baseline_shared_valid": {
+    "masked_mean": {
+      "metric_baseline": "masked_mean_state_rmse_missing",
+      "n_shared_valid": 81,
+      "mean_bounded_minus_baseline": 25.751741784506596
+    },
+    "forward_fill": {
+      "metric_baseline": "forward_fill_state_rmse_missing",
+      "n_shared_valid": 81,
+      "mean_bounded_minus_baseline": 11.806274082918389
+    },
+    "interval_midpoint": {
+      "metric_baseline": "midpoint_state_rmse_missing",
+      "n_shared_valid": 81,
+      "mean_bounded_minus_baseline": -33.725053487737924
+    },
+    "oracle_diagnostic": {
+      "metric_baseline": "oracle_state_rmse_missing",
+      "n_shared_valid": 81,
+      "mean_bounded_minus_baseline": 32.41081979024668
+    }
+  },
+  "rmse_slice_comparison_shared_valid": {
+    "missing": {
+      "bounded": {
+        "metric": "bounded_state_rmse_missing",
+        "n_finite": 81,
+        "mean": 32.41081979024668
+      },
+      "masked_mean": {
+        "metric": "masked_mean_state_rmse_missing",
+        "n_finite": 81,
+        "mean": 6.659078005740088
+      },
+      "forward_fill": {
+        "metric": "forward_fill_state_rmse_missing",
+        "n_finite": 81,
+        "mean": 20.60454570732829
+      }
+    },
+    "observed": {
+      "bounded": {
+        "metric": "bounded_state_rmse_observed",
+        "n_finite": 81,
+        "mean": 10.45847074152622
+      },
+      "masked_mean": {
+        "metric": "masked_mean_state_rmse_observed",
+        "n_finite": 81,
+        "mean": 7.447579922186479
+      },
+      "forward_fill": {
+        "metric": "forward_fill_state_rmse_observed",
+        "n_finite": 81,
+        "mean": 7.447579922186479
+      }
+    },
+    "all": {
+      "bounded": {
+        "metric": "bounded_state_rmse_all",
+        "n_finite": 81,
+        "mean": 17.747464030336186
+      },
+      "masked_mean": {
+        "metric": "masked_mean_state_rmse_all",
+        "n_finite": 81,
+        "mean": 7.409382015010259
+      },
+      "forward_fill": {
+        "metric": "forward_fill_state_rmse_all",
+        "n_finite": 81,
+        "mean": 11.928350647037261
+      }
+    }
+  },
+  "uncertainty_bootstrap": {
+    "resampling_seed": 424242,
+    "n_independent_seed_clusters": 10,
+    "n_bootstrap_replicates": 10000,
+    "estimand": "Pooled arithmetic mean of metric over all stress\u00d7seed cells in each bootstrap resample; clusters are independent seeds; all valid cells per drawn seed are kept and multiplicity when a seed is redrawn is preserved.",
+    "primary_metric": "bounded_state_rmse_missing",
+    "limitations": "Ten seed-level clusters only; inference is conditional on bounded optimal cells; not cell-level Bayesian inference. Prior analysis used 10 iterations and dropped multiplicity via set membership (post-hoc correction, not frozen at preregistration).",
+    "primary_mean_sample": 32.41081979024668,
+    "primary_mean_bootstrap": 32.376038699043725,
+    "primary_ci95_low": 27.851157178190725,
+    "primary_ci95_high": 37.88342513343312,
+    "bootstrap_masked_mean_state_rmse_missing": {
+      "mean_of_replicate_means": 6.653005026484301,
+      "ci95_low": 5.656141654515406,
+      "ci95_high": 7.81051359906732
+    },
+    "bootstrap_forward_fill_state_rmse_missing": {
+      "mean_of_replicate_means": 20.60567389488199,
+      "ci95_low": 15.35044055739375,
+      "ci95_high": 26.21921707326122
+    },
+    "bootstrap_midpoint_state_rmse_missing": {
+      "mean_of_replicate_means": 66.06223295703553,
+      "ci95_low": 53.54368366905518,
+      "ci95_high": 79.26058145959033
+    },
+    "bootstrap_oracle_state_rmse_missing": {
+      "mean_of_replicate_means": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0
+    },
+    "paired_diff_masked_mean": {
+      "mean_of_replicate_paired_means": 25.723033672559424,
+      "ci95_low": 21.165881661445823,
+      "ci95_high": 31.333356505673226
+    },
+    "paired_diff_forward_fill": {
+      "mean_of_replicate_paired_means": 11.770364804161739,
+      "ci95_low": 2.8741385727149122,
+      "ci95_high": 21.09889637048805
+    },
+    "paired_diff_interval_midpoint": {
+      "mean_of_replicate_paired_means": -33.68619425799181,
+      "ci95_low": -44.261126846368626,
+      "ci95_high": -24.53419248334814
+    },
+    "paired_diff_oracle_diagnostic": {
+      "mean_of_replicate_paired_means": 32.376038699043725,
+      "ci95_low": 27.851157178190725,
+      "ci95_high": 37.88342513343312
+    }
+  },
+  "od_nnls_benchmark_status": {
+    "metric": "od_nnls_total_error",
+    "benchmark_valid_for_comparison": false,
+    "erratum": "Frozen v4 runner uses nan_to_num(count_bounds, 0) center and fits OD NNLS on all incidence rows ignoring count_observed_mask (experiments.py ~L114\u2013115). Do not use od_nnls_total_error for comparative claims; future fix: A[mask], c[mask].",
+    "raw_matrix_mean_preserved_for_audit": {
+      "metric": "od_nnls_total_error",
+      "n_finite": 100,
+      "mean": 122.65524576996461
+    }
+  },
+  "partial_identification_coverage_note": "Coverage columns use distinct eligibility: unconditional matrix rows with boolean field, conditional on bounded point valid, or conditional on joint_within_assumption. LP infeasible rows omit lp_data coverage booleans.",
+  "partial_identification_rows": 100,
+  "partial_identification_row_index": [
+    {
+      "seed": 7783114929623311505,
+      "variant": "baseline",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6242675308882067067,
+      "variant": "baseline",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7603013050274570249,
+      "variant": "baseline",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5561420057320424089,
+      "variant": "baseline",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6031017206454009675,
+      "variant": "baseline",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 4905457364178722424,
+      "variant": "baseline",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5597043143875218530,
+      "variant": "baseline",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7244826587779272624,
+      "variant": "baseline",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5757910615864632253,
+      "variant": "baseline",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7205798323138762989,
+      "variant": "baseline",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7783114929623311505,
+      "variant": "random_missing",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6242675308882067067,
+      "variant": "random_missing",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7603013050274570249,
+      "variant": "random_missing",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5561420057320424089,
+      "variant": "random_missing",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6031017206454009675,
+      "variant": "random_missing",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 4905457364178722424,
+      "variant": "random_missing",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5597043143875218530,
+      "variant": "random_missing",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7244826587779272624,
+      "variant": "random_missing",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5757910615864632253,
+      "variant": "random_missing",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7205798323138762989,
+      "variant": "random_missing",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7783114929623311505,
+      "variant": "contiguous_dropout",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6242675308882067067,
+      "variant": "contiguous_dropout",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7603013050274570249,
+      "variant": "contiguous_dropout",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5561420057320424089,
+      "variant": "contiguous_dropout",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6031017206454009675,
+      "variant": "contiguous_dropout",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 4905457364178722424,
+      "variant": "contiguous_dropout",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5597043143875218530,
+      "variant": "contiguous_dropout",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7244826587779272624,
+      "variant": "contiguous_dropout",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5757910615864632253,
+      "variant": "contiguous_dropout",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7205798323138762989,
+      "variant": "contiguous_dropout",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7783114929623311505,
+      "variant": "shifted_demand",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6242675308882067067,
+      "variant": "shifted_demand",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7603013050274570249,
+      "variant": "shifted_demand",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5561420057320424089,
+      "variant": "shifted_demand",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6031017206454009675,
+      "variant": "shifted_demand",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 4905457364178722424,
+      "variant": "shifted_demand",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5597043143875218530,
+      "variant": "shifted_demand",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7244826587779272624,
+      "variant": "shifted_demand",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5757910615864632253,
+      "variant": "shifted_demand",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7205798323138762989,
+      "variant": "shifted_demand",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7783114929623311505,
+      "variant": "wrong_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6242675308882067067,
+      "variant": "wrong_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7603013050274570249,
+      "variant": "wrong_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5561420057320424089,
+      "variant": "wrong_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6031017206454009675,
+      "variant": "wrong_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 4905457364178722424,
+      "variant": "wrong_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5597043143875218530,
+      "variant": "wrong_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7244826587779272624,
+      "variant": "wrong_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5757910615864632253,
+      "variant": "wrong_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7205798323138762989,
+      "variant": "wrong_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7783114929623311505,
+      "variant": "truth_outside_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 6242675308882067067,
+      "variant": "truth_outside_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 7603013050274570249,
+      "variant": "truth_outside_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 5561420057320424089,
+      "variant": "truth_outside_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 6031017206454009675,
+      "variant": "truth_outside_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 4905457364178722424,
+      "variant": "truth_outside_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 5597043143875218530,
+      "variant": "truth_outside_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 7244826587779272624,
+      "variant": "truth_outside_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 5757910615864632253,
+      "variant": "truth_outside_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 7205798323138762989,
+      "variant": "truth_outside_interval",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 7783114929623311505,
+      "variant": "od_prior_shift",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6242675308882067067,
+      "variant": "od_prior_shift",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7603013050274570249,
+      "variant": "od_prior_shift",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5561420057320424089,
+      "variant": "od_prior_shift",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6031017206454009675,
+      "variant": "od_prior_shift",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 4905457364178722424,
+      "variant": "od_prior_shift",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5597043143875218530,
+      "variant": "od_prior_shift",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7244826587779272624,
+      "variant": "od_prior_shift",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5757910615864632253,
+      "variant": "od_prior_shift",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7205798323138762989,
+      "variant": "od_prior_shift",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7783114929623311505,
+      "variant": "gaussian_misspecification",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6242675308882067067,
+      "variant": "gaussian_misspecification",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7603013050274570249,
+      "variant": "gaussian_misspecification",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": false,
+        "observation_tube_max_excess_veh": 10.504476088951584,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 5561420057320424089,
+      "variant": "gaussian_misspecification",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 6031017206454009675,
+      "variant": "gaussian_misspecification",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 4905457364178722424,
+      "variant": "gaussian_misspecification",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": false,
+        "observation_tube_max_excess_veh": 2.0287602236407096,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 5597043143875218530,
+      "variant": "gaussian_misspecification",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7244826587779272624,
+      "variant": "gaussian_misspecification",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 5757910615864632253,
+      "variant": "gaussian_misspecification",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": true
+      }
+    },
+    {
+      "seed": 7205798323138762989,
+      "variant": "gaussian_misspecification",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": false,
+        "observation_tube_max_excess_veh": 5.582685549603099,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 7783114929623311505,
+      "variant": "inconsistent_od_counts",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": false,
+        "path_caps": true,
+        "od_polytope_nonempty": false,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 6242675308882067067,
+      "variant": "inconsistent_od_counts",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": false,
+        "path_caps": true,
+        "od_polytope_nonempty": false,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 7603013050274570249,
+      "variant": "inconsistent_od_counts",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": false,
+        "path_caps": true,
+        "od_polytope_nonempty": false,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 5561420057320424089,
+      "variant": "inconsistent_od_counts",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": false,
+        "path_caps": true,
+        "od_polytope_nonempty": false,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 6031017206454009675,
+      "variant": "inconsistent_od_counts",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": false,
+        "path_caps": true,
+        "od_polytope_nonempty": false,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 4905457364178722424,
+      "variant": "inconsistent_od_counts",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": false,
+        "path_caps": true,
+        "od_polytope_nonempty": false,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 5597043143875218530,
+      "variant": "inconsistent_od_counts",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": false,
+        "path_caps": true,
+        "od_polytope_nonempty": false,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 7244826587779272624,
+      "variant": "inconsistent_od_counts",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": false,
+        "path_caps": true,
+        "od_polytope_nonempty": false,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 5757910615864632253,
+      "variant": "inconsistent_od_counts",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": false,
+        "path_caps": true,
+        "od_polytope_nonempty": false,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 7205798323138762989,
+      "variant": "inconsistent_od_counts",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": true,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": false,
+        "path_caps": true,
+        "od_polytope_nonempty": false,
+        "conservation_point_polytope": true,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 7783114929623311505,
+      "variant": "intentional_boundary_inconsistency",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 6242675308882067067,
+      "variant": "intentional_boundary_inconsistency",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 7603013050274570249,
+      "variant": "intentional_boundary_inconsistency",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 5561420057320424089,
+      "variant": "intentional_boundary_inconsistency",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 6031017206454009675,
+      "variant": "intentional_boundary_inconsistency",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 4905457364178722424,
+      "variant": "intentional_boundary_inconsistency",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 5597043143875218530,
+      "variant": "intentional_boundary_inconsistency",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 7244826587779272624,
+      "variant": "intentional_boundary_inconsistency",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 5757910615864632253,
+      "variant": "intentional_boundary_inconsistency",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    },
+    {
+      "seed": 7205798323138762989,
+      "variant": "intentional_boundary_inconsistency",
+      "path_rank_observed": null,
+      "truth_assumption_flags": {
+        "boundary_box": false,
+        "storage_capacity": true,
+        "observation_tubes": true,
+        "observation_tube_max_excess_veh": 0.0,
+        "od_counts": true,
+        "path_caps": true,
+        "od_polytope_nonempty": true,
+        "conservation_point_polytope": false,
+        "joint_within_assumption": false
+      }
+    }
+  ],
+  "oracle_metrics": {
+    "oracle_state_rmse_observed": "diagnostic_only_not_deployable",
+    "oracle_state_rmse_all": "diagnostic_only_not_deployable",
+    "oracle_state_rmse_missing": "diagnostic_only_not_deployable"
+  },
+  "accuracy_finding": {
+    "summary": "On shared-valid cells (n=81), masked-mean missing RMSE is lower than deployable bounded missing RMSE; bounded does not beat simple imputation baselines on this metric. No state-of-the-art or superiority claim is supported.",
+    "bounded_minus_masked_mean_missing": 25.751741784506596,
+    "consistency_only_evidence": "Interval tightening / tube coverage statistics are descriptive of stated assumptions; see reconciliation.totals coverage blocks with explicit denominators."
+  },
+  "matrix_summary": {
+    "n_rows": 100,
+    "n_point_estimate_valid": 81,
+    "n_point_estimate_failed": 0,
+    "n_point_estimate_infeasible_polytope": 19,
+    "n_point_estimate_other_nonoptimal": 0,
+    "point_estimate_failure_rate": 0.19,
+    "paired_comparison_note": "Conditional means use identical seeds where bounded_status is optimal and primal violation <= 1e-5; failures are excluded, not imputed."
+  },
+  "figure": "results\\research_final_v4\\final_primary_by_variant.png"
+}
