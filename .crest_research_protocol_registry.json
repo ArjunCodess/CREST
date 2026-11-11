@@ -1,0 +1,151 @@
+{
+  "ledger_version": 1,
+  "protocols": {
+    "final_holdout_v1": {
+      "status": "retired_exposed",
+      "seeds": [
+        101,
+        202,
+        303,
+        404,
+        505
+      ],
+      "exposure_note": "Reviewer executed original final_protocol.json seeds 101-505 in development mode (40 runs). Holdout no longer pristine; v1 retired 2026-11-11."
+    },
+    "final_holdout_v2": {
+      "status": "retired_exposed",
+      "seeds": [
+        701,
+        802,
+        903,
+        1004,
+        1105
+      ],
+      "exposure_record": {
+        "protocol_id": "final_holdout_v2",
+        "status": "retired_exposed",
+        "retired_date": "2026-11-11",
+        "retired_seeds": [
+          701,
+          802,
+          903,
+          1004,
+          1105
+        ],
+        "exposed_subset": [
+          701,
+          802
+        ],
+        "exposure_reason": "Independent reviewer ran run_one_scenario on reserved v2 seeds with final_protocol params despite instructions not to execute v2.",
+        "known_configuration_note": "See configs/research/final_protocol.json exposure_record"
+      }
+    },
+    "final_holdout_v3": {
+      "status": "retired_failed",
+      "seeds": [
+        1010559880036807,
+        1101903413522210,
+        1261258823614491,
+        1297921224299534,
+        1418734052312821,
+        1521028319156996,
+        1536129947884980,
+        1549975720351840,
+        1583044294401646,
+        1628714462425246
+      ],
+      "note": "Archived v3 reserve (failed generative attempt 2026-11-11); manifest configs/research/final_holdout_v3_seed_manifest.json \u2014 not an active holdout.",
+      "exposure_record": {
+        "protocol_id": "final_holdout_v3",
+        "status": "retired_failed",
+        "retired_date": "2026-11-11",
+        "retired_seeds": [
+          1010559880036807,
+          1101903413522210,
+          1261258823614491,
+          1297921224299534,
+          1418734052312821,
+          1521028319156996,
+          1536129947884980,
+          1549975720351840,
+          1583044294401646,
+          1628714462425246
+        ],
+        "frozen_failure": {
+          "code_hash": "07a399f8e9550149",
+          "fingerprint": "5da3b1d664faf594",
+          "failure_receipt": "results/research_final_v3/final_attempt_failure.json",
+          "registry_run_status": "failed",
+          "message": "generative flows violate capacity; reduce demand or widen capacity"
+        },
+        "reported_full_matrix_exposure": {
+          "disclosed_utc": "2026-11-11T11:45:00Z",
+          "actor": "implementation_subagent",
+          "admission": "Despite instructions not to execute reserved v3 scenarios, the implementing agent reported checking all 10 stress variants \u00d7 10 archived v3 seeds after generative repair (full 10\u00d710 matrix).",
+          "evidence_class": "agent_reported",
+          "independently_observed_subset": [],
+          "distinction": "Reported exposure is self-disclosed agent admission, not independently observed execution receipts like v2 subset 701/802."
+        },
+        "manifest": "configs/research/final_holdout_v3_seed_manifest.json",
+        "exposure_record_path": "configs/research/final_holdout_v3_exposure_record.json",
+        "no_pristine_preregistered_claim": true
+      },
+      "audit_disclosure_append": {
+        "disclosed_utc": "2026-11-11T11:45:00Z",
+        "summary": "On-disk ledger corrected from erroneous active status; failed run row retained unchanged; v3 exposure admission appended."
+      }
+    },
+    "final_holdout_v4": {
+      "status": "active",
+      "seeds": [
+        7783114929623311505,
+        6242675308882067067,
+        7603013050274570249,
+        5561420057320424089,
+        6031017206454009675,
+        4905457364178722424,
+        5597043143875218530,
+        7244826587779272624,
+        5757910615864632253,
+        7205798323138762989
+      ],
+      "manifest": "configs/research/final_holdout_v4_seed_manifest.json",
+      "amendment_utc": "2026-11-11T17:30:00Z",
+      "amendment_note": "Amended final reserve after generative supply-cap repair; v3 failure and exposure records preserved.",
+      "supersedes_attempt": "final_holdout_v3"
+    },
+    "dev_pilot": {
+      "status": "development",
+      "seeds": [
+        11,
+        22,
+        33,
+        44,
+        55
+      ]
+    }
+  },
+  "runs": [
+    {
+      "protocol_id": "final_holdout_v3",
+      "fingerprint": "5da3b1d664faf594",
+      "code_hash": "07a399f8e9550149",
+      "output_dir": "C:\\Users\\USER\\Desktop\\code\\BigData2026\\crest\\results\\research_final_v3",
+      "mode": "final",
+      "status": "failed",
+      "started_utc": "2026-11-11T11:11:12Z",
+      "finished_utc": "2026-11-11T11:11:29Z",
+      "message": "generative flows violate capacity; reduce demand or widen capacity"
+    },
+    {
+      "protocol_id": "final_holdout_v4",
+      "fingerprint": "0040a9f70180ada0",
+      "code_hash": "c15d37e54fe38d63",
+      "output_dir": "C:\\Users\\USER\\Desktop\\code\\BigData2026\\crest\\results\\research_final_v4",
+      "mode": "final",
+      "status": "completed",
+      "started_utc": "2026-11-11T11:48:42Z",
+      "finished_utc": "2026-11-11T11:49:45Z"
+    }
+  ]
+}
