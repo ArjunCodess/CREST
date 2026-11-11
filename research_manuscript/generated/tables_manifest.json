@@ -1,0 +1,10 @@
+{
+  "source": "results\\research_final_v4\\final_analysis.json",
+  "analysis_script_sha256_prefix": "8ac2ca5f2b8136d8",
+  "tables": [
+    "table_primary_comparison.tex",
+    "table_rmse_slices.tex",
+    "table_matrix_outcomes.tex",
+    "table_variant_primary.tex"
+  ]
+}

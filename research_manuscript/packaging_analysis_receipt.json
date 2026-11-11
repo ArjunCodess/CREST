@@ -1,0 +1,28 @@
+{
+  "receipt_type": "crest_research_manuscript_packaging_analysis",
+  "packaging_utc": "2026-11-11T12:30:00Z",
+  "purpose": "Link historical integration build receipt to corrected post-hoc analysis without rewriting build_verification.json",
+  "frozen_inference_source_hash": "c15d37e54fe38d63",
+  "historical_build_verification": {
+    "path": "results/research/build_verification.json",
+    "generated_utc": "2026-11-11T11:50:30Z",
+    "analysis_script_sha256_prefix_recorded": "e00d4da51c0b965e",
+    "note": "Records the analysis script hash at integration time; superseded for manuscript numerics."
+  },
+  "corrected_analysis": {
+    "path": "results/research_final_v4/analysis_receipt.json",
+    "corrected_analysis_script_sha256": "8ac2ca5f2b8136d8f54940ebd93729432071911f34c888206988ce00532346eb",
+    "outputs": [
+      "results/research_final_v4/final_analysis.json",
+      "results/research_final_v4/final_analysis.csv"
+    ],
+    "erratum": "docs/research_analysis_erratum.md"
+  },
+  "manuscript_table_generator": "research_manuscript/scripts/generate_manuscript_tables.py",
+  "immutable_verification_script": "research_manuscript/scripts/verify_immutable_inputs.py",
+  "manuscript_outputs": [
+    "research_manuscript/manuscript.md",
+    "research_manuscript/main.tex",
+    "research_manuscript/references.bib"
+  ]
+}

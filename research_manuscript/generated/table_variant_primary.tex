@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{Per-variant deployable primary metric \texttt{bounded\_state\_rmse\_missing} (conditional mean, valid bounded rows only).}
+\label{tab:variant-primary}
+\footnotesize
+\begin{tabular}{lrrrr}
+\toprule
+Variant & $n$ valid & $n$ infeasible & Mean RMSE & Std \\
+\midrule
+baseline & 10 & 0 & 27.29 & 9.17 \\
+contiguous\_dropout & 10 & 0 & 35.55 & 3.15 \\
+gaussian\_misspecification & 9 & 1 & 42.29 & 14.56 \\
+inconsistent\_od\_counts & 10 & 0 & 27.29 & 9.17 \\
+intentional\_boundary\_inconsistency & 2 & 8 & 46.33 & 1.83 \\
+od\_prior\_shift & 10 & 0 & 29.93 & 10.68 \\
+random\_missing & 10 & 0 & 38.19 & 12.80 \\
+shifted\_demand & 10 & 0 & 29.14 & 8.17 \\
+truth\_outside\_interval & 0 & 10 & --- & --- \\
+wrong\_interval & 10 & 0 & 27.82 & 8.85 \\
+\bottomrule
+\end{tabular}
+\end{table}

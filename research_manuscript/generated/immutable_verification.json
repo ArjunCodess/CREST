@@ -1,0 +1,33 @@
+{
+  "receipt_type": "crest_research_manuscript_immutable_verification",
+  "analysis_receipt_path": "results\\research_final_v4\\analysis_receipt.json",
+  "inference_source_hash_expected": "c15d37e54fe38d63",
+  "files": {
+    "pilot_results.json": {
+      "path": "results\\research_final_v4\\pilot_results.json",
+      "sha256": "b0fbf985a4722f419bf5f8e46a0da0e3c8d184b58bde8b61b43eee56325bc4aa",
+      "matches_receipt": true
+    },
+    "pilot_metrics.csv": {
+      "path": "results\\research_final_v4\\pilot_metrics.csv",
+      "sha256": "3ec551e351603670107eefecd095f27d7751076ac17642ac789da70b67e42221",
+      "matches_receipt": true
+    },
+    "final_receipt.json": {
+      "path": "results\\research_final_v4\\final_receipt.json",
+      "sha256": "7ff9d41b3974f8f853491f001c84ddf459cecd429385249e286dc39475756cb9",
+      "matches_receipt": true
+    },
+    "pre_evaluation_freeze_v4.json": {
+      "path": "results\\research\\pre_evaluation_freeze_v4.json",
+      "sha256": "4348dcbbb09d97ebfbd462dce2d134fc4655517ec7afbb2c6d316a4eb8f7f92b",
+      "matches_receipt": true
+    },
+    "registry": {
+      "path": ".crest_research_protocol_registry.json",
+      "sha256": "2af523575f83b2ae5d3e2ca727fa7f4b431224fa450b09e03bd9ef43019b310e",
+      "matches_receipt": true
+    }
+  },
+  "all_match": true
+}

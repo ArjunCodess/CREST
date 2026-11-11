@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{Final holdout v4 matrix outcomes ($10$ stress variants $\times$ $10$ seeds).}
+\label{tab:matrix-outcomes}
+\begin{tabular}{lr}
+\toprule
+Quantity & Count \\
+\midrule
+Scenarios completed & 100 \\
+Bounded point estimate valid & 81 \\
+Infeasible conservation polytope & 19 \\
+Infeasible: truth\_outside\_interval & 10 \\
+Infeasible: intentional\_boundary\_inconsistency & 8 \\
+Infeasible: gaussian\_misspecification & 1 \\
+Rows with generative boundary truth in stated box & 80 \\
+\midrule
+Boundary interval covers truth (net vehicles), matrix & 80/100 \\
+LP data covers truth (bounded-valid rows only) & 79/81 \\
+LP box covers truth (bounded-valid rows) & 79/81 \\
+\bottomrule
+\end{tabular}
+\end{table}

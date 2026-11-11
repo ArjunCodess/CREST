@@ -1,0 +1,7 @@
+{
+  "source_analysis": "results\\research_final_v4\\final_analysis.json",
+  "figures": [
+    "fig_primary_shared_valid.png",
+    "fig_infeasible_by_variant.png"
+  ]
+}
