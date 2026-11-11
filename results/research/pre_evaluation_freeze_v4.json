@@ -1,0 +1,46 @@
+{
+  "receipt_type": "crest_research_pre_evaluation_freeze_v4",
+  "freeze_utc": "2026-11-11T11:48:38Z",
+  "research_code_hash": "c15d37e54fe38d63",
+  "prior_frozen_failed_final_code_hash": "07a399f8e9550149",
+  "post_amendment_baseline_code_hash": "6959a7802af6991e",
+  "final_protocol_id": "final_holdout_v4",
+  "final_protocol_fingerprint_sha256_prefix": "0040a9f70180ada0",
+  "final_holdout_active_seeds_count": 10,
+  "seed_manifest_path": "configs\\research\\final_holdout_v4_seed_manifest.json",
+  "seed_manifest_sha256": "0e93eef3e370761ad2aae672ec211cb5fd6800b6400e993559dd1177e9a212e4",
+  "stress_variants_count": 10,
+  "expected_final_scenarios": 100,
+  "primary_metric": "bounded_state_rmse_missing",
+  "analysis_predeclaration": {
+    "conditional_paired_comparison": "Means on shared valid subset where bounded_status is optimal and primal violation <= 1e-5",
+    "uncertainty_if_reported": "Paired seed/scenario cluster resampling with resampling_seed=424242 and n_independent_seed_clusters=10 (precision-limited, not cell-level)",
+    "oracle_separation": "oracle_* metrics are diagnostic upper bounds, not deployable estimators"
+  },
+  "selection_history": "v4 seeds from final_holdout_v4_seed_manifest.json; stress variants unchanged from archived v3; amended evaluation after generative repair; v3 not rerun.",
+  "amended_history": {
+    "v3_status": "retired_failed",
+    "v3_failure_receipt": "results/research_final_v3/final_attempt_failure.json",
+    "v3_pre_freeze_preserved": "results/research/pre_evaluation_freeze.json"
+  },
+  "holdout_exposure": {
+    "v1": "retired_exposed",
+    "v2": "retired_exposed",
+    "v3": "retired_failed_archived",
+    "v4": "active_unexposed_at_freeze"
+  },
+  "prior_v4_attempt_check": {
+    "registry_rows": 0,
+    "passed": true
+  },
+  "prefreeze_checks": {
+    "pytest_passed": 225,
+    "development_regenerated": true,
+    "measured_regenerated": true,
+    "data_manifest_verify_only": true
+  },
+  "final_command_declared": "python -m src.research.runner --mode final --config configs/research/final_protocol_v4.json --output results/research_final_v4 --registry .crest_research_protocol_registry.json",
+  "final_output_declared": "results/research_final_v4",
+  "registry_path_declared": ".crest_research_protocol_registry.json",
+  "canonical_protocol_content_digest_sha256_prefix": "0040a9f70180ada0"
+}

@@ -1,0 +1,69 @@
+{
+  "receipt_type": "crest_research_integration_build_verification",
+  "generated_utc": "2026-11-11T11:50:30Z",
+  "amendment_utc": "2026-11-11T11:50:30Z",
+  "amendment_note": "v4 amended final holdout: single completed execution; v3 archive preserved; analysis script recorded.",
+  "research_code_hash": "c15d37e54fe38d63",
+  "prior_research_code_hash_v4_activation_baseline": "6959a7802af6991e",
+  "prior_research_code_hash_frozen_failed_final": "07a399f8e9550149",
+  "estimator_lp_modules_unchanged_since_generative_repair": true,
+  "estimator_lp_content_sha256_prefix": {
+    "boundary_conservation.py": "4504521fe76e13a9",
+    "partial_identification.py": "f4f4b21b1cf6ead7",
+    "lp_core.py": "077a980222bef586",
+    "conservation_constraints.py": "477dda227a0a33e2",
+    "baselines.py": "0a2a98502137830f",
+    "experiments.py": "dbcb038cada48b96",
+    "truth_feasibility.py": "21ed8694015050b4"
+  },
+  "platform": "win32",
+  "python": "3.14",
+  "commands": [
+    "python -m pytest -q",
+    "python -m src.research.runner --mode development --config configs/research/dev_pilot.json --output results/research --force",
+    "python -m src.research.measured_runner --config configs/research/measured_pilot.json --output results/research_measured",
+    "python scripts/fetch_research_data.py --verify-only",
+    "python scripts/record_pre_evaluation_freeze_v4.py --pytest-count 225",
+    "python -m src.research.runner --mode final --config configs/research/final_protocol_v4.json --output results/research_final_v4 --registry .crest_research_protocol_registry.json",
+    "python scripts/analyze_final_holdout_v4.py"
+  ],
+  "pytest": {
+    "passed": 225,
+    "failed": 0,
+    "skipped": 0,
+    "warnings": 2,
+    "includes_wheel_smoke": true
+  },
+  "development_pilot": {
+    "n_runs": 50,
+    "research_code_hash_in_artifact": "c15d37e54fe38d63"
+  },
+  "measured_pilot": {
+    "status": "dev_pilot_complete",
+    "research_code_hash_in_artifact": "c15d37e54fe38d63"
+  },
+  "data_verify_only": {
+    "ngsim_i80_slice_sha256": "38173aad33806922b4f22f516363f8a4fce53038554e6d85744e151f05870d1b",
+    "i24_sample_sha256": "857ee641cbcff3b56974bde323fcb8c126dddccca9ae0f336b559a4027e8cc17"
+  },
+  "final_holdout_v3": {
+    "status": "retired_failed",
+    "preserved_failure_receipt": "results/research_final_v3/final_attempt_failure.json",
+    "no_rerun": true
+  },
+  "final_holdout_v4": {
+    "status": "completed_single_attempt",
+    "fingerprint": "0040a9f70180ada0",
+    "seed_manifest": "configs/research/final_holdout_v4_seed_manifest.json",
+    "seed_manifest_sha256": "0e93eef3e370761ad2aae672ec211cb5fd6800b6400e993559dd1177e9a212e4",
+    "pre_freeze": "results/research/pre_evaluation_freeze_v4.json",
+    "output": "results/research_final_v4",
+    "n_scenarios_completed": 100,
+    "n_bounded_valid": 81,
+    "registry_run_status": "completed",
+    "analysis_script": "scripts/analyze_final_holdout_v4.py",
+    "analysis_script_sha256_prefix": "e00d4da51c0b965e"
+  },
+  "finaleval_performed": true,
+  "finaleval_succeeded": true
+}

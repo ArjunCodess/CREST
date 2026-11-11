@@ -1,0 +1,41 @@
+{
+  "receipt_type": "crest_research_pre_evaluation_freeze",
+  "freeze_utc": "2026-11-11T11:11:00Z",
+  "research_code_hash": "07a399f8e9550149",
+  "prior_research_code_hash_at_integration": "ebe1b306e7fafa7d",
+  "final_protocol_id": "final_holdout_v3",
+  "final_protocol_fingerprint_sha256_prefix": "5da3b1d664faf594",
+  "final_holdout_active_seeds_count": 10,
+  "stress_variants_count": 10,
+  "expected_final_scenarios": 100,
+  "primary_metric": "bounded_state_rmse_missing",
+  "analysis_predeclaration": {
+    "conditional_paired_comparison": "Means on shared valid subset where bounded_status is optimal and primal violation <= 1e-5",
+    "uncertainty_if_reported": "Paired seed cluster resampling with resampling_seed=424242, n_independent_seed_clusters=10",
+    "oracle_separation": "oracle_* metrics are diagnostic, not deployable wins"
+  },
+  "selection_history": "No post-peek seed or scenario selection; v3 seeds from configs/research/final_holdout_v3_seed_manifest.json",
+  "holdout_exposure": {
+    "v1": {
+      "status": "retired_exposed",
+      "seeds": [101, 202, 303, 404, 505]
+    },
+    "v2": {
+      "status": "retired_exposed",
+      "seeds": [701, 802, 903, 1004, 1105],
+      "exposed_subset": [701, 802]
+    },
+    "v3": {
+      "status": "active_unexposed",
+      "seed_manifest": "configs/research/final_holdout_v3_seed_manifest.json"
+    }
+  },
+  "prefreeze_checks": {
+    "pytest_passed": 159,
+    "development_regenerated": true,
+    "measured_regenerated": true,
+    "data_manifest_verify_only": true
+  },
+  "final_output_declared": "results/research_final_v3",
+  "registry_path_declared": ".crest_research_protocol_registry.json"
+}
