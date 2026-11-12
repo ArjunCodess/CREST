@@ -166,7 +166,7 @@ def _posix_process_liveness(pid: int) -> str:
         return 'dead'
     except PermissionError:
         return 'alive'
-    except OSError:
+    except (OSError, OverflowError):
         return 'unknown'
     return 'alive'
 

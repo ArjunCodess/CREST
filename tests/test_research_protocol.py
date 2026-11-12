@@ -276,6 +276,26 @@ def test_unknown_pid_lock_not_stale(tmp_path):
     assert _stale_registry_lock(lock) is False
 
 
+@pytest.mark.parametrize('pid', [2**31, 4000000000, 10**100])
+def test_posix_pid_overflow_preserves_lock(tmp_path, monkeypatch, pid):
+    from src.research import protocol
+
+    def overflow_kill(owner: int, signal: int) -> None:
+        assert (owner, signal) == (pid, 0)
+        raise OverflowError('signed integer is greater than maximum')
+
+    monkeypatch.setattr(os, 'kill', overflow_kill)
+    monkeypatch.setattr(protocol, '_lock_owner_process_liveness', protocol._posix_process_liveness)
+    lock = tmp_path / 'registry.lock'
+    lock.write_text(str(pid), encoding='utf-8')
+
+    assert _stale_registry_lock(lock) is False
+    assert lock.read_text(encoding='utf-8') == str(pid)
+    with pytest.raises(TimeoutError):
+        with registry_file_lock(tmp_path / 'registry.json', timeout_s=0):
+            pytest.fail('An unprobeable owner must not lose its lock')
+
+
 @pytest.mark.skipif(sys.platform != 'win32', reason='Windows-only stale-lock probe guard')
 def test_stale_lock_windows_never_calls_os_kill(tmp_path, monkeypatch):
     calls: list[tuple[int, int]] = []
