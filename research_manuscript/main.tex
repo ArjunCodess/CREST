@@ -16,7 +16,7 @@
   Independent Researcher \\
   \texttt{arjunv.prakash12345@gmail.com}}
 
-\date{Manuscript draft packaged 2026-11-11}
+\date{Development update, November 20, 2026}
 
 \renewcommand{\headeright}{Preprint}
 \renewcommand{\undertitle}{Independent Researcher}
@@ -34,6 +34,7 @@
   urlcolor=blue,
 }
 
+\input{generated/roadmap_development.tex}
 \begin{document}
 \maketitle
 
@@ -51,6 +52,9 @@ We do not claim algorithmic novelty or state-of-the-art accuracy relative to mod
 networks or physics-informed deep learning pipelines, which are not included as baselines here.
 Post-hoc cluster-bootstrap uncertainty and denominator reconciliation were applied after execution
 (documented erratum); they were not part of the frozen inference hash.
+A subsequent development study evaluates a sparse robust estimator on two FHWA freeway sites and
+checks incremental outage replay against full recomputation on two Caltrans corridors.
+The measured experiments motivate a future held-out evaluation.
 \end{abstract}
 
 \keywords{traffic state estimation \and conservation laws \and partial identification \and
@@ -135,8 +139,8 @@ baselines.
 On shared-valid rows ($n=81$), bounded deployable error exceeds masked mean and forward fill; paired
 bounded-minus-masked mean difference averages 25.75 vehicles with bootstrap 95\% interval
 [21.17, 31.33] (post-hoc).
-Table~\ref{tab:rmse-slices} shows that bounded estimates are closer on observed links yet worse when
-missing links are included---as expected when hard constraints do not align with truth on unobserved cells.
+Table~\ref{tab:rmse-slices} shows that bounded estimates have higher point error than masked mean on both
+observed and missing links in this comparison.
 
 \input{generated/table_matrix_outcomes.tex}
 \input{generated/table_primary_comparison.tex}
@@ -163,13 +167,48 @@ path splits remain feasible; the LP interval for total flow then has positive wi
 count sensors on other links.
 We include this as a textbook-style consequence of partial identification, not as a formal novelty claim.
 
+\section{Measured development study}
+The updated estimator stores each time step's cell storage and transfer flows explicitly. Sparse
+equalities impose local vehicle accounting. The point estimator uses a Huber observation loss and a
+quadratic prior. A separate linear program returns assumption-conditional extrema with explicit
+infeasibility and unbounded statuses. The detector-only model smooths speed and flow on a directed
+station graph without inferring measured storage. Independent retrospective work uses I-80 and US-101
+recordings from NGSIM~\cite{ngsim_datagov} and five-minute PeMS snapshots~\cite{caltranspems}.
+
+For the state comparison in Table~\ref{tab:development-state}, one I-80 recording supplies training,
+a second supplies calibration, and one US-101 recording supplies the development transfer test.
+Estimators share the same contiguous input masks. Speed and flow use
+\CrestPilotSpeedN{} and \CrestPilotFlowN{} scored masked cells, respectively, from one test recording.
+Detector-only PeMS results assess outage replay. One correction recomputed \CrestPilotReplayA{}
+windows in District~4 and \CrestPilotReplayB{} in District~7, matching full recomputation in each case.
+
+\begin{table}[t]
+  \centering
+  \caption{Mean absolute error on masked US-101 cells in the cross-site development test.}
+  \label{tab:development-state}
+  \CrestPilotTable
+\end{table}
+
+On US-101, the strict tracking-balance model was infeasible. A bounded discrepancy term calibrated on
+I-80 allows up to \CrestPilotDiscrepancy{} vehicles per cell and interval to account for tracking
+and geometry discrepancies. This fit yields missing-storage MAE of \CrestPilotStorage{} vehicles
+against \CrestPilotStorageBase{} for persistence. This accounting result does not independently
+validate capacity, ramp-flow, or conservation assumptions.
+
+The queue advisory uses only information available at issuance. In a retrospective US-101 probe
+evaluation, the vehicle projects its path from its origin position and speed, while later trajectory
+samples determine the speed-proxy encounter outcome. The gated prototype detected \CrestPilotQueueHits{}
+of \CrestPilotQueueN{} proxy encounters and issued \CrestPilotQueueFalse{} false warnings
+over \CrestPilotTrips{} eligible probe episodes.
+
 \section{Discussion}
 \textbf{Conservation versus accuracy.} Enforcing discrete balance and interval observations defines a
 physically structured feasible set, yet on this synthetic holdout the deployable interior point does not
 minimize missing-link RMSE relative to masked mean.
 
-\textbf{Missing strong baselines.} Graph Markov networks~\cite{pu2020gmnn}, sparse Bayesian field estimators,
-and physics-informed learning~\cite{shi2021pidl} are absent; any comparison would be speculative.
+\textbf{Comparators.} The frozen v4 comparison contains simple imputers. The measured development
+comparison includes a recurrent graph estimator and a tree model. It does not evaluate the published
+graph Markov network~\cite{pu2020gmnn} or physics-informed method~\cite{shi2021pidl}.
 
 \textbf{Protocol amendments.} v4 followed a generative repair and failed v3 archive; it is not a blind repeat
 of the original v3 preregistration.
@@ -177,8 +216,10 @@ of the original v3 preregistration.
 \section{Limitations and future work}
 Small chain geometry, a single completed final matrix, seed-cluster bootstrap with only ten clusters,
 and no independent external OD truth limit external validity.
-Fixing OD NNLS masking is documented but not applied to frozen v4.
-Embargoed real-network adapters remain future work.
+The development OD comparator now masks the incidence and count rows consistently. The v4 OD
+comparison remains withdrawn. One measured test recording and retrospective speed proxies limit
+claims about transfer and vehicle warnings. A separate PeMS protocol requires ten independent
+held-out days and reserves station-days before evaluation.
 
 \section*{Declarations}
 Author identity and contact appear on the title page.
@@ -189,6 +230,8 @@ responsible for contributions and submission ethics.
 
 \section*{Data and code availability}
 Synthetic artifacts: \texttt{results/research\_final\_v4/}.
+The development receipt and derived TeX table are under \texttt{generated/} and can be refreshed
+with \texttt{scripts/sync\_roadmap\_results.py} after running the development evaluation.
 Table and figure regeneration:
 \texttt{research\_manuscript/scripts/generate\_manuscript\_tables.py},
 \texttt{make\_manuscript\_figures.py}.

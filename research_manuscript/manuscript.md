@@ -109,7 +109,13 @@ Conservation-structured feasibility does not, on this holdout, yield better miss
 
 ## 8. Limitations
 
-Synthetic chains; single final matrix; ten seed-level bootstrap clusters; measured NGSIM adapter is development-only; no OD ground truth on measured slice; OD NNLS comparison invalid in frozen runner.
+The frozen experiment used synthetic chains, one final matrix and ten seed-level bootstrap clusters. Its OD NNLS comparison remains withdrawn. The forward comparator now masks the incidence and count rows consistently.
+
+### Measured development update
+
+The sparse point estimator uses a Huber observation loss and explicit storage/flow balance equations. The conditional LP reports separate bounds and infeasibility. Two I-80 recordings supply training and calibration, and one US-101 recording supplies the cross-site development comparison. Speed and flow are scored on shared contiguous masks. The strict storage fit was infeasible, and the bounded tracking-discrepancy sensitivity check reports both its point error and its assumptions.
+
+PeMS snapshots support detector outage replay on two corridors. The vehicle advisory uses an issuance-time path projection and is scored against retrospective trajectory speed proxies. The [development receipt](generated/roadmap_development.json) records the errors, warning counts and measured input hashes. Independent measured OD truth and a frozen multi-day PeMS result remain open.
 
 ## 9. Declarations
 

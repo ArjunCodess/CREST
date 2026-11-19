@@ -1,0 +1,23 @@
+\newcommand{\CrestPilotSpeedN}{33}
+\newcommand{\CrestPilotFlowN}{33}
+\newcommand{\CrestPilotStorage}{6.25}
+\newcommand{\CrestPilotStorageBase}{6.36}
+\newcommand{\CrestPilotDiscrepancy}{17}
+\newcommand{\CrestPilotQueueHits}{0}
+\newcommand{\CrestPilotQueueN}{16}
+\newcommand{\CrestPilotQueueFalse}{18}
+\newcommand{\CrestPilotTrips}{655}
+\newcommand{\CrestPilotReplayA}{4/16}
+\newcommand{\CrestPilotReplayB}{4/17}
+\newcommand{\CrestPilotTable}{%
+\begin{tabular}{lrr}
+\toprule
+Estimator & Speed MAE (km/h) & Flow MAE (veh/h) \\
+\midrule
+Historical median & 8.09 & 978.06 \\
+Persistence & 11.11 & 1199.87 \\
+Tree & 8.06 & 948.40 \\
+Graph recurrent & 8.25 & 727.65 \\
+Graph Huber & 7.27 & 864.75 \\
+\bottomrule
+\end{tabular}}
