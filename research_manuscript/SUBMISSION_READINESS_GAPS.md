@@ -1,42 +1,10 @@
-# Submission readiness gaps
+# Submission readiness
 
-## Scientific
+IEEE ITSC is the primary archival target. ITE has a separate abstract based on outage triage. The roadmap records dates, venue criteria, and what each submission must demonstrate. [Venue roadmap](../docs/crest-roadmap-2027.md) · [ITE draft](../docs/crest-ite-abstract.md)
 
-1. No comparison to contemporary graph or physics-informed estimators cited in literature.
-2. Single synthetic geometry (chain) and one final matrix.
-3. Bootstrap clusters = seeds (n=10); precision limited.
-4. v4 protocol amended after v3 failure — disclose prominently in cover letter.
-5. OD NNLS pathway needs code fix before any OD benchmark claims.
+- The US-101 transfer results come from one development test recording. The ITSC protocol needs at least ten independent evaluation days on stations held out of development, then a completed frozen run. Its primary comparison measures contiguous detector outages on PeMS. [Protocol and commands](../docs/crest-implementation.md#freezing-the-itsc-experiment)
+- The proxy advisory study uses sampled trajectories and simulated communication delay. The IV workshop route needs a matching call and useful warning performance under that workshop's criteria. The measured shadow and incremental replay evidence can support development demonstrations. [Development receipt](generated/roadmap_development.json)
+- The corrected OD comparator supports new synthetic comparisons. Frozen v4 OD rankings remain withdrawn, and measured route-choice truth is unavailable. The v4 amendment, ten seed clusters, and scope of its historical receipts still apply. [v4 erratum](../docs/research_analysis_erratum.md)
+- The author must confirm the competition manuscript's publication and review status alongside funding, ethics, and contribution declarations before a submission. [Author verification](AUTHOR_VERIFICATION_REQUIRED.md)
 
-## Provenance
-
-6. Historical `build_verification.json` analysis hash is stale; cite `packaging_analysis_receipt.json` in supplemental provenance.
-7. No per-file digests for original v3 monoliths — do not claim stronger v3 archival than exists.
-
-## Authorship and compliance
-
-8. All declaration blocks in `AUTHOR_VERIFICATION_REQUIRED.md` unfinished.
-9. No target venue selected; calls for workshops not verified in this pass.
-
-## Venue families (deadlines unverified)
-
-| Family | Fit | Notes |
-|--------|-----|-------|
-| IEEE ITSC workshops on traffic estimation / data fusion | Moderate | Negative + reproducibility angle |
-| TRB poster / committee on traffic data | Moderate | Methods + transparency |
-| NeurIPS Datasets & Benchmarks | Weak | Small synthetic matrix; no learned baseline grid |
-| Transportation Research Part C short communication | Weak without external validation | Would need real data or stronger baselines |
-
-**Action:** Human authors must verify current CFP deadlines before submission.
-
-## PDF artifact
-
-`pdflatex` was not available in the packaging environment PATH. Compile locally:
-
-```powershell
-cd crest/research_manuscript
-pdflatex main.tex
-bibtex main
-pdflatex main.tex
-pdflatex main.tex
-```
+The PDF build status is recorded in [compile QA](COMPILE_QA.md). Manuscript figures from v4 and the development appendix have separate receipt chains.

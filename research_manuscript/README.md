@@ -1,6 +1,6 @@
 # Research manuscript package (separate from `paper/main.tex`)
 
-Competition paper under `crest/paper/` is untouched.
+The [competition paper](../paper/main.tex) reports the TrafficFlowBench entry. This preprint covers the frozen synthetic v4 experiment and the subsequent measured development study.
 
 ## Regenerate artifacts
 
@@ -9,6 +9,14 @@ cd crest
 python research_manuscript/scripts/verify_immutable_inputs.py
 python research_manuscript/scripts/generate_manuscript_tables.py
 python research_manuscript/scripts/make_manuscript_figures.py
+```
+
+Regenerate the measured development table and receipt when both roadmap runs use the same code. The raw PeMS and NGSIM archives stay in local storage. [Data collection and commands](../docs/crest-implementation.md)
+
+```powershell
+python -m src.research.roadmap measured
+python -m src.research.roadmap fixture
+python research_manuscript/scripts/sync_roadmap_results.py
 ```
 
 ## Provenance chain

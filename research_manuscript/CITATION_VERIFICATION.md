@@ -1,4 +1,4 @@
-# Citation verification record (2026-11-11)
+# Citation verification record
 
 | Bib key | DOI / URL | Verification |
 |---------|-----------|--------------|
@@ -12,5 +12,6 @@
 | `xie2011entropy` | 10.1016/j.trb.2011.05.018 | Publisher DOI resolves |
 | `mehr2018submodular` | ACC 2018 preprint URL (Berkeley) | PDF accessible; IEEE metadata not duplicated in bib |
 | `ngsim_datagov` | catalog.data.gov URL | Government catalog entry |
+| `caltranspems` | https://pems.dot.ca.gov/ | Caltrans station metadata and five-minute feed accessed in November 2026 |
 
 No orphaned in-text keys in `main.tex` relative to `references.bib` (manual check during draft).
