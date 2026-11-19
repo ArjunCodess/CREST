@@ -10,6 +10,9 @@ readme = "README.md"
 requires-python = ">=3.11"
 dynamic = ["dependencies"]
 
+[project.optional-dependencies]
+roadmap = ["osqp>=1.0,<2", "tzdata>=2025.1"]
+
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
 
