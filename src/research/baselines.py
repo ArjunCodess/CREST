@@ -158,14 +158,19 @@ def od_lp_bounds_baseline(
     observed_mask=None,
     path_flow_cap=None,
 ):
-    center = 0.5 * (np.nan_to_num(count_lower, 0) + np.nan_to_num(count_upper, 0))
-    flows = od_nnls_baseline(incidence, center, prior)
+    lo = np.asarray(count_lower, dtype=float)
+    hi = np.asarray(count_upper, dtype=float)
+    observed = np.isfinite(lo) & np.isfinite(hi)
+    if observed_mask is not None:
+        observed &= np.asarray(observed_mask, dtype=bool)
+    center = 0.5 * (lo[observed] + hi[observed])
+    flows = od_nnls_baseline(np.asarray(incidence)[observed], center, prior)
     bounds = aggregate_bounds(
         incidence,
         count_lower,
         count_upper,
         weights,
-        observed_mask=observed_mask,
+        observed_mask=observed,
         flow_upper=path_flow_cap,
     )
     return {'flows_point': flows, 'aggregate_bounds': bounds}

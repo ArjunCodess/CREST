@@ -111,8 +111,6 @@ def run_one_scenario(scenario_key: str, seed: int, params: dict) -> dict[str, An
         scenario.u_interval_lower, scenario.u_interval_upper, scenario.dt_hours
     )
     prior_scale = np.full(scenario.incidence.shape[1], 100.0)
-    count_center = 0.5 * (np.nan_to_num(scenario.count_lower, 0) + np.nan_to_num(scenario.count_upper, 0))
-    od_flows = bl.od_nnls_baseline(scenario.incidence, count_center, prior_scale)
     od_lp = bl.od_lp_bounds_baseline(
         scenario.incidence,
         scenario.count_lower,
@@ -122,6 +120,7 @@ def run_one_scenario(scenario_key: str, seed: int, params: dict) -> dict[str, An
         observed_mask=scenario.count_observed_mask,
         path_flow_cap=scenario.path_flow_cap,
     )
+    od_flows = od_lp['flows_point']
 
     truth_eval = evaluate_truth_feasibility(scenario)
     lp_diag = classify_bounded_lp_status(
