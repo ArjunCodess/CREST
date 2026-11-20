@@ -1,0 +1,35 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[hmargin=1in,vmargin=0.85in]{geometry}
+\date{}
+\usepackage{xurl}
+\setlength{\emergencystretch}{2em}
+\title{Distinguishing a Missing Freeway Detector Reading from Emerging Congestion}
+\author{Arjun Vijay Prakash \\ \small ITE Annual Meeting 2027 | Transportation Operations |
+Abstract draft}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+When a freeway detector stops reporting, an operator has to decide whether to inspect the
+equipment or look for a developing queue. CREST presents the last valid speed and its age
+alongside neighboring detectors, a persistence baseline, and a graph-based reconstruction. The
+tool suggests a detector check when neighboring stations remain clear, a queue check when
+adjacent stations report concurrent low speeds, and an unavailable status when the evidence is
+insufficient.
+\end{abstract}
+
+\section*{Case demonstration}
+On southbound I-880, we hid a five-minute Caltrans PeMS speed reading at station 401362. The
+tool suggested inspecting the detector, and its last valid speed was one interval old. The
+withheld reading gave an absolute error of 1.77 km/h for persistence and 1.85 km/h for the graph
+reconstruction. In a separate window with concurrent low speeds, the tool suggested
+corroborating a queue. The District 7 replay also suggested inspecting the detector for an
+injected outage on westbound I-10.
+
+\section*{What attendees can take back}
+The replay demonstrates how to inspect a suggested action from the same evidence available at
+the time, then score a missing value against the original reading. The selected examples support
+a workflow demonstration. Operator-confirmed queue accuracy and recovery time require
+independent operating periods.
+\end{document}

@@ -1,0 +1,73 @@
+\documentclass[sigconf,nonacm]{acmart}
+\settopmatter{printacmref=false,printfolios=true}
+\usepackage{xurl}
+\setlength{\emergencystretch}{2em}
+\title{Replaying Freeway Estimates After Late Detector Corrections}
+\subtitle{ACM SIGMOD 2027 | Demonstration draft}
+\author{Arjun Vijay Prakash}
+\affiliation{\institution{Independent Researcher}\city{ }\country{ }}
+
+\begin{document}
+\begin{abstract}
+A late correction to a freeway detector record can change several estimated windows. Rebuilding
+an entire replay repeats work, and changing only the corrected window can preserve estimates
+that depended on the old value. CREST stores observations as immutable, content-addressed
+Parquet partitions. Each estimate records its input partitions and the topology and estimator
+settings used to compute it. The demonstration lets attendees mask a detector reading, compare
+the old and revised manifests, and verify the new output against full recomputation. Two
+retrospective Caltrans PeMS replays recomputed 4 of 16 and 4 of 17 windows, with exact output
+parity in both traces.
+\end{abstract}
+
+\maketitle
+
+\section*{The system}
+An input manifest maps event timestamps to immutable Parquet files. Each file records one time
+partition of detector speeds, with missing values represented as nulls. A correction creates a
+new input manifest and changes the partition digest for the affected timestamp. Earlier
+manifests remain usable, so a reviewer can recover the evidence behind a previous estimate.
+
+A result cache key covers the output timestamp, all input partition digests in its dependency
+window, the directed topology, numerical settings, and estimator and solver versions. The
+default estimator uses the current partition and up to three preceding partitions. For an
+estimator configured with lookahead, dependencies also include the requested future partitions.
+The replay checks every output key and rebuilds affected windows. As a result, numerical work
+can stay local even though manifest traversal still scales with the trace length. The current
+system supports bounded-window estimates with no state carried beyond the declared dependency
+window.
+
+\section*{What the attendee does}
+First, load the original manifest and choose a timestamp and station. Inspect the detector
+speed, estimate, solver status and dependency digests. Next, remove that reading using the
+correction command and inspect the revised manifest. Compare the affected outputs and follow
+their dependency digests to the changed source partition. Apply the same edit again to reproduce
+the corrected manifest. Finally, rebuild the complete corrected trace and compare it with the
+incremental output, including the estimates and their provenance.
+
+The demonstration uses a clean CPU installation and the bundled synthetic junction scenario when
+the original measured snapshots are unavailable. The command-line interaction runs the estimator
+after a correction. The measured traces remain local pending source redistribution review.
+
+\section*{Evidence and scope}
+On I-880 southbound, the correction recomputed 4 of 16 outputs and preserved 12. On I-10
+westbound it recomputed 4 of 17 and preserved 13. All revised outputs matched a full replay. In
+the 72-window synthetic junction example, 4 were recomputed and 68 were preserved, again with
+exact parity. A regression fixture repeats a correction after later partitions have been
+ingested and checks idempotence and configured lookahead. Bulk ingestion expects a sorted,
+unique time grid.
+
+These traces establish the invalidation behavior and demonstrate the attendee interaction. The
+current evidence describes work avoided on short, single-corridor traces. A larger trace would
+be needed to characterize end-to-end speedup, including partition I/O and cache traversal.
+
+\section*{Reproduction}
+Run \texttt{python -m src.research.roadmap fixture} to generate a synthetic replay and its
+receipt. The measured workflow, correction syntax, and packaged development receipt are linked
+from the implementation guide.
+
+\section*{References}
+[1] Caltrans. Performance Measurement System. \url{https://pems.dot.ca.gov/}
+
+[2] CREST implementation guide and development receipts.
+\url{https://github.com/ArjunCodess/CREST/blob/main/docs/crest-implementation.md}
+\end{document}

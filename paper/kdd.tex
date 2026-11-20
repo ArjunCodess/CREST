@@ -1,0 +1,72 @@
+\documentclass[sigconf,nonacm]{acmart}
+\settopmatter{printacmref=false,printfolios=true}
+\usepackage{xurl}
+\setlength{\emergencystretch}{2em}
+\title{Benchmarking Freeway Estimation Under Structured Detector Loss}
+\subtitle{ACM KDD 2027 | Datasets and Benchmarks working draft}
+\author{Arjun Vijay Prakash}
+\affiliation{\institution{Independent Researcher}\city{ }\country{ }}
+
+\begin{document}
+\begin{abstract}
+Point error on randomly hidden readings can miss failures that arise during a contiguous
+detector outage. The CREST synthetic benchmark exports a directed freeway network, masked
+observations, and an evaluator-side scorer for speed, flow, and storage. It organizes 33
+scenarios into train, calibration, and evaluation splits by simulation seed. Evaluation
+transfers from chain to junction topologies. On the same synthetic evaluation seed clusters,
+persistence ranked ahead of graph Huber on random speed masks, while the tree ranked ahead of
+persistence on contiguous speed masks. The benchmark also reports prediction coverage, fallback
+use, and interval width so readers can see which targets contributed to each error estimate.
+\end{abstract}
+
+\maketitle
+
+\section*{Tasks and split construction}
+The simulator generates a time grid, directed incidence, capacity, and known traffic state. The
+exporter constructs three contiguous outage blocks per seed at different positions along the
+corridor and at different times. The exported splits contain 12 training scenarios across four
+seeds, 9 calibration scenarios across three seeds, and 12 evaluation scenarios across four
+seeds. Developing on chains and evaluating on junctions tests sensitivity to a change in network
+layout. The cases from a seed share one truth realization, so uncertainty analysis must group by
+seed.
+
+Participant files contain masked observations, a visibility array, timestamps, cell positions,
+graph incidence, and capacity. Evaluator files contain targets and the eligibility mask. A
+checksummed manifest identifies the split, scenario, and seed cluster. The generator is public
+for reproduction and its released seeds are reconstructible. A blind evaluation must use
+evaluator-controlled seeds.
+
+\section*{Scoring and an illustrative ranking change}
+Predictions have the same channel, time, and cell axes as the inputs. The scorer reports mean
+absolute error for emitted points, eligible and scored counts, abstentions, and the number of
+scored fallbacks. Paired lower and upper estimates add coverage, interval counts, and mean
+width. NaN represents a withheld output. Split-specific target files stay on the evaluator side
+so a participant input can be inspected directly for leakage.
+
+In a separate synthetic fixture comparison, speed MAE on 144 randomly masked targets was 1.72
+km/h for persistence, 6.57 for graph Huber, and 8.21 for the tree. Across 360 contiguous-mask
+targets it was 9.85 for persistence, 10.14 for graph Huber, and 8.66 for the tree. All three
+methods scored every eligible target in those comparisons. The mask sizes differ, so these
+numbers illustrate an observed ordering change for this fixture rather than isolate a causal
+effect of mask shape.
+
+\section*{External validity and access}
+The synthetic fixture samples every 30 seconds. The local PeMS and NGSIM profiles used
+five-minute and one-minute aggregates, respectively, and their speed and flow distributions
+differ. Observed median speed was 80.03 km/h in the synthetic profile, 72.26 in the two-corridor
+PeMS profile, and 28.32 in the available NGSIM periods. The aggregation schemes and corridor
+coverage constrain direct comparisons. The repository includes the generator and scorer. Raw
+PeMS data remain local pending permission review. This draft concerns the synthetic release
+candidate and does not claim a redistributable measured benchmark.
+
+\section*{Reproduction}
+Run \texttt{python -m src.research.roadmap export-benchmark} for an input and scorer bundle, and
+\texttt{python -m src.research.roadmap fixture} for the illustrated comparator study. The
+implementation guide documents the scorer command and prediction arrays.
+
+\section*{References}
+[1] CREST implementation guide and benchmark exchange format.
+\url{https://github.com/ArjunCodess/CREST/blob/main/docs/crest-implementation.md}
+
+[2] Caltrans. Performance Measurement System. \url{https://pems.dot.ca.gov/}
+\end{document}

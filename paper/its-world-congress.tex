@@ -1,0 +1,59 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[hmargin=1in,vmargin=0.85in]{geometry}
+\date{}
+\usepackage{xurl}
+\setlength{\emergencystretch}{2em}
+\title{Tracking Detector Availability in a Freeway Shadow Pilot}
+\author{Arjun Vijay Prakash \\ \small ITS World Congress Birmingham 2027 | Preliminary poster
+draft}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+An operations display can retain a speed estimate after its source feed stops producing current
+readings. A shadow pilot on southbound I-880 and westbound I-10 records feed availability
+separately from the estimate and retains the detector evidence behind each decision. During 52
+observed polling cycles on 19 November 2026 Pacific time, the I-880 corridor was classified
+current in 20 polls and stale in 32. The I-10 corridor was classified current in all 52 polls,
+covering 47 distinct current measurement windows. Capture lag differed between the two feeds.
+The pilot demonstrates how to make delayed data visible to operators and provides a basis for
+evaluating recovery and alert quality across more operating periods.
+\end{abstract}
+
+\section*{Shadow workflow}
+The collector archives five-minute Caltrans PeMS files and records capture times and station
+metadata versions. A shadow cycle uses only data whose event windows have closed and whose files
+have arrived. The read-only output records the latest observation, its age, the evidence
+available for an operator action, and a status for stale feeds, missing feeds, or absent usable
+speed values. Per-window decisions can be replayed for review. The shadow system issues no
+traffic-control commands.
+
+\section*{First operating period}
+The I-880 stream was current in 20 of 52 polls and supplied 20 distinct current windows. Its
+capture-lag p95 was 9.4 minutes across those distinct windows. The I-10 stream was current in 52
+of 52 polls and supplied 47 distinct current windows, with a capture-lag p95 of 6.5 minutes.
+Capture lag measures the time from the close of the measurement window to file capture. It
+includes source and collection delays and is distinct from estimator runtime. The two corridors
+were observed on the same Pacific day.
+
+In a separate retrospective replay on these corridors, one hidden speed reading per corridor
+triggered a detector inspection recommendation. The persistence and graph-reconstruction
+absolute errors were 1.77 and 1.85 km/h on I-880, and 3.22 and 3.27 km/h on I-10. A separate
+observed low-speed window on I-880 triggered a queue corroboration recommendation. The
+retrospective cases use injected detector loss and selected congestion evidence.
+
+\section*{Operational implications}
+Poll counts and distinct measurement windows describe different aspects of availability.
+Repeated polls can display the same current window, so counting polls alone would overstate
+fresh measurements on I-10. An incident ledger lets a reviewer trace a suggested action back to
+its source and check whether the feed was within its age limit. A multi-period pilot is still
+needed to estimate bad-alert rate, time to recovery, and end-to-end update latency against the
+five-minute input cadence.
+
+\section*{References}
+[1] Caltrans. Performance Measurement System. \url{https://pems.dot.ca.gov/}
+
+[2] CREST implementation guide, including shadow report commands.
+\url{https://github.com/ArjunCodess/CREST/blob/main/docs/crest-implementation.md}
+\end{document}
