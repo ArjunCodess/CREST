@@ -105,7 +105,7 @@ With one wide aggregate bound on nonnegative path flows, multiple path splits re
 
 ## 7. Discussion
 
-Conservation-structured feasibility does not, on this holdout, yield better missing-link point accuracy than masked mean. Strong learned baselines are absent by design. v4 is an amended protocol after generative repair, not a blind repeat of original v3 preregistration.
+The balance constraints define feasible states, but the interior point had higher missing-link error than the masked mean in this holdout. The frozen comparison used simple imputers. Its results apply to the v4 protocol, which amended the generator after the failed v3 experiment.
 
 ## 8. Limitations
 
@@ -115,7 +115,7 @@ The frozen experiment used synthetic chains, one final matrix and ten seed-level
 
 The sparse point estimator uses a Huber observation loss and explicit storage/flow balance equations. The conditional LP reports separate bounds and infeasibility. Two I-80 recordings supply training and calibration, and one US-101 recording supplies the cross-site development comparison. Speed and flow are scored on shared contiguous masks. The strict storage fit was infeasible, and the bounded tracking-discrepancy sensitivity check reports both its point error and its assumptions.
 
-PeMS snapshots support detector outage replay on two corridors. The vehicle advisory uses an issuance-time path projection and is scored against retrospective trajectory speed proxies. The [development receipt](generated/roadmap_development.json) records the errors, warning counts and measured input hashes. Independent measured OD truth and a frozen multi-day PeMS result remain open.
+Later archived comparisons scored 30- and 60-minute outages in both PeMS directions. Persistence had lower speed and flow error in all four comparisons. NGSIM speed error favored graph Huber from I-80 to US-101 and the selected baseline in the reverse direction. The vehicle advisory uses a path projected at issuance, with later trajectory samples reserved for scoring against speed proxies. Independent measured OD truth and a frozen multi-day PeMS result remain open. [Evaluation and interpretation](../docs/crest-evaluation.md) · [Original development receipt](generated/roadmap_development.json)
 
 ## 9. Declarations
 

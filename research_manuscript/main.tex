@@ -202,24 +202,27 @@ of \CrestPilotQueueN{} proxy encounters and issued \CrestPilotQueueFalse{} false
 over \CrestPilotTrips{} eligible probe episodes.
 
 \section{Discussion}
-\textbf{Conservation versus accuracy.} Enforcing discrete balance and interval observations defines a
-physically structured feasible set, yet on this synthetic holdout the deployable interior point does not
-minimize missing-link RMSE relative to masked mean.
+\textbf{Conservation and accuracy.} Balance and observation intervals define which states are
+feasible. In the frozen synthetic holdout, the interior point had higher missing-link RMSE
+than the masked mean.
 
 \textbf{Comparators.} The frozen v4 comparison contains simple imputers. The measured development
 comparison includes a recurrent graph estimator and a tree model. It does not evaluate the published
 graph Markov network~\cite{pu2020gmnn} or physics-informed method~\cite{shi2021pidl}.
 
-\textbf{Protocol amendments.} v4 followed a generative repair and failed v3 archive; it is not a blind repeat
-of the original v3 preregistration.
+\textbf{Protocol amendments.} The v4 protocol follows the failed v3 experiment and a repair to
+the generator. Its results apply to the amended protocol.
 
 \section{Limitations and future work}
 Small chain geometry, a single completed final matrix, seed-cluster bootstrap with only ten clusters,
 and no independent external OD truth limit external validity.
 The development OD comparator now masks the incidence and count rows consistently. The v4 OD
-comparison remains withdrawn. One measured test recording and retrospective speed proxies limit
-claims about transfer and vehicle warnings. A separate PeMS protocol requires ten independent
-held-out days and reserves station-days before evaluation.
+comparison remains withdrawn. The original measured state comparison used one US-101 test
+recording. In later archived comparisons, graph Huber beat the calibration-selected speed
+baseline from I-80 to US-101 and trailed it in the reverse direction. Persistence had lower
+speed and flow error in both PeMS directions. The larger evaluation and receipts are at
+\url{https://github.com/ArjunCodess/CREST/blob/main/docs/crest-evaluation.md}.
+The frozen PeMS experiment still requires ten independent held-out days.
 
 \section*{Declarations}
 Author identity and contact appear on the title page.
