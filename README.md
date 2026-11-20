@@ -129,7 +129,7 @@ python -m src.research.runner --mode development --output results/research --for
 
 Default runner mode is **development** (bundled `dev_pilot.json` when `--config` is omitted). Development overwrites require `--force`. Final holdout **v3** is **archived** (`retired_failed`, not rerun). **v4** is the amended active reserve (`configs/research/final_protocol_v4.json`); a single completed run is recorded under `results/research_final_v4/` with receipt and registry guard (repeat blocked without override). See [docs/research_results.md](docs/research_results.md).
 
-For the 2027 research and submission work, see the [architecture roadmap](docs/crest-roadmap-2027.md) and [implementation guide](docs/crest-implementation.md). The new CPU fixture, PeMS shadow loop, and NGSIM pilot use their own inputs and produce development receipts.
+The 2027 research uses separate synthetic fixtures and archived PeMS and NGSIM data. The evaluation explains where persistence wins, what the queue replay measures, and which claims still need an independent holdout. [Evaluation](docs/crest-evaluation.md) · [Reproduction commands](docs/crest-implementation.md) · [Venue roadmap](docs/crest-roadmap-2027.md)
 
 ## Repository layout
 

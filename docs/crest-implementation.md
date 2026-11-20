@@ -1,5 +1,7 @@
 # Running the CREST roadmap
 
+The evaluation report gives the comparison results, denominators, and limits. Use this guide to rerun the experiments and trace individual outputs. [Evaluation](crest-evaluation.md)
+
 Use the `roadmap` package extra for the new solver and the Windows time-zone database. The competition replay and its checkpoint requirements are documented separately in the [reproduction guide](reproducibility.md).
 
 ```powershell
@@ -106,10 +108,10 @@ The [roadmap results](../results/crest-roadmap/) include the development and str
 | Venue | Available evidence | Remaining gate |
 | --- | --- | --- |
 | ITE | Scored injected outage and separate congestion case, with the larger retrospective replay available for context. | Author approval and portal submission. |
-| ACM SIGMOD demo | Exact parity for incremental and full replay after duplicate and out-of-order edits on two 199-window PeMS traces and one 576-window synthetic trace. | Verify the archival overlap rules and assess the demo on a larger archive if claiming a general speedup. |
-| ITS World Congress | 113 prospective polls and 46 injected-fault cases across two corridors. Graph reconstruction scored 5.20 km/h MAE on 372 targets versus 6.58 for persistence. Both methods missed ten queue-proxy cases. | Collect independent operating periods and operator-confirmed incident evidence before advancing a technical paper. |
-| IEEE IV workshop | Sweep across penetration and delay on nine five-minute blocks from a single US-101 recording. The gate detected 9 of 235 proxy encounters at a 7.5-second delay. | A fitting workshop call and useful encounter coverage on independent recordings. |
-| IEEE ITSC | Matched synthetic ablations and measured development transfer, including source-separated queue proxies. The readiness check qualified zero evaluation days. | Freeze development-derived margins and a ten-day cohort on untouched stations. The two development corridors already have exploratory results. Existing NGSIM development recordings also cannot serve as an unseen reserve. |
-| ACM KDD | Synthetic and CC BY-SA 3.0 NGSIM-derived exports, target-isolated scorer, and a synthetic ranking reversal under equal-size random and contiguous masks. | Confirm Cycle 2 and establish generality on additional independent cohorts. |
+| ACM SIGMOD demo | Incremental replay matched full recomputation on 240- and 241-window PeMS traces and a 576-window synthetic trace. | Verify the archival overlap rules. General speedup claims need larger traces and repeated timings. |
+| ITS World Congress | Archived replay of 58 injected faults. Graph reconstruction scored 4.65 km/h MAE on 468 target instances versus 5.86 for persistence. Both methods missed all ten queue-proxy positives. | The poster describes retrospective replay. Claims about operator decisions need independent incident labels. |
+| IEEE IV workshop | One US-101 recording supplied nine blocks. The gate detected 9 of 235 proxy encounters at a 7.5-second delay. | A fitting workshop call and useful recall on independent recordings. |
+| IEEE ITSC | Persistence had lower speed and flow error in both archived PeMS directions. NGSIM speed results changed with the direction of transfer. | The candidate schedule supplied zero of ten eligible PeMS days. Final evaluation needs untouched stations or an independent trajectory archive under its own protocol. |
+| ACM KDD | Matched-coverage scores on synthetic and NGSIM exports, plus a persistence/tree ranking reversal under equal-size random and contiguous masks. | Confirm Cycle 2 and evaluate generality on evaluator-controlled cohorts. |
 
 [Architecture and submission plan](crest-roadmap-2027.md) · [ITE abstract draft](crest-ite-abstract.md)
