@@ -110,12 +110,12 @@ class Replay:
 
     @classmethod
     def from_manifest(cls, root: Path, manifest: str) -> Replay:
-        from scipy.sparse import csc_matrix
+        from scipy.sparse import coo_matrix
 
         payload = cls._manifest_payload(root, manifest)
         settings = payload["settings"]
         adjacency = settings["graph"]
-        graph = csc_matrix((adjacency["values"], (adjacency["row"], adjacency["col"])), shape=adjacency["shape"])
+        graph = coo_matrix((adjacency["values"], (adjacency["row"], adjacency["col"])), shape=adjacency["shape"])
         replay = cls(root, graph, settings["topology"], settings["level"], settings["scale"],
                      history=settings["history"], lookahead=settings["lookahead"])
         if replay.settings != settings:
@@ -210,6 +210,19 @@ class Replay:
             recomputed += 1
         return {"manifest": manifest, "outputs": output, "recomputed": recomputed,
                 "elapsed_seconds": time.perf_counter() - started}
+
+    def compare(self, before: str, after: str) -> dict:
+        previous = self.run(before)["outputs"]
+        edited = self.run(after, previous=before)
+        outputs = edited.pop("outputs")
+        changed = [
+            {"time_ms": stamp, "before": previous.get(stamp), "after": outputs.get(stamp)}
+            for stamp in sorted(previous.keys() | outputs.keys())
+            if previous.get(stamp) != outputs.get(stamp)
+        ]
+        return {**edited, "previous_manifest": before, "affected_windows": changed,
+                "unaffected_windows": len(previous.keys() & outputs.keys()) -
+                sum(row["before"] is not None and row["after"] is not None for row in changed)}
 
 
 def replay_case(window: Window, root: Path, target: int) -> dict:
