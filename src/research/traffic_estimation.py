@@ -37,25 +37,34 @@ def persistence(values: np.ndarray, level: float) -> np.ndarray:
     return result
 
 
-def graph_features(values: np.ndarray, level: float, *, offline: bool) -> np.ndarray:
+def graph_features(values: np.ndarray, level: float, *, offline: bool, wave: bool = False) -> np.ndarray:
     steps, cells = values.shape
     padded = np.pad(values, ((2, int(offline)), (1, 1)), constant_values=np.nan)
     spatial = [padded[2:2 + steps, i:i + cells] for i in (0, 1, 2)]
     lagged = [padded[i:i + steps, 1:1 + cells] for i in (0, 1)]
     if offline:
         lagged.append(padded[3:3 + steps, 1:1 + cells])
+    if wave:
+        lagged.extend((
+            padded[1:1 + steps, :cells],
+            padded[1:1 + steps, 2:2 + cells],
+            padded[:steps, :cells],
+            padded[:steps, 2:2 + cells],
+        ))
     features = [*spatial, *lagged, persistence(values, level)]
     # Missing values can occupy an entire feature in outage-only training.
     return np.nan_to_num(np.stack(features, axis=-1).reshape(steps * cells, -1), nan=-1.)
 
 
-def train_tree(training: list[Window], channel: str, level: float, *, offline: bool) -> HistGradientBoostingRegressor:
+def train_tree(
+    training: list[Window], channel: str, level: float, *, offline: bool, wave: bool = False,
+) -> HistGradientBoostingRegressor:
     datasets, labels = [], []
     for window in training:
         observed = window.inputs(channel)
         for mask in outage_masks(observed.shape):
             eligible = mask & np.isfinite(observed)
-            predictors = graph_features(np.where(mask, np.nan, observed), level, offline=offline)
+            predictors = graph_features(np.where(mask, np.nan, observed), level, offline=offline, wave=wave)
             datasets.append(predictors[eligible.ravel()])
             labels.append(observed[eligible])
     if not sum(map(len, labels)):
@@ -65,8 +74,11 @@ def train_tree(training: list[Window], channel: str, level: float, *, offline: b
     return model
 
 
-def tree_predict(model: HistGradientBoostingRegressor, values: np.ndarray, level: float, *, offline: bool) -> np.ndarray:
-    return np.where(np.isfinite(values), values, model.predict(graph_features(values, level, offline=offline)).reshape(values.shape))
+def tree_predict(
+    model: HistGradientBoostingRegressor, values: np.ndarray, level: float, *, offline: bool, wave: bool = False,
+) -> np.ndarray:
+    estimate = model.predict(graph_features(values, level, offline=offline, wave=wave)).reshape(values.shape)
+    return np.where(np.isfinite(values), values, estimate)
 
 
 def outage_masks(shape: tuple[int, int], duration: int | None = None) -> list[np.ndarray]:
@@ -124,6 +136,7 @@ def fit_storage(
     incidence: np.ndarray, initial: np.ndarray, capacity: np.ndarray,
     flux_lower: np.ndarray, flux_upper: np.ndarray, storage: np.ndarray, flux_prior: np.ndarray,
     dt: float, inlet_channel: int, *, storage_level: float, tolerance: float = 4., time_limit: float = 10.,
+    balance: bool = True, hard_observations: bool = False,
 ) -> tuple[Estimate, Interval, np.ndarray]:
     steps, channels = flux_lower.shape
     cells = incidence.shape[0]
@@ -131,6 +144,8 @@ def fit_storage(
         raise ValueError("Storage reconstruction requires a positive interval length")
     # Solve in vehicles per interval so storage and flux variables have comparable scales.
     system = conservation_system(incidence, initial, capacity, flux_lower * dt, flux_upper * dt, 1.)
+    if not balance:
+        system = replace(system, equality=system.equality[:0], rhs=system.rhs[:0])
     n_storage = (steps + 1) * cells
     baseline = persistence(storage, storage_level)
     prior_storage = np.vstack((baseline, baseline[-1]))
@@ -138,10 +153,21 @@ def fit_storage(
     indices = np.flatnonzero(np.isfinite(storage))
     observed = storage.ravel()[indices]
     weights = np.r_[np.full(n_storage, 0.45), np.full(steps * channels, 1e-5 / dt**2)]
-    fit = robust_fit(system, prior, indices, observed, prior_weight=weights, huber_delta=5, time_limit=time_limit)
     objective = np.zeros_like(prior)
     objective[n_storage + np.arange(steps) * channels + inlet_channel] = 1.
     interval = conditional_interval(system, objective, indices, observed, tolerance, time_limit=time_limit)
+    if hard_observations and interval.status == "infeasible":
+        return Estimate("infeasible", None, solver_message="Hard observation intervals are infeasible"), interval, baseline
+    point_system = system
+    if hard_observations:
+        lower, upper = system.lower.copy(), system.upper.copy()
+        lower[indices] = np.maximum(lower[indices], observed - tolerance)
+        upper[indices] = np.minimum(upper[indices], observed + tolerance)
+        if np.any(lower > upper):
+            return Estimate("infeasible", None, solver_message="Conflicting storage bounds"), interval, baseline
+        point_system = replace(system, lower=lower, upper=upper)
+        indices, observed = indices[:0], observed[:0]
+    fit = robust_fit(point_system, prior, indices, observed, prior_weight=weights, huber_delta=5, time_limit=time_limit)
     if fit.values is not None:
         fit = replace(fit, values=np.r_[fit.values[:n_storage], fit.values[n_storage:] / dt])
     return fit, interval, baseline

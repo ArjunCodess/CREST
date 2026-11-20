@@ -18,12 +18,16 @@ from .observations import NoSnapshots, Window, load_pems_corridor, ngsim_window,
 from .pems import CADENCE_MS, PEMS_TIMEZONE, atomic_write
 from .protocol import registry_file_lock
 from .provenance import research_code_content_hash
+from .traffic_ablation import matched_mask_controls, storage_ablation, summarize_mask_controls, wave_ablation
 from .traffic_benchmark import StateBenchmark, aggregate, benchmark_masks, physics_suite, storage_scaling
 from .traffic_decisions import evaluate_queues, route_suite
 from .traffic_estimation import QueueHead, fit_storage, graph_reconstruct, historical_level, outage_masks, persistence
-from .traffic_exchange import export_suite, score_submission
+from .traffic_exchange import evaluate_export, export_suite, export_trajectory_suite, score_submission
 from .traffic_replay import Replay, outage_triage, replay_case
 from .traffic_simulator import simulate
+from .traffic_validation import (
+    detector_queue_transfer, episode_profile, operational_outages, replay_benchmark, trajectory_advisory_sweep,
+)
 
 DEVELOP = (11, 12, 13, 14)
 CALIBRATE = (101, 102, 103)
@@ -37,8 +41,9 @@ def json_write(path: Path, payload: dict) -> None:
     atomic_write(path, (json.dumps(payload, indent=2, allow_nan=False) + "\n").encode())
 
 
-def measured_pems(root: Path) -> list[Window]:
-    return [load_pems_corridor(root, d, f, direction, first_station=first) for d, f, direction, first in PEMS]
+def measured_pems(root: Path, *, available_by_ms: int | None = None) -> list[Window]:
+    return [load_pems_corridor(root, d, f, direction, first_station=first, available_by_ms=available_by_ms)
+            for d, f, direction, first in PEMS]
 
 
 def _cohort_signature(window: Window) -> dict:
@@ -47,7 +52,7 @@ def _cohort_signature(window: Window) -> dict:
             "source_hashes": window.raw_sha256}
 
 
-def shadow_cycle(pems_root: Path, output: Path, as_of_ms: int) -> dict:
+def shadow_cycle(pems_root: Path, output: Path, as_of_ms: int, *, code_hash: str | None = None) -> dict:
     """Publish a read-only operator snapshot and idempotent per-window decisions."""
     start = time.perf_counter()
     sites = []
@@ -81,7 +86,7 @@ def shadow_cycle(pems_root: Path, output: Path, as_of_ms: int) -> dict:
         digest = hashlib.sha256(json.dumps(incident, sort_keys=True).encode()).hexdigest()
         json_write(output / "incidents" / window.site / f"{entry['interval_ms']}-{digest}.json", incident)
         sites.append(entry)
-    cycle = {"as_of_ms": as_of_ms, "code_hash": research_code_content_hash(),
+    cycle = {"as_of_ms": as_of_ms, "code_hash": code_hash or research_code_content_hash(),
              "sites": sites, "elapsed_seconds": time.perf_counter() - start}
     json_write(output / "shadow-history" / f"{as_of_ms}.json", cycle)
     return cycle
@@ -92,10 +97,13 @@ def summarize_shadow(output: Path) -> dict:
     sites = {}
     codes = set()
     cycle_count = 0
+    elapsed = []
     for path in sorted((output / "shadow-history").glob("*.json")):
         cycle = json.loads(path.read_text(encoding="utf-8"))
         cycle_count += 1
         codes.add(cycle["code_hash"])
+        if "elapsed_seconds" in cycle:
+            elapsed.append(cycle["elapsed_seconds"])
         day = datetime.fromtimestamp(cycle["as_of_ms"] / 1000, zone).date().isoformat()
         for entry in cycle["sites"]:
             daily = sites.setdefault(entry["site"], {}).setdefault(day, {"statuses": {}, "windows": {}})
@@ -108,7 +116,9 @@ def summarize_shadow(output: Path) -> dict:
             latency = list(daily.pop("windows").values())
             daily["distinct_current_windows"] = len(latency)
             daily["capture_lag_p95_ms"] = float(np.quantile(latency, .95)) if latency else None
-    return {"scope": "prospective_shadow_cycles", "cycles": cycle_count, "code_hashes": sorted(codes), "sites": sites}
+    return {"scope": "prospective_shadow_cycles", "cycles": cycle_count, "code_hashes": sorted(codes), "sites": sites,
+            "cycle_timing": {"samples": len(elapsed),
+                             "p95_seconds": float(np.quantile(elapsed, .95)) if elapsed else None}}
 
 
 def run_state(
@@ -252,7 +262,7 @@ def run_measured(output: Path, pems_root: Path, ngsim_root: Path) -> None:
         cohorts = {"synthetic": [simulate(seed).window for seed in FIXTURE], "pems": loop,
                    "ngsim": [w for windows in periods.values() for w in windows]}
         for name, windows in cohorts.items():
-            profile = {"cadence_seconds": sorted({w.cadence_ms / 1000 for w in windows})}
+            profile = {"cadence_seconds": sorted({w.cadence_ms / 1000 for w in windows}), **episode_profile(windows)}
             for channel in ("speed", "flow"):
                 measurements = np.concatenate([w.inputs(channel).ravel() for w in windows])
                 finite = np.isfinite(measurements)
@@ -420,8 +430,17 @@ def main() -> None:
     sub = parser.add_subparsers(dest="mode", required=True)
     sub.add_parser("fixture")
     sub.add_parser("measured")
-    sub.add_parser("export-benchmark")
+    operational = sub.add_parser("operational-validation")
+    operational.add_argument("--available-by-ms", type=int, help="Freeze archive visibility at a UTC Unix timestamp")
+    sub.add_parser("ablate")
+    sub.add_parser("demand-transfer")
+    sub.add_parser("advisory-sweep")
+    export = sub.add_parser("export-benchmark")
+    export.add_argument("--source", choices=("synthetic", "ngsim"), default="synthetic")
+    verify = sub.add_parser("verify-benchmark")
+    verify.add_argument("--source", choices=("synthetic", "ngsim"), default="synthetic")
     score = sub.add_parser("score-benchmark")
+    score.add_argument("--source", choices=("synthetic", "ngsim"), default="synthetic")
     score.add_argument("--scenario", required=True)
     score.add_argument("--prediction", type=Path, required=True)
     shadow = sub.add_parser("shadow")
@@ -436,6 +455,7 @@ def main() -> None:
     inspect = sub.add_parser("replay")
     inspect.add_argument("--manifest", required=True)
     inspect.add_argument("--site-index", type=int, choices=(0, 1), default=0)
+    inspect.add_argument("--log-dir", type=Path, help="Open an explicit replay directory, including a long replay")
     inspect.add_argument("--correct", nargs=3, metavar=("TIME_MS", "CELL", "SPEED_KMH_OR_MISSING"))
     args = parser.parse_args()
     torch.set_num_threads(1)
@@ -444,10 +464,68 @@ def main() -> None:
             run_fixture(args.output)
         elif args.mode == "measured":
             run_measured(args.output, args.pems, args.ngsim)
+        elif args.mode == "operational-validation":
+            windows = measured_pems(args.pems, available_by_ms=args.available_by_ms)
+            json_write(args.output / "operational-validation.json", {
+                "scope": "retrospective_measured_development_and_synthetic_replay",
+                "code_hash": research_code_content_hash(),
+                "available_by_ms": args.available_by_ms,
+                "inputs": [_cohort_signature(w) for w in windows],
+                "outages": [row for window in windows for row in operational_outages(window)],
+                "detector_queue_transfer": detector_queue_transfer(windows),
+                "replay": replay_benchmark(windows, args.output / "long-event-log"),
+            })
+        elif args.mode == "ablate":
+            development = [simulate(seed, "chain").window for seed in DEVELOP]
+            evaluation = [(seed, simulate(seed, "junction").window) for seed in FIXTURE]
+            rows = matched_mask_controls(development, evaluation)
+            output = {
+                "scope": "development_only", "code_hash": research_code_content_hash(),
+                "splits": {"training_seeds": DEVELOP, "synthetic_evaluation": FIXTURE},
+                "synthetic_wave": wave_ablation(development, [window for _, window in evaluation]),
+                "storage": storage_ablation(DEVELOP, FIXTURE),
+                "mask_controls": {"rows": rows, "summary": summarize_mask_controls(rows)},
+            }
+            recordings = []
+            for site in ("i-80", "us-101"):
+                directory = args.ngsim / site
+                if not (directory / "recordings.json").exists():
+                    break
+                tracks, digests, name = read_recording(directory, 0)
+                recordings.append(ngsim_window(tracks, digests, name)[0])
+            if len(recordings) == 2:
+                output["measured_wave"] = wave_ablation(recordings[:1], recordings[1:])
+                output["measured_inputs"] = [_cohort_signature(window) for window in recordings]
+            json_write(args.output / "ablations.json", output)
+        elif args.mode == "demand-transfer":
+            training = [simulate(seed, "chain").window for seed in DEVELOP]
+            calibration = [(str(seed), simulate(seed, "chain").window) for seed in CALIBRATE]
+            results = {}
+            for regime, seeds in (("light", (1201, 1202, 1203, 1204)), ("surge", (1301, 1302, 1303, 1304))):
+                evaluation = [(str(seed), simulate(seed, "junction", demand_regime=regime).window) for seed in seeds]
+                results[regime] = {"seeds": seeds, "state": run_state(training, calibration, evaluation)}
+            json_write(args.output / "demand-transfer.json", {
+                "scope": "synthetic_topology_and_demand_transfer", "code_hash": research_code_content_hash(),
+                "training_seeds": DEVELOP, "calibration_seeds": CALIBRATE, "evaluation": results,
+            })
+        elif args.mode == "advisory-sweep":
+            json_write(args.output / "advisory-sweep.json", {
+                "code_hash": research_code_content_hash(), **trajectory_advisory_sweep(args.ngsim),
+            })
         elif args.mode == "export-benchmark":
-            export_suite(args.output / "benchmark", {"train": DEVELOP, "calibration": CALIBRATE, "evaluation": FIXTURE})
+            if args.source == "ngsim":
+                export_trajectory_suite(args.output / "benchmark-ngsim", args.ngsim)
+            else:
+                export_suite(args.output / "benchmark", {"train": DEVELOP, "calibration": CALIBRATE, "evaluation": FIXTURE})
+        elif args.mode == "verify-benchmark":
+            folder = "benchmark-ngsim" if args.source == "ngsim" else "benchmark"
+            json_write(args.output / f"{folder}-baselines.json", {
+                "scope": f"{args.source}_export", "code_hash": research_code_content_hash(),
+                "scores": evaluate_export(args.output / folder),
+            })
         elif args.mode == "score-benchmark":
-            print(json.dumps(score_submission(args.output / "benchmark", args.scenario, args.prediction), indent=2))
+            folder = "benchmark-ngsim" if args.source == "ngsim" else "benchmark"
+            print(json.dumps(score_submission(args.output / folder, args.scenario, args.prediction), indent=2))
         elif args.mode == "readiness":
             config = json.loads(args.config.read_text(encoding="utf-8"))
             _, report = inspect_cohorts(config, args.pems)
@@ -459,8 +537,9 @@ def main() -> None:
         elif args.mode == "shadow":
             if args.poll_seconds and args.poll_seconds < 60:
                 parser.error("Use at least 60 seconds between shadow runs")
+            code_hash = research_code_content_hash()
             while True:
-                cycle = shadow_cycle(args.pems, args.output, int(time.time() * 1000))
+                cycle = shadow_cycle(args.pems, args.output, int(time.time() * 1000), code_hash=code_hash)
                 json_write(args.output / "shadow.json", cycle)
                 if not args.poll_seconds:
                     break
@@ -472,7 +551,7 @@ def main() -> None:
         else:
             district, freeway, direction, first = PEMS[args.site_index]
             site = f"D{district}-{freeway}{direction}-{first}"
-            replay = Replay.from_manifest(args.output / "event-log" / site, args.manifest)
+            replay = Replay.from_manifest(args.log_dir or args.output / "event-log" / site, args.manifest)
             manifest = args.manifest
             if args.correct:
                 stamp, cell, speed = args.correct

@@ -16,10 +16,11 @@ from src.research import roadmap
 from src.research.observations import load_pems_corridor
 from src.research.roadmap import reserve_evaluation
 from src.research.sparse_traffic import conditional_interval, conservation_system, robust_fit
-from src.research.traffic_estimation import QueueHead, QueuePrediction
-from src.research.traffic_exchange import export_suite, score_submission
+from src.research.traffic_estimation import QueueHead, QueuePrediction, fit_storage
+from src.research.traffic_exchange import evaluate_export, export_suite, score_submission
 from src.research.traffic_replay import Replay, outage_triage, queue_advisory
 from src.research.traffic_simulator import simulate
+from src.research.traffic_validation import operational_outages
 
 
 def test_missing_od_count_differs_from_zero():
@@ -204,6 +205,57 @@ def test_benchmark_export_masks_targets_and_counts_abstentions(tmp_path):
     speed = score_submission(suite, scenario, prediction)["channels"]["speed_kmh"]
     assert speed["abstained"] == speed["eligible"] > 0
     assert speed["point_scored"] == 0 and speed["point_mae"] is None
+
+
+def test_export_baselines_share_eligibility_and_count_unemitted_cells(tmp_path):
+    export_suite(tmp_path, {"train": (1,), "evaluation": (2,)})
+    rows = evaluate_export(tmp_path)
+    assert len(rows) == 12
+    for row in rows:
+        for scores in row["channels"].values():
+            assert scores["eligible"] > 0
+            assert scores["point_scored"] + scores["abstained"] == scores["eligible"]
+            assert scores["abstained"] == (scores["eligible"] if row["method"] == "observed_only" else 0)
+
+
+def test_hard_observation_ablation_preserves_fallback_denominator():
+    pytest.importorskip("osqp")
+    sim = simulate(241)
+    dt = sim.window.cadence_ms / 3_600_000
+    observed = sim.storage[:-1].copy()
+    observed[2, 0] = sim.capacity[0] + 200
+    args = (sim.incidence, sim.storage[0], sim.capacity, np.zeros_like(sim.flux),
+            np.broadcast_to(sim.flow_upper.max(axis=0), sim.flux.shape), observed,
+            np.median(sim.flux, axis=0), dt, sim.boundary_channels[0])
+    soft, bounds, baseline = fit_storage(*args, storage_level=20.)
+    hard, hard_bounds, fallback = fit_storage(*args, storage_level=20., hard_observations=True)
+    assert soft.status == "optimal" and soft.balance_error < 1e-5
+    assert hard.status == bounds.status == hard_bounds.status == "infeasible"
+    assert hard.values is None
+    np.testing.assert_equal(fallback, baseline)
+
+
+def test_operational_fault_replay_never_scores_delayed_readings_as_available(monkeypatch):
+    import src.research.traffic_validation as validation
+
+    window = simulate(3).window
+    cadence = 300_000
+    stamps = cadence * np.arange(len(window.time_ms))
+    fixed = replace(window, time_ms=stamps, arrival_ms=stamps + cadence, cadence_ms=cadence,
+                    values={"speed": np.full(window.quality.shape, 80.)})
+    trace = []
+
+    def record(inputs, level, target):
+        trace.append(np.isfinite(inputs[-1, target]))
+        return outage_triage(inputs, level, target)
+
+    monkeypatch.setattr(validation, "outage_triage", record)
+    rows = operational_outages(fixed)
+    assert rows
+    assert trace[:6] == [False] * 6
+    assert trace[6:9] == [True] * 3
+    assert trace[9:15] == [False] * 6
+    assert any(row["fresh_reading_recovery_ms"] == cadence for row in rows)
 
 
 def test_final_reservation_cannot_reuse_a_partial_cohort(tmp_path):

@@ -10,13 +10,12 @@
 \begin{document}
 \begin{abstract}
 Point error on randomly hidden readings can miss failures that arise during a contiguous
-detector outage. The CREST synthetic benchmark exports a directed freeway network, masked
-observations, and an evaluator-side scorer for speed, flow, and storage. It organizes 33
-scenarios into train, calibration, and evaluation splits by simulation seed. Evaluation
-transfers from chain to junction topologies. On the same synthetic evaluation seed clusters,
-persistence ranked ahead of graph Huber on random speed masks, while the tree ranked ahead of
-persistence on contiguous speed masks. The benchmark also reports prediction coverage, fallback
-use, and interval width so readers can see which targets contributed to each error estimate.
+detector outage. CREST exports masked speed, flow, and storage and an evaluator-side scorer.
+The benchmark has 33 synthetic scenarios split by seed and nine measured cases derived from
+the three available FHWA I-80 and US-101 recordings. In a synthetic comparison with 360 targets
+per mask regime, persistence outperformed the tree on random masks and the tree outperformed
+persistence on contiguous masks. The benchmark reports coverage, fallback use, and interval
+width alongside point error.
 \end{abstract}
 
 \maketitle
@@ -30,11 +29,10 @@ seeds. Developing on chains and evaluating on junctions tests sensitivity to a c
 layout. The cases from a seed share one truth realization, so uncertainty analysis must group by
 seed.
 
-Participant files contain masked observations, a visibility array, timestamps, cell positions,
-graph incidence, and capacity. Evaluator files contain targets and the eligibility mask. A
-checksummed manifest identifies the split, scenario, and seed cluster. The generator is public
-for reproduction and its released seeds are reconstructible. A blind evaluation must use
-evaluator-controlled seeds.
+Participant files contain observations, visibility, time, cell positions, and graph incidence.
+Capacity is provided for synthetic cases. Evaluator files contain targets and the eligibility
+mask. A checksummed manifest identifies each seed or recording cluster. A blind evaluation
+requires evaluator-controlled seeds or recordings because the supplied sources are public.
 
 \section*{Scoring and an illustrative ranking change}
 Predictions have the same channel, time, and cell axes as the inputs. The scorer reports mean
@@ -43,30 +41,28 @@ scored fallbacks. Paired lower and upper estimates add coverage, interval counts
 width. NaN represents a withheld output. Split-specific target files stay on the evaluator side
 so a participant input can be inspected directly for leakage.
 
-In a separate synthetic fixture comparison, speed MAE on 144 randomly masked targets was 1.72
-km/h for persistence, 6.57 for graph Huber, and 8.21 for the tree. Across 360 contiguous-mask
-targets it was 9.85 for persistence, 10.14 for graph Huber, and 8.66 for the tree. All three
-methods scored every eligible target in those comparisons. The mask sizes differ, so these
-numbers illustrate an observed ordering change for this fixture rather than isolate a causal
-effect of mask shape.
+In a separate matched experiment, every contiguous mask had a random control of equal size.
+Across four synthetic seed clusters and 360 targets per regime, speed MAE was 1.63 km/h for
+persistence and 7.18 for the tree under random masks. Under contiguous loss it was 8.21 and
+7.28 km/h, respectively. The export scorer also ran historical median, persistence, and
+interpolation, plus an observed-only control to verify the abstention denominator.
 
 \section*{External validity and access}
-The synthetic fixture samples every 30 seconds. The local PeMS and NGSIM profiles used
-five-minute and one-minute aggregates, respectively, and their speed and flow distributions
-differ. Observed median speed was 80.03 km/h in the synthetic profile, 72.26 in the two-corridor
-PeMS profile, and 28.32 in the available NGSIM periods. The aggregation schemes and corridor
-coverage constrain direct comparisons. The repository includes the generator and scorer. Raw
-PeMS data remain local pending permission review. This draft concerns the synthetic release
-candidate and does not claim a redistributable measured benchmark.
+The synthetic fixture samples every 30 seconds. The measured export uses one-minute aggregates
+of FHWA trajectories. The two I-80 recordings are assigned to training and calibration, and
+US-101 is the evaluation recording. Median observed speeds were 80.03 km/h in the
+synthetic profile and 28.32 km/h across the three measured recordings. The measured bundle
+carries FHWA attribution and CC BY-SA 3.0 terms. PeMS serves as a local comparison source.
 
 \section*{Reproduction}
-Run \texttt{python -m src.research.roadmap export-benchmark} for an input and scorer bundle, and
-\texttt{python -m src.research.roadmap fixture} for the illustrated comparator study. The
-implementation guide documents the scorer command and prediction arrays.
+Run \texttt{python -m src.research.roadmap export-benchmark} for the synthetic bundle.
+Add \texttt{--source ngsim} to export the trajectory bundle, or run \texttt{ablate} for
+the matched-mask study.
 
 \section*{References}
 [1] CREST implementation guide and benchmark exchange format.
 \url{https://github.com/ArjunCodess/CREST/blob/main/docs/crest-implementation.md}
 
-[2] Caltrans. Performance Measurement System. \url{https://pems.dot.ca.gov/}
+[2] FHWA. Next Generation Simulation Vehicle Trajectories and Supporting Data.
+\url{https://data.transportation.gov/d/8ect-6jqj}
 \end{document}

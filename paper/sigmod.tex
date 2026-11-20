@@ -15,8 +15,10 @@ that depended on the old value. CREST stores observations as immutable, content-
 Parquet partitions. Each estimate records its input partitions and the topology and estimator
 settings used to compute it. The demonstration lets attendees mask a detector reading, compare
 the old and revised manifests, and verify the new output against full recomputation. Two
-retrospective Caltrans PeMS replays recomputed 4 of 16 and 4 of 17 windows, with exact output
-parity in both traces.
+199-window Caltrans PeMS traces and a 576-window synthetic trace reproduced the exact outputs of
+a full rebuild after two out-of-order detector corrections. With three windows of history, each
+incremental run recomputed eight outputs. Adding two windows of lookahead raised that count to
+twelve.
 \end{abstract}
 
 \maketitle
@@ -49,16 +51,16 @@ the original measured snapshots are unavailable. The command-line interaction ru
 after a correction. The measured traces remain local pending source redistribution review.
 
 \section*{Evidence and scope}
-On I-880 southbound, the correction recomputed 4 of 16 outputs and preserved 12. On I-10
-westbound it recomputed 4 of 17 and preserved 13. All revised outputs matched a full replay. In
-the 72-window synthetic junction example, 4 were recomputed and 68 were preserved, again with
-exact parity. A regression fixture repeats a correction after later partitions have been
-ingested and checks idempotence and configured lookahead. Bulk ingestion expects a sorted,
-unique time grid.
+We removed two readings per trace, applying the correction to the later timestamp first.
+Reversing the edit order produced the same manifest, as did repeating an existing edit.
+On southbound I-880 and westbound I-10, the causal configuration preserved 191 of 199 outputs
+per corridor; the lookahead configuration preserved 187. On the synthetic trace it preserved
+568 or 564 of 576, respectively. Incremental and full outputs matched, including provenance
+and solver status, in all six comparisons. Bulk ingestion expects a sorted, unique time grid.
 
-These traces establish the invalidation behavior and demonstrate the attendee interaction. The
-current evidence describes work avoided on short, single-corridor traces. A larger trace would
-be needed to characterize end-to-end speedup, including partition I/O and cache traversal.
+The six incremental runs took 0.50--1.53 seconds and the corresponding full runs took
+1.05--5.70 seconds on one Windows host. These are single-run timings. The replay still traverses
+the complete manifest, so the reduction in solves is the more portable measurement.
 
 \section*{Reproduction}
 Run \texttt{python -m src.research.roadmap fixture} to generate a synthetic replay and its

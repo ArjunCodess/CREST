@@ -1,0 +1,14 @@
+{
+  "scope": "synthetic end-to-end check of frozen runner",
+  "paired_clusters": {
+    "speed": {
+      "6": 10,
+      "12": 10
+    },
+    "flow": {
+      "6": 10,
+      "12": 10
+    }
+  },
+  "code_hash": "7b3543781a4fa246"
+}
