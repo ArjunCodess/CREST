@@ -1,6 +1,6 @@
 {
   "scope": "ngsim_export",
-  "code_hash": "7b3543781a4fa246",
+  "code_hash": "59da52d2fc3e6e14",
   "scores": [
     {
       "method": "historical_median",
@@ -12,21 +12,72 @@
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 6.797091760192723
+          "point_mae": 6.797091760192723,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 5.793174225234594
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 7.311031293059155
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 6.797091760192723
+            }
+          ]
         },
         "flow_vph": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 1044.1397859011367
+          "point_mae": 1044.1397859011367,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 940.2402732203246
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 1162.2730258829683
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 1044.1397859011367
+            }
+          ]
         },
         "storage_veh": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 7.090909090909091
+          "point_mae": 7.090909090909091,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 4.5
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 5.222222222222222
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 7.090909090909091
+            }
+          ]
         }
       }
     },
@@ -40,21 +91,72 @@
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 11.353489003586114
+          "point_mae": 11.353489003586114,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 12.196011297542805
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 12.410418411289415
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 11.353489003586112
+            }
+          ]
         },
         "flow_vph": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 1519.7654791897396
+          "point_mae": 1519.7654791897396,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 1691.0781754410073
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 1765.6840731701684
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 1519.7654791897396
+            }
+          ]
         },
         "storage_veh": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 7.909090909090909
+          "point_mae": 7.909090909090909,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 5.166666666666667
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 6.0
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 7.909090909090909
+            }
+          ]
         }
       }
     },
@@ -68,21 +170,72 @@
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 6.6180338647894255
+          "point_mae": 6.6180338647894255,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 4.721610868722481
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 7.261409345221523
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 6.618033864789427
+            }
+          ]
         },
         "flow_vph": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 950.8619017931219
+          "point_mae": 950.8619017931219,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 501.86188070763
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 949.4483429576511
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 950.8619017931219
+            }
+          ]
         },
         "storage_veh": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 8.31818181818182
+          "point_mae": 8.31818181818182,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 9.02777777777778
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 8.50925925925926
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 8.31818181818182
+            }
+          ]
         }
       }
     },
@@ -96,21 +249,72 @@
           "point_scored": 0,
           "abstained": 11,
           "fallbacks_scored": 0,
-          "point_mae": null
+          "point_mae": null,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": null
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": null
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": null
+            }
+          ]
         },
         "flow_vph": {
           "eligible": 11,
           "point_scored": 0,
           "abstained": 11,
           "fallbacks_scored": 0,
-          "point_mae": null
+          "point_mae": null,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": null
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": null
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": null
+            }
+          ]
         },
         "storage_veh": {
           "eligible": 11,
           "point_scored": 0,
           "abstained": 11,
           "fallbacks_scored": 0,
-          "point_mae": null
+          "point_mae": null,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": null
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": null
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": null
+            }
+          ]
         }
       }
     },
@@ -124,21 +328,72 @@
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 8.76075403278826
+          "point_mae": 8.76075403278826,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 6.695187543507397
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 9.665749356211002
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 8.76075403278826
+            }
+          ]
         },
         "flow_vph": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 1059.0771332697313
+          "point_mae": 1059.0771332697313,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 1020.23629548902
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 1244.4967876950639
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 1059.0771332697318
+            }
+          ]
         },
         "storage_veh": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 9.0
+          "point_mae": 9.0,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 11.0
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 10.0
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 9.0
+            }
+          ]
         }
       }
     },
@@ -152,21 +407,72 @@
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 8.77527400373678
+          "point_mae": 8.77527400373678,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 6.641947650029497
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 9.648002725051702
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 8.775274003736781
+            }
+          ]
         },
         "flow_vph": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 1114.6155594563315
+          "point_mae": 1114.6155594563315,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 930.6913862259363
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 1227.3258164689746
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 1114.6155594563313
+            }
+          ]
         },
         "storage_veh": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 6.363636363636363
+          "point_mae": 6.363636363636363,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 7.333333333333333
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 7.222222222222222
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 6.363636363636363
+            }
+          ]
         }
       }
     },
@@ -180,21 +486,72 @@
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 8.605249050516347
+          "point_mae": 8.605249050516347,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 7.953938125355827
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 10.435197010247501
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 8.60524905051635
+            }
+          ]
         },
         "flow_vph": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 1120.0020085269557
+          "point_mae": 1120.0020085269557,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 1087.1520943260846
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 1318.6667749567425
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 1120.0020085269557
+            }
+          ]
         },
         "storage_veh": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 6.409090909090909
+          "point_mae": 6.409090909090909,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 7.416666666666667
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 7.287037037037038
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 6.409090909090909
+            }
+          ]
         }
       }
     },
@@ -208,21 +565,72 @@
           "point_scored": 0,
           "abstained": 11,
           "fallbacks_scored": 0,
-          "point_mae": null
+          "point_mae": null,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": null
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": null
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": null
+            }
+          ]
         },
         "flow_vph": {
           "eligible": 11,
           "point_scored": 0,
           "abstained": 11,
           "fallbacks_scored": 0,
-          "point_mae": null
+          "point_mae": null,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": null
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": null
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": null
+            }
+          ]
         },
         "storage_veh": {
           "eligible": 11,
           "point_scored": 0,
           "abstained": 11,
           "fallbacks_scored": 0,
-          "point_mae": null
+          "point_mae": null,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": null
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": null
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": null
+            }
+          ]
         }
       }
     },
@@ -236,21 +644,72 @@
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 8.8386090040554
+          "point_mae": 8.8386090040554,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 7.284316600478018
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 6.576305954970763
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 8.8386090040554
+            }
+          ]
         },
         "flow_vph": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 831.7127190788183
+          "point_mae": 831.7127190788183,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 725.0189909399436
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 957.2877243122387
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 831.7127190788183
+            }
+          ]
         },
         "storage_veh": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 7.2727272727272725
+          "point_mae": 7.2727272727272725,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 4.666666666666667
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 7.222222222222222
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 7.2727272727272725
+            }
+          ]
         }
       }
     },
@@ -264,21 +723,72 @@
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 13.209760700411284
+          "point_mae": 13.209760700411284,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 12.664075014504519
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 15.346753597058706
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 13.209760700411284
+            }
+          ]
         },
         "flow_vph": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 965.2207760587796
+          "point_mae": 965.2207760587796,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 864.8845744427603
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 1120.464238398858
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 965.2207760587794
+            }
+          ]
         },
         "storage_veh": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 9.727272727272727
+          "point_mae": 9.727272727272727,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 7.333333333333333
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 10.666666666666666
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 9.727272727272727
+            }
+          ]
         }
       }
     },
@@ -292,21 +802,72 @@
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 11.773884175937116
+          "point_mae": 11.773884175937116,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 10.332722560753874
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 13.058574336896037
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 11.773884175937116
+            }
+          ]
         },
         "flow_vph": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 754.3879650431518
+          "point_mae": 754.3879650431518,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 623.3053118206867
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 868.1481196602479
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 754.3879650431518
+            }
+          ]
         },
         "storage_veh": {
           "eligible": 11,
           "point_scored": 11,
           "abstained": 0,
           "fallbacks_scored": 0,
-          "point_mae": 7.969696969696969
+          "point_mae": 7.969696969696969,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": 5.222222222222222
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": 8.472222222222221
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": 7.96969696969697
+            }
+          ]
         }
       }
     },
@@ -320,21 +881,72 @@
           "point_scored": 0,
           "abstained": 11,
           "fallbacks_scored": 0,
-          "point_mae": null
+          "point_mae": null,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": null
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": null
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": null
+            }
+          ]
         },
         "flow_vph": {
           "eligible": 11,
           "point_scored": 0,
           "abstained": 11,
           "fallbacks_scored": 0,
-          "point_mae": null
+          "point_mae": null,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": null
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": null
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": null
+            }
+          ]
         },
         "storage_veh": {
           "eligible": 11,
           "point_scored": 0,
           "abstained": 11,
           "fallbacks_scored": 0,
-          "point_mae": null
+          "point_mae": null,
+          "matched_coverage": [
+            {
+              "target_fraction": 0.5,
+              "required_points": 6,
+              "mae": null
+            },
+            {
+              "target_fraction": 0.8,
+              "required_points": 9,
+              "mae": null
+            },
+            {
+              "target_fraction": 1.0,
+              "required_points": 11,
+              "mae": null
+            }
+          ]
         }
       }
     }
