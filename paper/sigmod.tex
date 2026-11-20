@@ -14,8 +14,8 @@ an entire replay repeats work, and changing only the corrected window can preser
 that depended on the old value. CREST stores observations as immutable, content-addressed
 Parquet partitions. Each estimate records its input partitions and the topology and estimator
 settings used to compute it. The demonstration lets attendees mask a detector reading, compare
-the old and revised manifests, and verify the new output against full recomputation. Two
-199-window Caltrans PeMS traces and a 576-window synthetic trace reproduced the exact outputs of
+the old and revised manifests, and verify the new output against full recomputation. The
+240- and 241-window Caltrans PeMS traces and a 576-window synthetic trace reproduced the exact outputs of
 a full rebuild after two out-of-order detector corrections. With three windows of history, each
 incremental run recomputed eight outputs. Adding two windows of lookahead raised that count to
 twelve.
@@ -44,7 +44,8 @@ speed, estimate, solver status and dependency digests. Next, remove that reading
 correction command and inspect the revised manifest. Compare the affected outputs and follow
 their dependency digests to the changed source partition. Apply the same edit again to reproduce
 the corrected manifest. Finally, rebuild the complete corrected trace and compare it with the
-incremental output, including the estimates and their provenance.
+incremental output, including the estimates and their provenance. The \texttt{--compare}
+option reports each changed window with its before and after estimates and input digests.
 
 The demonstration uses a clean CPU installation and the bundled synthetic junction scenario when
 the original measured snapshots are unavailable. The command-line interaction runs the estimator
@@ -53,13 +54,13 @@ after a correction. The measured traces remain local pending source redistributi
 \section*{Evidence and scope}
 We removed two readings per trace, applying the correction to the later timestamp first.
 Reversing the edit order produced the same manifest, as did repeating an existing edit.
-On southbound I-880 and westbound I-10, the causal configuration preserved 191 of 199 outputs
-per corridor; the lookahead configuration preserved 187. On the synthetic trace it preserved
-568 or 564 of 576, respectively. Incremental and full outputs matched, including provenance
-and solver status, in all six comparisons. Bulk ingestion expects a sorted, unique time grid.
+On southbound I-880 and westbound I-10, the causal configuration preserved 232 of 240 and
+233 of 241 outputs. With lookahead it preserved 228 and 229. On the synthetic trace it
+preserved 568 or 564 of 576, respectively. All six comparisons agreed on estimates, provenance
+and solver status. Bulk ingestion expects a sorted, unique time grid.
 
-The six incremental runs took 0.50--1.53 seconds and the corresponding full runs took
-1.05--5.70 seconds on one Windows host. These are single-run timings. The replay still traverses
+The six incremental runs took 0.82--2.31 seconds and the corresponding full runs took
+1.89--5.13 seconds on one Windows host. These are single-run timings. The replay still traverses
 the complete manifest, so the reduction in solves is the more portable measurement.
 
 \section*{Reproduction}

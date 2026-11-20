@@ -14,8 +14,8 @@ detector outage. CREST exports masked speed, flow, and storage and an evaluator-
 The benchmark has 33 synthetic scenarios split by seed and nine measured cases derived from
 the three available FHWA I-80 and US-101 recordings. In a synthetic comparison with 360 targets
 per mask regime, persistence outperformed the tree on random masks and the tree outperformed
-persistence on contiguous masks. The benchmark reports coverage, fallback use, and interval
-width alongside point error.
+persistence on contiguous masks. The scorer reports error at matched coverage and counts
+withheld estimates and fallbacks.
 \end{abstract}
 
 \maketitle
@@ -38,14 +38,18 @@ requires evaluator-controlled seeds or recordings because the supplied sources a
 Predictions have the same channel, time, and cell axes as the inputs. The scorer reports mean
 absolute error for emitted points, eligible and scored counts, abstentions, and the number of
 scored fallbacks. Paired lower and upper estimates add coverage, interval counts, and mean
-width. NaN represents a withheld output. Split-specific target files stay on the evaluator side
-so a participant input can be inspected directly for leakage.
+width. NaN represents a withheld output. An optional confidence array ranks predictions at
+50\%, 80\%, and 100\% of eligible targets per case. The scorer rounds target counts up and
+leaves MAE unset when a submission emits too few values.
 
 In a separate matched experiment, every contiguous mask had a random control of equal size.
 Across four synthetic seed clusters and 360 targets per regime, speed MAE was 1.63 km/h for
 persistence and 7.18 for the tree under random masks. Under contiguous loss it was 8.21 and
-7.28 km/h, respectively. The export scorer also ran historical median, persistence, and
-interpolation, plus an observed-only control to verify the abstention denominator.
+7.28 km/h, respectively. On the exported contiguous masks at full coverage, interpolation
+and historical median scored 3.96 and 21.84 km/h on 360 synthetic targets. On the 33 NGSIM
+targets, they scored 9.00 and 8.13. The ordering persisted at the two lower coverage
+thresholds, with each case weighted by the number of retained targets. The observed-only
+control scored zero withheld targets, so no MAE is defined for it.
 
 \section*{External validity and access}
 The synthetic fixture samples every 30 seconds. The measured export uses one-minute aggregates
@@ -56,8 +60,8 @@ carries FHWA attribution and CC BY-SA 3.0 terms. PeMS serves as a local comparis
 
 \section*{Reproduction}
 Run \texttt{python -m src.research.roadmap export-benchmark} for the synthetic bundle.
-Add \texttt{--source ngsim} to export the trajectory bundle, or run \texttt{ablate} for
-the matched-mask study.
+Add \texttt{--source ngsim} for the trajectory bundle. Run \texttt{verify-benchmark} for
+baseline scores and \texttt{ablate} for the matched-mask study.
 
 \section*{References}
 [1] CREST implementation guide and benchmark exchange format.
