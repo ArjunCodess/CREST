@@ -43,17 +43,29 @@ The November 20 rerun scored 58 injected fault cases. Incremental replay matched
 
 `ablations.json` compares matched storage priors with and without balance, narrower inlet and outlet bounds, and hard instead of soft observation handling. It also tests lagged neighbor features at the same tree budget and pairs each synthetic blackout with a random mask of exactly the same size. `demand-transfer.json` evaluates light and surge junction traffic using priors and calibration fitted on nominal-demand chains. `advisory-sweep.json` tests delivery delay and probe penetration on disjoint five-minute blocks from the existing US-101 development recording, with I-80 used for training. These blocks share one evaluation recording.
 
+The two offline transfer commands use the archived data and require no shadow process.
+
+```powershell
+python -m src.research.roadmap detector-transfer --available-by-ms 1795168500000
+python -m src.research.roadmap trajectory-transfer
+```
+
+The detector transfer tests 30- and 60-minute masks in both corridor directions. It trains and calibrates on separate blocks of the first Pacific day, with a 30-minute buffer, and evaluates the other corridor's later archived windows. The trajectory transfer tests 4- and 8-minute masks on complete destination recordings. Because the US-101 archive has one contiguous recording, that training direction uses a six-minute gap between its training and calibration blocks. Both commands are development runs. [Detector transfer](../results/crest-roadmap/detector-transfer.json) · [Trajectory transfer](../results/crest-roadmap/trajectory-transfer.json)
+
+The trajectory report counts one alarm per warning episode and reports detected and missed onsets, false alarms and lead time against the speed-derived queue proxy. US-101 had 11 eligible cell onsets. The queue head detected zero, and the causal graph trend detected two. The two I-80 recordings had zero eligible onsets. [Queue event results](../results/crest-roadmap/trajectory-transfer.json)
+
 ## Incremental replay and benchmark exchange
 
 Take the first site's `baseline_manifest` and an outage `time_ms` from the measured report. This command lets a reviewer remove a detector value and see the affected windows, source partition hashes, reconstructed values and recomputation count.
 
 ```powershell
 python -m src.research.roadmap replay --site-index 0 --manifest MANIFEST --correct TIME_MS 3 missing
+python -m src.research.roadmap replay --site-index 0 --manifest EDITED_MANIFEST --compare BASE_MANIFEST
 ```
 
 Replay caches depend on both the graph estimator's lookback and optional lookahead. Repeating the same correction produces the same manifest. The measured report compares the corrected output to a full run. Its latency is local to the machine and window count. Use representative larger logs before claiming a speedup.
 
-The benchmark export writes `inputs/`, `scorer-only/`, and a checksummed manifest under `artifacts/crest/benchmark`. Share the input files with participants and keep scoring targets on the evaluator side for a blind test. Input arrays use channel, time and cell order. `observed` contains NaNs for masked inputs and `visible` carries the measurement mask. The scorer accepts a shape-matched NPZ with `point`, optional `lower` and `upper` arrays, and an optional boolean `fallback` mask. NaN represents a withheld estimate or interval. Error is reported alongside eligibility, abstention, fallback counts and interval coverage to keep denominators visible.
+The benchmark export writes `inputs/`, `scorer-only/`, and a checksummed manifest under `artifacts/crest/benchmark`. Share the input files with participants and keep scoring targets on the evaluator side for a blind test. Input arrays use channel, time and cell order. `observed` contains NaNs for masked inputs and `visible` carries the measurement mask. The scorer accepts a shape-matched NPZ with `point`, optional `lower` and `upper` arrays, and an optional boolean `fallback` mask. NaN represents a withheld estimate or interval. Error is reported alongside eligibility, abstention, fallback counts and interval coverage. An optional `confidence` array gives matched-coverage MAE at 50%, 80% and 100% of eligible targets, highest confidence first. The scorer uses array order for ties and leaves MAE unset when a method supplies too few estimates.
 
 ```powershell
 python -m src.research.roadmap score-benchmark --scenario evaluation-241-0 --prediction predictions.npz
@@ -79,6 +91,13 @@ Readiness checks completed days using observation availability and the same outa
 The freeze records code, configuration, topology and source hashes. Final execution checks them and reserves each evaluation station-day in the local registry, so an overlapping corridor or a subset cannot be used to repeat a consumed cohort. It compares 30- and 60-minute masks with a random-dropout control and reports paired day-level intervals against the comparator selected on calibration data. Each comparison needs ten paired evaluation days to pass its gate.
 
 The November 20 readiness check found zero of ten eligible evaluation days for the candidate dates. The proposed training date also had no archived snapshots. The check used the two development corridors to diagnose archive coverage. A final protocol still needs an untouched evaluation corridor, usable training and calibration dates, and margins derived from development data. The synthetic receipt verifies the freeze and scoring workflow. A learned graph-recurrent imputer is included in the development comparison. The frozen measured run and an independently held trajectory reserve remain open. [Readiness check](../results/crest-roadmap/itsc-readiness.json) · [Synthetic workflow check](../results/crest-roadmap/synthetic-freeze-check.json)
+
+The trajectory fallback uses a separate archive of independent recordings in the NGSIM adapter format. Each role lists objects with a `site` slug and a zero-based `recording` index. Set `minimum_evaluation_recordings` before scoring, using independent recording groups from the provider. Evaluation sites must be outside the development sites. The freeze records the protocol, code and source digests before scoring and the final runner reserves the source partitions so they can be used only once. The primary gate is paired recording-level speed MAE under both 4- and 8-minute outages, with a 95% interval against the calibration-selected baseline. Flow, random masks and coverage are secondary. The synthetic check scored two recording groups and verified that the registry rejects a repeat. [Trajectory freeze check](../results/crest-roadmap/trajectory-freeze-check.json)
+
+```powershell
+python -m src.research.roadmap --ngsim ARCHIVE freeze --source trajectory --config PROTOCOL.json --receipt trajectory-freeze.json
+python -m src.research.roadmap --ngsim ARCHIVE final --source trajectory --config PROTOCOL.json --receipt trajectory-freeze.json
+```
 
 The [roadmap results](../results/crest-roadmap/) include the development and stress-test receipts, the shadow summary, and both participant benchmark archives. The participant archives contain masked inputs, manifests and, for NGSIM, attribution. The local archive retains raw PeMS snapshots and evaluator-only targets.
 

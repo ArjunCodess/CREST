@@ -1,0 +1,9 @@
+{
+  "scope": "synthetic_trajectory_freeze_and_score_check",
+  "code_hash": "59da52d2fc3e6e14",
+  "paired_recordings": {
+    "4": 2,
+    "8": 2
+  },
+  "repeat_rejected": true
+}
