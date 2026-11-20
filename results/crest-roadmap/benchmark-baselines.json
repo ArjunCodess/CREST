@@ -1,0 +1,1350 @@
+{
+  "scope": "synthetic_export",
+  "code_hash": "7b3543781a4fa246",
+  "scores": [
+    {
+      "method": "historical_median",
+      "seed_cluster": 241,
+      "scenario": "evaluation-241-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 22.126937359381024
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 357.3050576474882
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 12.04351533371611
+        }
+      }
+    },
+    {
+      "method": "persistence",
+      "seed_cluster": 241,
+      "scenario": "evaluation-241-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 1.9925354113843683
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 25.387348858112336
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 2.1734663709774753
+        }
+      }
+    },
+    {
+      "method": "linear_interpolation",
+      "seed_cluster": 241,
+      "scenario": "evaluation-241-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 1.6719144852949428
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 39.22463088860761
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 0.7553156526379122
+        }
+      }
+    },
+    {
+      "method": "observed_only",
+      "seed_cluster": 241,
+      "scenario": "evaluation-241-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        }
+      }
+    },
+    {
+      "method": "historical_median",
+      "seed_cluster": 241,
+      "scenario": "evaluation-241-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 31.00901680205783
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 404.98494104693015
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 18.12299525295375
+        }
+      }
+    },
+    {
+      "method": "persistence",
+      "seed_cluster": 241,
+      "scenario": "evaluation-241-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 25.554239997459995
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 255.6440575490359
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 21.33622235077948
+        }
+      }
+    },
+    {
+      "method": "linear_interpolation",
+      "seed_cluster": 241,
+      "scenario": "evaluation-241-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 8.176690662782944
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 70.9581406641899
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 4.680967555832542
+        }
+      }
+    },
+    {
+      "method": "observed_only",
+      "seed_cluster": 241,
+      "scenario": "evaluation-241-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        }
+      }
+    },
+    {
+      "method": "historical_median",
+      "seed_cluster": 241,
+      "scenario": "evaluation-241-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 15.748643782290072
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 532.8094223433559
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 23.10109340678818
+        }
+      }
+    },
+    {
+      "method": "persistence",
+      "seed_cluster": 241,
+      "scenario": "evaluation-241-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 0.0
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 329.1683258565806
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 7.3148516857017905
+        }
+      }
+    },
+    {
+      "method": "linear_interpolation",
+      "seed_cluster": 241,
+      "scenario": "evaluation-241-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 0.0
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 300.3554551065849
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 6.674565669035221
+        }
+      }
+    },
+    {
+      "method": "observed_only",
+      "seed_cluster": 241,
+      "scenario": "evaluation-241-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 0,
+          "abstained": 18,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 0,
+          "abstained": 18,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 0,
+          "abstained": 18,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        }
+      }
+    },
+    {
+      "method": "historical_median",
+      "seed_cluster": 242,
+      "scenario": "evaluation-242-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 21.41570765743513
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 366.6927375498647
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 11.466339179620206
+        }
+      }
+    },
+    {
+      "method": "persistence",
+      "seed_cluster": 242,
+      "scenario": "evaluation-242-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 2.4552470225859313
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 38.50530640556005
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 1.9202640466563312
+        }
+      }
+    },
+    {
+      "method": "linear_interpolation",
+      "seed_cluster": 242,
+      "scenario": "evaluation-242-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 1.8272070356117855
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 47.354112307818646
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 0.6119292764547458
+        }
+      }
+    },
+    {
+      "method": "observed_only",
+      "seed_cluster": 242,
+      "scenario": "evaluation-242-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        }
+      }
+    },
+    {
+      "method": "historical_median",
+      "seed_cluster": 242,
+      "scenario": "evaluation-242-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 23.567994624957734
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 364.36064155096324
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 11.686966953724903
+        }
+      }
+    },
+    {
+      "method": "persistence",
+      "seed_cluster": 242,
+      "scenario": "evaluation-242-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 22.64588842112145
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 187.73559576418205
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 14.976882891693199
+        }
+      }
+    },
+    {
+      "method": "linear_interpolation",
+      "seed_cluster": 242,
+      "scenario": "evaluation-242-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 8.834129593064956
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 73.83385025735086
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 2.86448568891284
+        }
+      }
+    },
+    {
+      "method": "observed_only",
+      "seed_cluster": 242,
+      "scenario": "evaluation-242-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        }
+      }
+    },
+    {
+      "method": "historical_median",
+      "seed_cluster": 242,
+      "scenario": "evaluation-242-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 15.748643782290072
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 404.12216971523077
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 19.778286649836716
+        }
+      }
+    },
+    {
+      "method": "persistence",
+      "seed_cluster": 242,
+      "scenario": "evaluation-242-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 3.157967714489334e-15
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 270.9151093968668
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 6.020335764374817
+        }
+      }
+    },
+    {
+      "method": "linear_interpolation",
+      "seed_cluster": 242,
+      "scenario": "evaluation-242-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 3.157967714489334e-15
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 247.20117698904016
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 5.493359488645336
+        }
+      }
+    },
+    {
+      "method": "observed_only",
+      "seed_cluster": 242,
+      "scenario": "evaluation-242-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 0,
+          "abstained": 18,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 0,
+          "abstained": 18,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 0,
+          "abstained": 18,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        }
+      }
+    },
+    {
+      "method": "historical_median",
+      "seed_cluster": 243,
+      "scenario": "evaluation-243-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 22.291261923821402
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 357.2360586772585
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 12.288735852774856
+        }
+      }
+    },
+    {
+      "method": "persistence",
+      "seed_cluster": 243,
+      "scenario": "evaluation-243-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 1.0037367954166552
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 49.31960933940504
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 2.2607879332235483
+        }
+      }
+    },
+    {
+      "method": "linear_interpolation",
+      "seed_cluster": 243,
+      "scenario": "evaluation-243-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 0.935736444762874
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 36.109325609672965
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 0.888627877756549
+        }
+      }
+    },
+    {
+      "method": "observed_only",
+      "seed_cluster": 243,
+      "scenario": "evaluation-243-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        }
+      }
+    },
+    {
+      "method": "historical_median",
+      "seed_cluster": 243,
+      "scenario": "evaluation-243-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 22.731777900000296
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 359.02367465608336
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 11.05257107944409
+        }
+      }
+    },
+    {
+      "method": "persistence",
+      "seed_cluster": 243,
+      "scenario": "evaluation-243-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 22.12365440502962
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 180.11011076508203
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 14.180376889727844
+        }
+      }
+    },
+    {
+      "method": "linear_interpolation",
+      "seed_cluster": 243,
+      "scenario": "evaluation-243-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 8.671229633993303
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 74.66872125239492
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 2.7035001499529305
+        }
+      }
+    },
+    {
+      "method": "observed_only",
+      "seed_cluster": 243,
+      "scenario": "evaluation-243-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        }
+      }
+    },
+    {
+      "method": "historical_median",
+      "seed_cluster": 243,
+      "scenario": "evaluation-243-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 15.748643782290072
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 389.0593425551767
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 19.385768207871035
+        }
+      }
+    },
+    {
+      "method": "persistence",
+      "seed_cluster": 243,
+      "scenario": "evaluation-243-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 1.342136278657967e-14
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 264.0338170522302
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 5.867418156716228
+        }
+      }
+    },
+    {
+      "method": "linear_interpolation",
+      "seed_cluster": 243,
+      "scenario": "evaluation-243-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 7.894919286223336e-15
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 240.92223608128305
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 5.353827468472959
+        }
+      }
+    },
+    {
+      "method": "observed_only",
+      "seed_cluster": 243,
+      "scenario": "evaluation-243-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 0,
+          "abstained": 18,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 0,
+          "abstained": 18,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 0,
+          "abstained": 18,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        }
+      }
+    },
+    {
+      "method": "historical_median",
+      "seed_cluster": 244,
+      "scenario": "evaluation-244-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 21.747629843397885
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 366.9170987559894
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 11.903083132863
+        }
+      }
+    },
+    {
+      "method": "persistence",
+      "seed_cluster": 244,
+      "scenario": "evaluation-244-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 0.9458539180469892
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 46.024039538840086
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 2.0678543391022632
+        }
+      }
+    },
+    {
+      "method": "linear_interpolation",
+      "seed_cluster": 244,
+      "scenario": "evaluation-244-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 0.9376603051780427
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 37.15271984490251
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 1.052013361346013
+        }
+      }
+    },
+    {
+      "method": "observed_only",
+      "seed_cluster": 244,
+      "scenario": "evaluation-244-0",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        }
+      }
+    },
+    {
+      "method": "historical_median",
+      "seed_cluster": 244,
+      "scenario": "evaluation-244-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 22.011625259840628
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 355.0318814226491
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 10.529027513260228
+        }
+      }
+    },
+    {
+      "method": "persistence",
+      "seed_cluster": 244,
+      "scenario": "evaluation-244-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 21.80459832159717
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 176.0215514416737
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 13.469584245600448
+        }
+      }
+    },
+    {
+      "method": "linear_interpolation",
+      "seed_cluster": 244,
+      "scenario": "evaluation-244-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 8.51277264315013
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 76.34583773865603
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 36,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 2.5906948891543
+        }
+      }
+    },
+    {
+      "method": "observed_only",
+      "seed_cluster": 244,
+      "scenario": "evaluation-244-1",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "flow_vph": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "storage_veh": {
+          "eligible": 36,
+          "point_scored": 0,
+          "abstained": 36,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        }
+      }
+    },
+    {
+      "method": "historical_median",
+      "seed_cluster": 244,
+      "scenario": "evaluation-244-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 15.748643782290072
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 378.26855441103703
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 19.10457353390034
+        }
+      }
+    },
+    {
+      "method": "persistence",
+      "seed_cluster": 244,
+      "scenario": "evaluation-244-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 7.894919286223335e-16
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 259.10397363248455
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 5.757866080721879
+        }
+      }
+    },
+    {
+      "method": "linear_interpolation",
+      "seed_cluster": 244,
+      "scenario": "evaluation-244-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 7.894919286223335e-16
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 236.4238589265251
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 18,
+          "abstained": 0,
+          "fallbacks_scored": 0,
+          "point_mae": 5.253863531700557
+        }
+      }
+    },
+    {
+      "method": "observed_only",
+      "seed_cluster": 244,
+      "scenario": "evaluation-244-2",
+      "channels": {
+        "speed_kmh": {
+          "eligible": 18,
+          "point_scored": 0,
+          "abstained": 18,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "flow_vph": {
+          "eligible": 18,
+          "point_scored": 0,
+          "abstained": 18,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        },
+        "storage_veh": {
+          "eligible": 18,
+          "point_scored": 0,
+          "abstained": 18,
+          "fallbacks_scored": 0,
+          "point_mae": null
+        }
+      }
+    }
+  ]
+}
