@@ -3,7 +3,7 @@
 \date{}
 \usepackage{xurl}
 \setlength{\emergencystretch}{2em}
-\title{Tracking Detector Availability in a Freeway Shadow Pilot}
+\title{Scoring Detector Faults in an Archived Freeway Replay}
 \author{Arjun Vijay Prakash \\ \small ITS World Congress Birmingham 2027 | Preliminary poster
 draft}
 
@@ -11,48 +11,36 @@ draft}
 
 \maketitle
 \begin{abstract}
-An operations display can retain a speed estimate after its source feed stops producing current
-readings. A shadow pilot on southbound I-880 and westbound I-10 records feed availability
-separately from the estimate and retains the detector evidence behind each decision. Across
-113 prospective polls spanning 19--20 November 2026 Pacific time, I-880 was current in 26
-polls and I-10 in 87. A separate replay of 46 injected fault cases scored 372 speed targets.
-Graph reconstruction achieved 5.20 km/h mean absolute error, compared with 6.58 km/h for
-latest-reading persistence. Both approaches missed all ten low-speed queue-proxy cases.
+Graph reconstruction reduced speed error in a replay of 58 detector outages and delays
+on archived southbound I-880 and westbound I-10 readings. It had 4.65 km/h mean absolute
+error on 468 scored target instances, compared with 5.86 km/h for latest-reading
+persistence. Both methods missed all ten low-speed queue-proxy positives. The replay
+records both the estimated speed and which readings had arrived when it was computed.
 \end{abstract}
 
-\section*{Shadow workflow}
-The collector archives five-minute Caltrans PeMS files and records capture times and station
-metadata versions. A shadow cycle uses only data whose event windows have closed and whose files
-have arrived. The read-only output records the latest observation, its age, the evidence
-available for an operator action, and a status for stale feeds, missing feeds, or absent usable
-speed values. Per-window decisions can be replayed for review. The shadow system issues no
-traffic-control commands.
-
-\section*{Observed availability}
-I-880 contributed 26 distinct current windows, with a capture lag of 9.9 minutes at the
-95th percentile on 19 November. It was stale throughout the observed segment on
-20 November. I-10 contributed 56 distinct current windows on 19 November and 25 on
-20 November, with capture-lag p95 values of 6.4 and 4.4 minutes. Capture lag runs from
-the close of the measurement window to file capture. Two-corridor cycle processing had a
-0.39-second p95 on the pilot host.
+\section*{Arrival-time replay}
+Each archived five-minute Caltrans PeMS file has a capture time and station metadata version.
+At each decision time, the replay opens only readings that had arrived. Its ledger records
+the last valid observation, its age, the neighboring speeds, and the evidence for a detector
+check or queue check. A separate status marks stale feeds and missing or unusable readings.
 
 \section*{Injected fault replay}
 We applied 30- and 60-minute blackouts and separate 15-minute delivery delays to archived
 detector readings. An original reading qualified as a target only when the detector and its
-two neighbors had usable reference speeds. Both methods emitted estimates for all 372 targets.
-Fresh readings returned within the observation window in 24 of 46 cases. The remaining 22
-recovery times are censored. Both methods had zero false queue checks and missed every
-proxy-positive target.
+two neighbors had usable reference speeds. The graph fit used a persistence prior built
+from the target corridor's arrived readings. Mean absolute error was 4.67 versus 6.05 km/h
+for blackouts, and 4.63 versus 5.67 km/h for delayed readings. Fresh readings returned
+inside the observation window in 28 cases. The remaining 30 recovery times are censored.
 
 \section*{Operational implications}
-The incident ledger links each action to its source readings and feed age. The retrospective
-results describe two corridors over a short time span and use a detector-derived proxy for
-queues. A longer prospective pilot with operator-confirmed incidents is needed to assess
-whether the workflow improves decisions.
+The replay supports a demonstration of how to investigate a missing reading. Its fault
+cases use the same brief archive, and targets can recur under different fault settings.
+Queue accuracy remains unestablished. The reference consists of adjacent low detector
+speeds and supplies no operator-confirmed incident labels.
 
 \section*{References}
 [1] Caltrans. Performance Measurement System. \url{https://pems.dot.ca.gov/}
 
-[2] CREST implementation guide, including shadow report commands.
-\url{https://github.com/ArjunCodess/CREST/blob/main/docs/crest-implementation.md}
+[2] Development evaluation and receipts.
+\url{https://github.com/ArjunCodess/CREST/blob/main/docs/crest-evaluation.md}
 \end{document}
