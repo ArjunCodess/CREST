@@ -20,6 +20,11 @@ BASE_URL = "https://pems.dot.ca.gov/feeds"
 DISTRICTS = (3, 4, 5, 6, 7, 8, 10, 11, 12)
 FEED_NAME = re.compile(r'5minagg_(\d{14})\.txt')
 PEMS_TIMEZONE = "America/Los_Angeles"
+CADENCE_MS = 300_000
+
+
+class AmbiguousFeedTime(ValueError):
+    """A wall time that the compact feed cannot map to one UTC interval."""
 
 
 def atomic_write(path: Path, data: bytes) -> None:
@@ -40,7 +45,7 @@ def local_interval(value: str) -> datetime:
     first = naive.replace(tzinfo=zone, fold=0)
     alternate = naive.replace(tzinfo=zone, fold=1)
     if first.utcoffset() != alternate.utcoffset():
-        raise ValueError(f"Ambiguous or nonexistent PeMS timestamp {value}")
+        raise AmbiguousFeedTime(f"Ambiguous or nonexistent PeMS timestamp {value}")
     if naive.minute % 5 or naive.second:
         raise ValueError(f"Expected an aligned five-minute interval, got {value}")
     return first.astimezone(UTC)

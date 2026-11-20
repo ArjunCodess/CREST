@@ -74,6 +74,14 @@ def paired_cluster_interval(deltas: list[float], seed: int = 424242) -> list[flo
     return np.quantile(draws, (0.025, 0.975)).tolist()
 
 
+def benchmark_masks(shape: tuple[int, int], duration: int | None) -> list[tuple[str, np.ndarray]]:
+    blocks = outage_masks(shape, duration)
+    random_mask = np.zeros(shape, dtype=bool)
+    random = np.random.default_rng(2600)
+    random_mask.flat[random.choice(random_mask.size, int(blocks[0].sum()), replace=False)] = True
+    return [(f"block-{i}", mask) for i, mask in enumerate(blocks)] + [("random", random_mask)]
+
+
 class StateBenchmark:
     def __init__(self, training: list[Window], channel: str) -> None:
         self.channel = channel
@@ -105,14 +113,7 @@ class StateBenchmark:
     ) -> tuple[list[dict], list[float]]:
         entries, residuals = [], []
         for cluster, window in windows:
-            random = np.random.default_rng(2600)
-            matched = outage_masks(window.quality.shape, duration)
-            schedules = [(f"block-{i}", mask) for i, mask in enumerate(matched)]
-            # Match the first block's mask budget to an isolated/mixed dropout control.
-            random_mask = np.zeros(window.quality.size, dtype=bool)
-            random_mask[random.choice(random_mask.size, int(matched[0].sum()), replace=False)] = True
-            schedules.append(("random", random_mask.reshape(window.quality.shape)))
-            for pattern, mask in schedules:
+            for pattern, mask in benchmark_masks(window.quality.shape, duration):
                 predictions = self.predict(window, mask)
                 # Read evaluation measurements only after all methods have predicted.
                 truth = window.inputs(self.channel)

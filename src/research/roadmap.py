@@ -6,7 +6,7 @@ import hashlib
 import json
 import time
 from dataclasses import asdict
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -15,10 +15,10 @@ import torch
 from threadpoolctl import threadpool_limits
 
 from .observations import NoSnapshots, Window, load_pems_corridor, ngsim_window, read_recording
-from .pems import atomic_write
+from .pems import CADENCE_MS, PEMS_TIMEZONE, atomic_write
 from .protocol import registry_file_lock
 from .provenance import research_code_content_hash
-from .traffic_benchmark import StateBenchmark, aggregate, physics_suite, storage_scaling
+from .traffic_benchmark import StateBenchmark, aggregate, benchmark_masks, physics_suite, storage_scaling
 from .traffic_decisions import evaluate_queues, route_suite
 from .traffic_estimation import QueueHead, fit_storage, graph_reconstruct, historical_level, outage_masks, persistence
 from .traffic_exchange import export_suite, score_submission
@@ -29,6 +29,8 @@ DEVELOP = (11, 12, 13, 14)
 CALIBRATE = (101, 102, 103)
 FIXTURE = (241, 242, 243, 244)
 PEMS = ((4, 880, "S", "401557"), (7, 10, "W", "717258"))
+FINAL_DURATIONS = (6, 12)
+MIN_EVALUATION_DAYS = 10
 
 
 def json_write(path: Path, payload: dict) -> None:
@@ -52,30 +54,61 @@ def shadow_cycle(pems_root: Path, output: Path, as_of_ms: int) -> dict:
     for district, freeway, direction, first in PEMS:
         try:
             window = load_pems_corridor(pems_root, district, freeway, direction, first_station=first,
-                                        after_ms=as_of_ms // 300_000 * 300_000 - 3_600_000)
+                                        after_ms=as_of_ms // CADENCE_MS * CADENCE_MS - 3_600_000,
+                                        available_by_ms=as_of_ms)
         except NoSnapshots:
             sites.append({"site": f"D{district}-{freeway}{direction}-{first}", "status": "no_recent_feed", "advisory": None})
             continue
-        matured = np.flatnonzero(window.time_ms + window.cadence_ms <= as_of_ms)
-        last = int(matured[-1]) if len(matured) else -1
-        inputs = window.inputs("speed", as_of_ms=as_of_ms)[:last + 1]
-        recent = np.flatnonzero(np.isfinite(inputs).any(axis=1))
-        if not len(recent) or as_of_ms - window.time_ms[recent[-1]] - window.cadence_ms >= 2 * window.cadence_ms:
-            sites.append({"site": window.site, "status": "stale_feed", "advisory": None})
+        age_ms = as_of_ms - int(window.time_ms[-1]) - window.cadence_ms
+        entry = {"site": window.site, "interval_ms": int(window.time_ms[-1]), "age_ms": age_ms,
+                 "capture_lag_ms": int(window.arrival_ms[-1]) - int(window.time_ms[-1]) - window.cadence_ms,
+                 "input_sha256": window.raw_sha256, "topology_sha256": window.topology_sha256}
+        if age_ms >= 2 * window.cadence_ms:
+            sites.append({**entry, "status": "stale_feed", "advisory": None})
             continue
-        if not np.isfinite(inputs[0]).any():
-            inputs = inputs[recent[0]:]
+        inputs = window.inputs("speed")
+        usable = np.isfinite(inputs).any(axis=1)
+        if not usable[-1]:
+            sites.append({**entry, "status": "no_usable_readings", "advisory": None})
+            continue
+        inputs = inputs[np.argmax(usable):]
         level = float(np.nanmedian(inputs[0]))
         decision = outage_triage(inputs, level, 3)
         estimate = graph_reconstruct(inputs, persistence(inputs, level), window.graph, 25.)
         decision["robust_estimate_kmh"] = float(estimate.values[-1, 3])
-        entry = {"site": window.site, "status": "current", "interval_ms": int(window.time_ms[last]),
-                 "input_sha256": window.raw_sha256, "topology_sha256": window.topology_sha256,
-                 "decision": decision, "estimation_status": estimate.status}
-        digest = hashlib.sha256(json.dumps(entry, sort_keys=True).encode()).hexdigest()
-        json_write(output / "incidents" / window.site / f"{entry['interval_ms']}-{digest}.json", entry)
+        entry.update(status="current", decision=decision, estimation_status=estimate.status)
+        incident = {key: value for key, value in entry.items() if key != "age_ms"}
+        digest = hashlib.sha256(json.dumps(incident, sort_keys=True).encode()).hexdigest()
+        json_write(output / "incidents" / window.site / f"{entry['interval_ms']}-{digest}.json", incident)
         sites.append(entry)
-    return {"as_of_ms": as_of_ms, "sites": sites, "elapsed_seconds": time.perf_counter() - start}
+    cycle = {"as_of_ms": as_of_ms, "code_hash": research_code_content_hash(),
+             "sites": sites, "elapsed_seconds": time.perf_counter() - start}
+    json_write(output / "shadow-history" / f"{as_of_ms}.json", cycle)
+    return cycle
+
+
+def summarize_shadow(output: Path) -> dict:
+    zone = ZoneInfo(PEMS_TIMEZONE)
+    sites = {}
+    codes = set()
+    cycle_count = 0
+    for path in sorted((output / "shadow-history").glob("*.json")):
+        cycle = json.loads(path.read_text(encoding="utf-8"))
+        cycle_count += 1
+        codes.add(cycle["code_hash"])
+        day = datetime.fromtimestamp(cycle["as_of_ms"] / 1000, zone).date().isoformat()
+        for entry in cycle["sites"]:
+            daily = sites.setdefault(entry["site"], {}).setdefault(day, {"statuses": {}, "windows": {}})
+            status = entry["status"]
+            daily["statuses"][status] = daily["statuses"].get(status, 0) + 1
+            if status == "current":
+                daily["windows"].setdefault(entry["interval_ms"], entry["capture_lag_ms"])
+    for days in sites.values():
+        for daily in days.values():
+            latency = list(daily.pop("windows").values())
+            daily["distinct_current_windows"] = len(latency)
+            daily["capture_lag_p95_ms"] = float(np.quantile(latency, .95)) if latency else None
+    return {"scope": "prospective_shadow_cycles", "cycles": cycle_count, "code_hashes": sorted(codes), "sites": sites}
 
 
 def run_state(
@@ -229,12 +262,16 @@ def run_measured(output: Path, pems_root: Path, ngsim_root: Path) -> None:
     json_write(output / "measured-development.json", analysis)
 
 
-def _select_cohorts(config: dict, pems_root: Path) -> dict[str, list[tuple[str, Window]]]:
+def inspect_cohorts(config: dict, pems_root: Path) -> tuple[dict[str, list[tuple[str, Window]]], dict]:
     role_specs = config["cohorts"]
     if set(role_specs) != {"train", "calibration", "evaluation"}:
         raise ValueError("Declare exactly train, calibration and evaluation cohorts")
     result = {}
-    zone = ZoneInfo("America/Los_Angeles")
+    zone = ZoneInfo(PEMS_TIMEZONE)
+    today = datetime.now(zone).date()
+    days = {role: set() for role in role_specs}
+    stations = {role: set() for role in role_specs}
+    entries = []
     for role, specs in role_specs.items():
         windows = []
         keys = set()
@@ -242,32 +279,71 @@ def _select_cohorts(config: dict, pems_root: Path) -> dict[str, list[tuple[str, 
             if not row["days"] or len(set(row["days"])) != len(row["days"]):
                 raise ValueError("Declare a nonempty list of unique local calendar days")
             for day in row["days"]:
-                start = datetime.fromisoformat(day).replace(tzinfo=zone)
+                local_day = date.fromisoformat(day)
+                if local_day.isoformat() != day:
+                    raise ValueError("Use YYYY-MM-DD for cohort days")
+                days[role].add(day)
+                entry = {"role": role, "day": day, "site": f"D{row['district']}-{row['freeway']}"
+                         f"{row['direction']}-{row['first_station']}"}
+                entries.append(entry)
+                if local_day >= today:
+                    entry["status"] = "day_not_complete"
+                    continue
+                start = datetime.combine(local_day, datetime.min.time(), tzinfo=zone)
                 stop = start + timedelta(days=1)
-                window = load_pems_corridor(pems_root, row["district"], row["freeway"], row["direction"],
-                                            first_station=row["first_station"], after_ms=int(start.timestamp() * 1000),
-                                            before_ms=int(stop.timestamp() * 1000))
-                if np.isfinite(window.inputs("speed")).sum() < 100 or np.isfinite(window.inputs("flow")).sum() < 100:
-                    raise ValueError(f"Insufficient measured coverage for {window.site} on {day}")
+                try:
+                    window = load_pems_corridor(pems_root, row["district"], row["freeway"], row["direction"],
+                                                first_station=row["first_station"], after_ms=int(start.timestamp() * 1000),
+                                                before_ms=int(stop.timestamp() * 1000))
+                except NoSnapshots:
+                    entry["status"] = "no_snapshots"
+                    continue
                 window_keys = {(station, day) for station in window.cell_ids}
                 if keys & window_keys:
                     raise ValueError(f"Duplicate station-day in {role} on {day}")
                 keys.update(window_keys)
+                stations[role].update(window.cell_ids)
+                visible = {channel: np.isfinite(window.inputs(channel)) for channel in ("speed", "flow")}
+                entry["observed_cells"] = {channel: int(mask.sum()) for channel, mask in visible.items()}
+                if min(entry["observed_cells"].values()) < 100:
+                    entry["status"] = "insufficient_observations"
+                    continue
+                if role != "train":
+                    durations = FINAL_DURATIONS if role == "evaluation" else FINAL_DURATIONS[:1]
+                    entry["unscorable_masks"] = []
+                    for duration in durations:
+                        *blocks, (_, random) = benchmark_masks(window.quality.shape, duration)
+                        for channel, mask in visible.items():
+                            if not any(mask[block].all() for _, block in blocks):
+                                entry["unscorable_masks"].append(f"{channel}:{duration}:contiguous")
+                            if role == "evaluation" and not (mask & random).any():
+                                entry["unscorable_masks"].append(f"{channel}:{duration}:random")
+                    if entry["unscorable_masks"]:
+                        entry["status"] = "insufficient_mask_truth"
+                        continue
+                entry["status"] = "ready"
                 windows.append((day, window))
-        if not windows:
+        if not days[role]:
             raise ValueError(f"Declare at least one {role} cohort")
         result[role] = windows
-    days = {role: {key for key, _ in rows} for role, rows in result.items()}
     if not max(days["train"]) < min(days["calibration"]) <= max(days["calibration"]) < min(days["evaluation"]):
         raise ValueError("Development, calibration and evaluation days must be disjoint and ordered")
-    development = {station for role in ("train", "calibration") for _, w in result[role] for station in w.cell_ids}
-    reserve = {station for _, w in result["evaluation"] for station in w.cell_ids}
-    if development & reserve or len(days["evaluation"]) < 10:
-        raise ValueError("Require held-out sites and at least ten independent evaluation days")
+    if (stations["train"] | stations["calibration"]) & stations["evaluation"]:
+        raise ValueError("Require held-out evaluation stations")
     if any(not np.isfinite(config[key]) or config[key] <= 0 for key in
            ("flow_noninferiority_veh_per_hour", "random_mask_noninferiority_kmh")):
         raise ValueError("Declare positive, development-derived noninferiority margins")
-    return result
+    ready_days = len({day for day, _ in result["evaluation"]})
+    return result, {"ready": ready_days >= MIN_EVALUATION_DAYS and all(row["status"] == "ready" for row in entries),
+                    "ready_evaluation_days": ready_days, "required_evaluation_days": MIN_EVALUATION_DAYS,
+                    "cohort_days": entries}
+
+
+def _select_cohorts(config: dict, pems_root: Path) -> dict[str, list[tuple[str, Window]]]:
+    cohorts, readiness = inspect_cohorts(config, pems_root)
+    if not readiness["ready"]:
+        raise ValueError("Cohorts are incomplete or lack ten usable evaluation days. Run readiness for details.")
+    return cohorts
 
 
 def reserve_evaluation(root: Path, station_days: set[tuple[str, str]], manifest: dict) -> Path:
@@ -314,16 +390,23 @@ def run_final(config_path: Path, pems_root: Path, receipt: Path, output: Path) -
     run_id = registry.name
     started = time.perf_counter()
     results = run_state([w for _, w in cohorts["train"]], cohorts["calibration"], cohorts["evaluation"],
-                        durations=(6, 12))
-    intervals = [results["speed"]["outages"][str(width)]["contiguous"]["graph_huber_minus_reference_95ci"]
-                 for width in (6, 12)]
-    flow = [results["flow"]["outages"][str(width)]["contiguous"]["graph_huber_minus_reference_95ci"] for width in (6, 12)]
-    normal = [results["speed"]["outages"][str(width)]["random_mask"]["graph_huber_minus_reference_95ci"] for width in (6, 12)]
-    speed_gate = all(interval is not None and interval[1] < 0 for interval in intervals)
-    flow_gate = all(interval is not None and interval[1] <= config["flow_noninferiority_veh_per_hour"] for interval in flow)
-    normal_gate = all(interval is not None and interval[1] <= config["random_mask_noninferiority_kmh"] for interval in normal)
+                        durations=FINAL_DURATIONS)
+    gates = {}
+    for name, channel, mask, margin in (
+        ("speed_gate", "speed", "contiguous", 0.0),
+        ("flow_gate", "flow", "contiguous", config["flow_noninferiority_veh_per_hour"]),
+        ("random_mask_gate", "speed", "random_mask", config["random_mask_noninferiority_kmh"]),
+    ):
+        groups = [results[channel]["outages"][str(width)][mask] for width in FINAL_DURATIONS]
+        gates[name] = all(
+            group["paired_clusters"] >= MIN_EVALUATION_DAYS
+            and group["graph_huber_minus_reference_95ci"] is not None
+            and (group["graph_huber_minus_reference_95ci"][1] < 0 if name == "speed_gate"
+                 else group["graph_huber_minus_reference_95ci"][1] <= margin)
+            for group in groups
+        )
     result = {"mode": "measured_final", "run_id": run_id, "frozen": manifest, "state": results,
-              "speed_gate": speed_gate, "flow_gate": flow_gate, "random_mask_gate": normal_gate,
+              **gates,
               "elapsed_seconds": time.perf_counter() - started}
     json_write(registry / "completed.json", result)
     json_write(output / "frozen-evaluation.json", result)
@@ -343,6 +426,9 @@ def main() -> None:
     score.add_argument("--prediction", type=Path, required=True)
     shadow = sub.add_parser("shadow")
     shadow.add_argument("--poll-seconds", type=int, default=0)
+    sub.add_parser("shadow-report")
+    readiness = sub.add_parser("readiness")
+    readiness.add_argument("--config", type=Path, required=True)
     for label in ("freeze", "final"):
         action = sub.add_parser(label)
         action.add_argument("--config", type=Path, required=True)
@@ -362,6 +448,14 @@ def main() -> None:
             export_suite(args.output / "benchmark", {"train": DEVELOP, "calibration": CALIBRATE, "evaluation": FIXTURE})
         elif args.mode == "score-benchmark":
             print(json.dumps(score_submission(args.output / "benchmark", args.scenario, args.prediction), indent=2))
+        elif args.mode == "readiness":
+            config = json.loads(args.config.read_text(encoding="utf-8"))
+            _, report = inspect_cohorts(config, args.pems)
+            print(json.dumps(report, indent=2))
+        elif args.mode == "shadow-report":
+            report = summarize_shadow(args.output)
+            json_write(args.output / "shadow-report.json", report)
+            print(json.dumps(report, indent=2))
         elif args.mode == "shadow":
             if args.poll_seconds and args.poll_seconds < 60:
                 parser.error("Use at least 60 seconds between shadow runs")

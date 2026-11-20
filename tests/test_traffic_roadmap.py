@@ -1,3 +1,6 @@
+import gzip
+import hashlib
+import json
 from dataclasses import replace
 from datetime import UTC, datetime
 
@@ -9,6 +12,8 @@ from src.research.baselines import od_lp_bounds_baseline
 from src.research.conservation_constraints import assemble_conservation_polytope
 from src.research.lp_core import linprog_interval
 from src.research.pems import compact_rows, local_interval
+from src.research import roadmap
+from src.research.observations import load_pems_corridor
 from src.research.roadmap import reserve_evaluation
 from src.research.sparse_traffic import conditional_interval, conservation_system, robust_fit
 from src.research.traffic_estimation import QueueHead, QueuePrediction
@@ -111,6 +116,74 @@ def test_compact_pems_station_rows_and_ambiguous_clock():
         local_interval("11/01/2026 01:15:00")
 
 
+def test_shadow_only_uses_arrived_snapshots_and_counts_distinct_windows(tmp_path, monkeypatch):
+    root = tmp_path / "pems"
+    district = root / "D4"
+    district.mkdir(parents=True)
+    metadata_root = root / "station-metadata"
+    metadata_root.mkdir()
+    stations = "".join(f'<vds id="{i}" abs_pm="{i}" type="ML" freeway_id="880" freeway_dir="N"/>'
+                       for i in range(1, 9))
+    metadata = f'<pems><district id="4">{stations}</district></pems>'.encode()
+    topology = hashlib.sha256(metadata).hexdigest()
+    (metadata_root / f"{topology}.xml.gz").write_bytes(gzip.compress(metadata))
+    arrivals = (("09:00", "17:06", True), ("09:05", "17:15", False),
+                ("09:10", "17:11", False))
+    for local, utc, arrived in arrivals:
+        header = f"11/19/2026 {local}:00"
+        content = (header + "\n" + "".join(f"{i},349,.07,65,144,2,65,,0,40,100\n"
+                                            for i in range(1, 9))).encode()
+        digest = hashlib.sha256(content).hexdigest()
+        receipt = {"feed_local_time": header, "arrival": f"2026-11-19T{utc}:00+00:00",
+                   "raw_sha256": digest, "raw_file": f"{digest}.txt.gz",
+                   "topology_sha256": topology if arrived else "late-topology"}
+        stamp = local.replace(":", "")
+        (district / f"20261119{stamp}00.json").write_text(json.dumps(receipt))
+        if arrived:
+            (district / receipt["raw_file"]).write_bytes(gzip.compress(content))
+    (district / "20261101011500.json").write_text("obsolete")
+    now = int(datetime(2026, 11, 19, 17, 12, tzinfo=UTC).timestamp() * 1000)
+    window = load_pems_corridor(root, 4, 880, "N", after_ms=now - 12 * 60_000, available_by_ms=now)
+    assert window.topology_sha256 == (topology,)
+    assert len(window.raw_sha256) == len(window.time_ms) == 1
+
+    monkeypatch.setattr(roadmap, "PEMS", ((4, 880, "N", "1"), (7, 10, "W", "2")))
+    output = tmp_path / "reports"
+    for at in (now, now + 60_000):
+        cycle = roadmap.shadow_cycle(root, output, at)
+        assert [site["status"] for site in cycle["sites"]] == ["current", "no_recent_feed"]
+    report = roadmap.summarize_shadow(output)
+    available = report["sites"]["D4-880N-1"]["2026-11-19"]
+    assert available == {"statuses": {"current": 2}, "distinct_current_windows": 1, "capture_lag_p95_ms": 60_000}
+    assert len(list((output / "incidents" / "D4-880N-1").glob("*.json"))) == 1
+
+
+def test_cohort_readiness_checks_outage_targets_before_freezing(monkeypatch, tmp_path):
+    historical = simulate(7).window
+    failed = np.ones_like(historical.quality)
+    # Leave plenty of observations outside each scheduled outage target.
+    for name, mask in roadmap.benchmark_masks(failed.shape, 12):
+        if name.startswith("block"):
+            failed[mask] = 0.
+    transfer = replace(historical, site="held-out", quality=failed,
+                       cell_ids=tuple(f"held-out-{i}" for i in range(len(historical.cell_ids))))
+    monkeypatch.setattr(roadmap, "load_pems_corridor",
+                        lambda root, district, *args, **kwargs: historical if district == 4 else transfer)
+    train = {"district": 4, "freeway": 880, "direction": "S", "first_station": "1", "days": ["2026-01-01"]}
+    calibration = {**train, "days": ["2026-01-02"]}
+    evaluation = {**train, "district": 7, "days": [f"2026-01-{day:02}" for day in range(3, 13)]}
+    config = {"cohorts": {"train": [train], "calibration": [calibration], "evaluation": [evaluation]},
+              "flow_noninferiority_veh_per_hour": 1., "random_mask_noninferiority_kmh": 1.}
+    _, report = roadmap.inspect_cohorts(config, tmp_path)
+    assert not report["ready"]
+    assert report["ready_evaluation_days"] == 0
+    assert report["cohort_days"][-1]["status"] == "insufficient_mask_truth"
+    assert "speed:12:contiguous" in report["cohort_days"][-1]["unscorable_masks"]
+
+    transfer = replace(transfer, quality=historical.quality)
+    cohorts, report = roadmap.inspect_cohorts(config, tmp_path)
+    assert report["ready"]
+    assert len(cohorts["evaluation"]) == report["ready_evaluation_days"] == 10
 def test_junction_truth_balances_storage():
     sim = simulate(7, "junction")
     assert len(sim.boundary_channels) == 4

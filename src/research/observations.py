@@ -6,14 +6,15 @@ import hashlib
 import json
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
-from datetime import timedelta
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import numpy as np
 import pandas as pd
 from scipy import sparse
 
-from .pems import compact_rows, local_interval
+from .pems import AmbiguousFeedTime, CADENCE_MS, PEMS_TIMEZONE, compact_rows, local_interval
 
 UNITS = {"speed": "km/h", "flow": "veh/h", "count": "veh", "occupancy": "fraction", "storage": "veh"}
 
@@ -73,16 +74,31 @@ def _optional_number(value: str) -> float:
 def load_pems_corridor(
     root: Path, district: int, freeway: int, direction: str, *, cells: int = 8, after_ms: int = 0,
     first_station: str | None = None, max_gap_m: float = 5000, before_ms: int | None = None,
+    available_by_ms: int | None = None,
 ) -> Window:
     """Build a regular station grid from immutable snapshots of the compact feed."""
     directory = root / f"D{district}"
-    receipts = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(directory.glob("*.json"))]
-    receipts = [r for r in receipts
-                if after_ms <= int(local_interval(r["feed_local_time"]).timestamp() * 1000)
-                and (before_ms is None or int(local_interval(r["feed_local_time"]).timestamp() * 1000) < before_ms)]
+    zone = ZoneInfo(PEMS_TIMEZONE)
+    lower_day = datetime.fromtimestamp(after_ms / 1000, zone).strftime("%Y%m%d") if after_ms else ""
+    end_ms = before_ms if available_by_ms is None else min(before_ms or available_by_ms, available_by_ms)
+    upper_day = datetime.fromtimestamp((end_ms - 1) / 1000, zone).strftime("%Y%m%d") if end_ms is not None else "99999999"
+    receipts = []
+    for path in sorted(directory.glob("*.json")):
+        if not lower_day <= path.stem[:8] <= upper_day:
+            continue
+        receipt = json.loads(path.read_text(encoding="utf-8"))
+        try:
+            stamp = int(local_interval(receipt["feed_local_time"]).timestamp() * 1000)
+        except AmbiguousFeedTime:
+            continue
+        if stamp < after_ms or (end_ms is not None and stamp >= end_ms):
+            continue
+        arrival = max(stamp + CADENCE_MS, int(datetime.fromisoformat(receipt["arrival"]).timestamp() * 1000))
+        if available_by_ms is None or arrival <= available_by_ms:
+            receipts.append((stamp, arrival, receipt))
     if not receipts:
         raise NoSnapshots(f"No PeMS snapshots in the requested range in {directory}")
-    topology = tuple(sorted({r["topology_sha256"] for r in receipts}))
+    topology = tuple(sorted({r["topology_sha256"] for _, _, r in receipts}))
     station_maps = []
     for digest in topology:
         metadata = gzip.decompress((root / "station-metadata" / f"{digest}.xml.gz").read_bytes())
@@ -111,14 +127,13 @@ def load_pems_corridor(
     indices = {station: i for i, station in enumerate(ids)}
     grid = {}
     hashes = []
-    for receipt in receipts:
+    for key, arrival, receipt in receipts:
         raw = gzip.decompress((directory / receipt["raw_file"]).read_bytes())
         if hashlib.sha256(raw).hexdigest() != receipt["raw_sha256"]:
             raise ValueError("PeMS snapshot digest changed")
         stamp, rows = compact_rows(raw)
-        key = int(stamp.timestamp() * 1000)
-        arrival = int(pd.Timestamp(receipt["arrival"]).timestamp() * 1000)
-        arrival = max(arrival, int((stamp + timedelta(minutes=5)).timestamp() * 1000))
+        if int(stamp.timestamp() * 1000) != key:
+            raise ValueError("PeMS snapshot timestamp disagrees with its receipt")
         values = np.full((4, cells), np.nan)
         quality = np.zeros(cells)
         for row in rows:
@@ -135,7 +150,7 @@ def load_pems_corridor(
         hashes.append(receipt["raw_sha256"])
     if not grid:
         raise ValueError("No PeMS snapshots in the requested period")
-    cadence = 300_000
+    cadence = CADENCE_MS
     times = np.arange(after_ms or min(grid), before_ms or max(grid) + cadence, cadence)
     arrivals = np.empty(len(times), dtype=np.int64)
     arrays = np.full((len(times), 4, cells), np.nan)
