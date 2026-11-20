@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import gzip
 import hashlib
+import io
 import json
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
@@ -164,16 +165,28 @@ def load_pems_corridor(
                   tuple(hashes), topology, quality, cadence)
 
 
+def recording_partition(directory: Path, entry: dict) -> bytes:
+    filename = Path(entry["filename"])
+    if filename.name != entry["filename"] or filename.suffix != ".gz":
+        raise ValueError(f"Invalid trajectory partition filename at {directory}")
+    path = directory / filename
+    payload = path.read_bytes()
+    if hashlib.sha256(payload).hexdigest() != entry["gzip_sha256"]:
+        raise ValueError(f"Trajectory partition checksum changed for {path}")
+    data = gzip.decompress(payload)
+    if hashlib.sha256(data).hexdigest() != entry["sha256"]:
+        raise ValueError(f"Trajectory partition content checksum changed for {path}")
+    return data
+
+
 def read_recording(directory: Path, index: int) -> tuple[pd.DataFrame, tuple[str, ...], str]:
     manifest = json.loads((directory / "recordings.json").read_text(encoding="utf-8"))
     period = manifest["periods"][index]
     frames = []
     hashes = []
     for entry in period["files"]:
-        path = directory / entry["filename"]
-        if hashlib.sha256(path.read_bytes()).hexdigest() != entry["gzip_sha256"]:
-            raise ValueError(f"NGSIM recording checksum changed for {path}")
-        frames.append(pd.read_csv(path))
+        data = recording_partition(directory, entry)
+        frames.append(pd.read_csv(io.BytesIO(data), usecols=["vehicle_id", "global_time", "local_y", "v_vel"]))
         hashes.append(entry["sha256"])
     return pd.concat(frames, ignore_index=True), tuple(hashes), f"{manifest['site']}-{period['first']}"
 
@@ -183,23 +196,33 @@ def ngsim_window(
     cadence_ms: int = 60_000, cells: int = 4, max_gap_ms: int = 200,
 ) -> tuple[Window, np.ndarray]:
     """Edie integrals with explicit tracked storage and counted boundary crossings."""
-    tracks = tracks.sort_values(["vehicle_id", "global_time"])
+    if cadence_ms <= 0 or cells < 2 or tracks.empty:
+        raise ValueError("Invalid trajectory grid or coordinates")
     x = tracks["local_y"].to_numpy(dtype=float) * 0.3048
-    ms = tracks["global_time"].to_numpy(dtype=np.int64)
-    vehicle = tracks["vehicle_id"].to_numpy()
-    if cadence_ms <= 0 or cells < 2 or not np.isfinite(x).all():
+    if not np.isfinite(x).all():
         raise ValueError("Invalid trajectory grid or coordinates")
     edges = np.linspace(np.quantile(x, 0.02), np.quantile(x, 0.98), cells + 1)
+    del x
     if edges[-1] <= edges[0]:
         raise ValueError("NGSIM recording has no usable spatial span")
-    starts = np.arange(ms.min() + cadence_ms, ms.max() - cadence_ms + 1, cadence_ms)
-    dt = np.diff(ms)
-    adjacent = (vehicle[:-1] == vehicle[1:]) & (dt > 0) & (dt <= max_gap_ms)
-    a, b, x0, x1 = [v[adjacent] for v in (ms[:-1], ms[1:], x[:-1], x[1:])]
-    dx = x1 - x0
+    if not tracks["global_time"].is_monotonic_increasing:
+        tracks = tracks.sort_values("global_time", kind="stable")
+    recording_times = tracks["global_time"].to_numpy(dtype=np.int64)
+    starts = np.arange(recording_times[0] + cadence_ms, recording_times[-1] - cadence_ms + 1, cadence_ms)
     q, speed, storage, counts, downstream = np.full((5, len(starts), cells), np.nan)
     for k, start in enumerate(starts):
         end = start + cadence_ms
+        # Include the rows needed to reconstruct segments that cross either time boundary.
+        lo, hi = np.searchsorted(recording_times, [start - max_gap_ms, end + max_gap_ms])
+        rows = tracks.iloc[lo:hi][["vehicle_id", "global_time", "local_y"]]
+        rows = rows.sort_values(["vehicle_id", "global_time"])
+        t = rows["global_time"].to_numpy(dtype=np.int64)
+        pos = rows["local_y"].to_numpy(dtype=float) * 0.3048
+        vehicle = rows["vehicle_id"].to_numpy()
+        dt = np.diff(t)
+        adjacent = (vehicle[:-1] == vehicle[1:]) & (dt > 0) & (dt <= max_gap_ms)
+        a, b, x0, x1 = [v[adjacent] for v in (t[:-1], t[1:], pos[:-1], pos[1:])]
+        dx = x1 - x0
         active = (a < end) & (b > start)
         aa, bb, xx, dd = a[active], b[active], x0[active], dx[active]
         dtime = bb - aa
