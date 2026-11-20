@@ -110,6 +110,7 @@ def score_submission(suite: Path, scenario_id: str, submission: Path) -> dict:
         lower = output["lower"] if "lower" in output else None
         upper = output["upper"] if "upper" in output else None
         fallback = output["fallback"] if "fallback" in output else np.zeros(point.shape, dtype=bool)
+        confidence = output["confidence"].astype(float) if "confidence" in output else None
     label_file = (suite / "scorer-only" / f"{scenario_id}.npz").read_bytes()
     if hashlib.sha256(label_file).hexdigest() != matching["scorer_sha256"]:
         raise ValueError("Scorer targets changed since export")
@@ -117,6 +118,9 @@ def score_submission(suite: Path, scenario_id: str, submission: Path) -> dict:
         target, eligible = labels["target"], labels["eligible"]
     if point.shape != target.shape or np.isinf(point).any() or fallback.shape != target.shape or fallback.dtype != bool:
         raise ValueError("Provide a shape-matched point array and an optional boolean fallback mask")
+    if confidence is not None and (confidence.shape != target.shape
+                                   or not np.isfinite(confidence[np.isfinite(point)]).all()):
+        raise ValueError("Provide finite confidence for every emitted point estimate")
     if lower is not None or upper is not None:
         if (lower is None or upper is None or lower.shape != target.shape or upper.shape != target.shape
                 or np.isinf(lower).any() or np.isinf(upper).any()
@@ -131,6 +135,15 @@ def score_submission(suite: Path, scenario_id: str, submission: Path) -> dict:
         result = {"eligible": int(mask.sum()), "point_scored": int(scored.sum()), "abstained": int((mask & ~scored).sum()),
                   "fallbacks_scored": int((scored & fallback[i]).sum()),
                   "point_mae": float(errors.mean()) if errors.size else None}
+        if confidence is not None:
+            ranked = np.argsort(-confidence[i][scored], kind="stable")
+            result["matched_coverage"] = []
+            for fraction in (.5, .8, 1.):
+                count = int(np.ceil(fraction * result["eligible"]))
+                result["matched_coverage"].append({
+                    "target_fraction": fraction, "required_points": count,
+                    "mae": float(errors[ranked[:count]].mean()) if 0 < count <= len(errors) else None,
+                })
         if lower is not None:
             bounds = mask & np.isfinite(lower[i])
             n = int(bounds.sum())
@@ -173,16 +186,20 @@ def evaluate_export(suite: Path) -> list[dict]:
             latest = np.stack([persistence(channel, level) for channel, level in zip(observed, levels)])
             interpolated = history.copy()
             time = np.arange(observed.shape[1])
+            confidence = np.full_like(observed, -float(len(time)))
             for channel, cells in enumerate(observed.transpose(0, 2, 1)):
                 for cell, values in enumerate(cells):
                     seen = np.isfinite(values)
                     if seen.any():
                         interpolated[channel, :, cell] = np.interp(time, time[seen], values[seen])
+                        before = np.maximum.accumulate(np.where(seen, time, -len(time)))
+                        after = np.minimum.accumulate(np.where(seen, time, 2 * len(time))[::-1])[::-1]
+                        confidence[channel, :, cell] = -np.minimum(time - before, after - time)
             for method, point in (
                 ("historical_median", history), ("persistence", latest), ("linear_interpolation", interpolated),
                 ("observed_only", observed),
             ):
-                np.savez(prediction, point=point)
+                np.savez(prediction, point=point, confidence=confidence)
                 results = score_submission(suite, entry["id"], prediction)
                 cluster = {key: entry[key] for key in ("seed_cluster", "recording_cluster") if key in entry}
                 rows.append({"method": method, **cluster, **results})
