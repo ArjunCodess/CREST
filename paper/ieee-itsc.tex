@@ -9,13 +9,17 @@
 
 \maketitle
 \begin{abstract}
-CREST combines graph-based state reconstruction, sparse vehicle balance, and bounds conditional
-on observation and boundary intervals. On 33 withheld speed values in an I-80 to US-101
-development transfer, graph Huber reconstruction achieved 7.27 km/h mean absolute error (MAE)
-and the tree achieved 8.06. A separate trajectory storage fit became feasible after allowing
-bounded tracking discrepancies. It achieved 6.25 vehicles MAE versus 6.36 for persistence.
-The frozen PeMS protocol requires ten independent evaluation days. Zero days qualified in
-the readiness check.
+Freeway state estimates become harder to interpret when detectors fail together or measured
+crossings conflict with inferred storage. CREST combines graph-based state reconstruction,
+sparse vehicle balance, and linear-program bounds conditional on observation and boundary
+intervals. A development transfer from I-80 to US-101 found a speed mean absolute error (MAE) of
+7.27 km/h for graph Huber reconstruction and 8.06 km/h for the tree comparator on 33 held-out
+values. For flow on the same sample size, a graph recurrent model achieved 727.65 veh/h MAE and
+graph Huber achieved 864.75 veh/h. In a separate trajectory accounting test, strict balance was
+infeasible. Introducing bounded tracking discrepancies made the test feasible and gave a
+missing-storage MAE of 6.25 vehicles against 6.36 for persistence. The proposed PeMS protocol
+specifies an independent field evaluation. The readiness check found zero of the ten required
+eligible days.
 \end{abstract}
 
 \section*{Problem and estimator}
@@ -51,15 +55,6 @@ fit. Its 6.25-vehicle MAE was close to persistence at 6.36. The discrepancies ac
 mismatch between tracked crossings and storage snapshots. They do not measure physical sources
 or sinks.
 
-\section*{Matched development ablations}
-Across four junction seeds and three outage masks per seed, soft storage fits solved all
-twelve cases with or without balance. Hard observation intervals were infeasible in all four
-biased-sensor cases and used the same scored persistence fallback. Narrowing boundary flows
-with training-derived limits reduced mean inlet interval width from 2,454 to 326 vehicles
-across eight feasible interval cases. Both sets of bounds covered the simulated inlet totals
-in those eight cases. The directed-lag tree reduced synthetic speed MAE from 8.65 to
-7.93 km/h but left the measured development speed MAE at 8.06 km/h.
-
 \section*{Planned frozen evaluation}
 The primary outcome is five-minute speed MAE on 30- and 60-minute outages, evaluated against the
 strongest comparator selected on development data. The protocol requires disjoint development
@@ -69,7 +64,8 @@ use paired day-level uncertainty intervals alongside flow and random-mask error 
 before evaluation. Fallback predictions count in the main denominator. The frozen receipt binds
 source content, code, topology, and configuration before execution.
 
-The readiness check has yet to qualify a final cohort for the primary outcome.
+The current development comparisons motivate the study. The corridor-day check has yet to
+qualify a final cohort, so the paper has no frozen result for the primary outcome.
 
 \section*{References}
 [1] Federal Highway Administration. Next Generation Simulation vehicle trajectories and

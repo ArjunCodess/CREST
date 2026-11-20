@@ -14,11 +14,11 @@ An infrastructure warning can give a moving vehicle more time to react to a queu
 weakly localized warnings can reach vehicles that will never encounter it. CREST sends a
 direction, forecast horizon, expiry, and queue-tail location interval. A receiver can check
 availability and the projected position of its probe against the warned intervals. In a
-retrospective replay of nine five-minute blocks from one US-101 recording, the gated method
-reduced false warnings from 9,404 to 136 across 9,639 vehicle-and-forecast-origin pairs at a
-7.5-second delay. It detected only 9 of 235 proxy encounters. At 30 seconds the advisory expired
-before delivery on every pair. The replay identifies a recall failure that limits the
-vehicle-facing utility of this advisory.
+retrospective US-101 trajectory replay with simulated probe loss and communication delay, the
+gated method reduced false warnings from 639 to 18 across 655 evaluated trips relative to an
+ungated warning. It detected none of the 16 proxy encounters. This development result identifies
+a failure mode of the gate and motivates evaluating warning precision at useful encounter
+coverage.
 \end{abstract}
 
 \section*{Advisory and causal replay}
@@ -31,24 +31,31 @@ motion cannot determine whether it receives a warning. The deployment concept is
 the experiment uses replay.
 
 \section*{Development setup}
-The model trained on nine five-minute blocks from two I-80 recordings and tested on nine
-nonoverlapping blocks from one US-101 recording. It forecast two 15-second steps ahead.
-We crossed 15\%, 35\%, and 70\% probe penetration with 0-, 7.5-, and 30-second delivery delays.
-The reference uses contiguous low-speed cells calculated from NGSIM trajectories.
+Training windows came from I-80 trajectories. The US-101 test excerpt spans five minutes,
+aggregated into 15-second intervals. The model predicted two steps ahead. The probe sample used
+35\% penetration and simulated 7.5 seconds of communication delay. The reference is a contiguous
+low-speed proxy from NGSIM trajectories. Consecutive cells below the speed threshold define the
+proxy interval, so the resulting encounter labels measure agreement with that definition.
 
 We compared an infrastructure advisory that requires a fresh, localized interval intersecting
-the projected path, an ungated comparator that thresholds probabilities along that path, and a
-probe-speed rule. A proxy encounter starts outside a queue and ends inside one at the forecast
-horizon. Warnings on pairs without a proxy encounter count as false warnings.
+the projected path, a simpler infrastructure warning that thresholds probabilities along that
+path, and a probe-speed rule. The same slice supplies 655 vehicle-and-forecast-origin pairs,
+reported here as trips. A proxy encounter is a pair whose vehicle starts outside a queue and
+ends inside one at the forecast horizon. A warning on an encounter contributes the time headroom
+at that horizon. Warnings on pairs without a proxy encounter count as false warnings.
 
 \section*{Development results}
-At 35\% penetration and 7.5 seconds of delay, the gated and ungated infrastructure methods
-detected 9 and 235 encounters and produced 136 and 9,404 false warnings, respectively.
-The probe-speed rule detected 55 encounters, gave 3,172 false warnings, and withheld output
-on 6,335 pairs. Median lead time was 22.5 seconds among each method's detections because
-the replay fixes the forecast horizon. At 30 seconds the gated advisory withheld all
-9,639 pairs. The blocks share one test recording, so the counts describe this transfer and
-cannot establish performance across independent recordings.
+The gated infrastructure warning detected 0 of 16 encounters and produced 18 false warnings, or
+0.027 per trip. It emitted no detected encounters from which to calculate lead time. The ungated
+warning detected 16 of 16, with 639 false warnings, or 0.976 per trip, and 22.5 seconds median
+lead time for its detections. The probe-speed rule detected 2 of 16, with 204 false warnings, or
+0.311 per trip, and 22.5 seconds median lead time for those detections. The probe rule withheld
+output on 438 trips in this replay.
+
+The location gate trades away every observed detection in this slice. The result motivates
+inspecting whether constant-speed position projection and predicted queue extent misalign at the
+forecast horizon. A held-out comparison would need multiple recordings and matched encounter
+coverage to support a vehicle-facing benefit.
 
 \section*{References}
 [1] Federal Highway Administration. Next Generation Simulation vehicle trajectories and

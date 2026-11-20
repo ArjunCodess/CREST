@@ -28,9 +28,6 @@ def evaluate_queues(
     outputs = {name: Counter() for name in ("gated_infrastructure", "ungated_infrastructure", "probe_speed")}
     leads: dict[str, list[float]] = {name: [] for name in outputs}
     event_rows = []
-    events = Counter()
-    tail_error_m = []
-    advisory_reasons = Counter()
     probe_at = {}
     if tracks is not None:
         samples = tracks.loc[tracks["global_time"].isin(window.time_ms + window.cadence_ms),
@@ -47,19 +44,6 @@ def evaluate_queues(
         peak = float(prediction.probability.max())
         advisory = queue_advisory(prediction, window.positions_m, now_ms=now, cadence_ms=window.cadence_ms,
                                   direction=direction)
-        advisory_reasons[advisory.reason] += 1
-        onset_eligible = future_available & np.isfinite(speed[index])
-        actual_onset = future_queue & ~truth[index]
-        forecast_onset = prediction.onset_probability >= 0.60
-        events["eligible_cell_origins"] += int(onset_eligible.sum())
-        events["onset_cell_origins"] += int((onset_eligible & actual_onset).sum())
-        events["detected_onsets"] += int((onset_eligible & actual_onset & forecast_onset).sum())
-        events["false_onset_alarms"] += int((onset_eligible & ~actual_onset & forecast_onset).sum())
-        if advisory.tail_interval_m is not None and future_queue.any() and future_available.all():
-            observed_tail = window.positions_m[np.argmax(future_queue)]
-            lower, upper = advisory.tail_interval_m
-            tail_error_m.append(float(abs((lower + upper) / 2 - observed_tail)))
-            events["queue_tail_covered"] += bool(lower <= observed_tail <= upper)
         event_rows.append({
             "origin_ms": prediction.origin_ms, "eligible_cells": int(future_available.sum()),
             "true_queue_cells": int(future_queue.sum()), "peak_queue_probability": peak,
@@ -125,9 +109,6 @@ def evaluate_queues(
             "warning_position_basis": "origin position and speed projected to the forecast horizon",
             "probe_penetration": probe_penetration, "communication_delay_ms": delay,
             "horizon_steps": model.horizon, "event_rows": event_rows, "methods": summary,
-            "onset_and_tail": {**events, "queue_tail_scored": len(tail_error_m),
-                               "queue_tail_mae_m": float(np.mean(tail_error_m)) if tail_error_m else None},
-            "advisory_reasons": dict(advisory_reasons),
             "scope": "detector_proxy" if window.source == "PeMS" else "trajectory_or_simulator_speed_proxy"}
 
 

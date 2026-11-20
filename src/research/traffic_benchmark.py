@@ -137,8 +137,7 @@ class StateBenchmark:
 
 def aggregate(entries: list[dict], reference: str | None = None) -> dict:
     total = defaultdict(lambda: {"eligible": 0, "scored": 0, "abs_error": 0., "fallbacks": 0, "fits": 0,
-                                 "fallback_scored": 0, "seconds": [], "interval_hits": 0, "interval_n": 0,
-                                 "interval_width_sum": 0.})
+                                 "seconds": [], "interval_hits": 0, "interval_n": 0})
     clustered = defaultdict(lambda: [0., 0])
     for row in entries:
         method = row["method"]
@@ -147,14 +146,11 @@ def aggregate(entries: list[dict], reference: str | None = None) -> dict:
             output[key] += row[key]
         output["fits"] += 1
         output["fallbacks"] += row["status"] != "optimal"
-        if row["status"] != "optimal":
-            output["fallback_scored"] += row["scored"]
         if row["seconds"] is not None:
             output["seconds"].append(row["seconds"])
         if row["interval_hits"] is not None:
             output["interval_hits"] += row["interval_hits"]
             output["interval_n"] += row["scored"]
-            output["interval_width_sum"] += row["interval_width"] * row["scored"]
         key = (row["cluster"], method)
         clustered[key][0] += row["abs_error"]
         clustered[key][1] += row["scored"]
@@ -163,8 +159,6 @@ def aggregate(entries: list[dict], reference: str | None = None) -> dict:
         row["abstentions"] = row["eligible"] - row["scored"]
         row["p95_seconds"] = float(np.quantile(row.pop("seconds"), 0.95)) if row["seconds"] else row.pop("seconds") or None
         row["interval_coverage"] = row["interval_hits"] / row["interval_n"] if row["interval_n"] else None
-        width_sum = row.pop("interval_width_sum")
-        row["mean_interval_width"] = width_sum / row["interval_n"] if row["interval_n"] else None
     deltas = []
     if reference is not None:
         for key in sorted({k[0] for k in clustered}):

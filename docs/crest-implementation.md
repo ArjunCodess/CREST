@@ -28,21 +28,6 @@ The shadow process writes `artifacts/crest/shadow.json`, per-window decisions un
 
 The measured command writes `measured-development.json` with two outage replays and, when both recording archives are complete, cross-site development scores and a sampled-trajectory advisory check. The advisory projects the probe's path from its position and speed at issuance. Its later sampled positions are used for scoring. [Packaged development receipt](../research_manuscript/generated/roadmap_development.json)
 
-Run the extended development comparisons with the same local archive.
-
-```powershell
-python -m src.research.roadmap --output artifacts/crest/roadmap-audit operational-validation --available-by-ms 1795168500000
-python -m src.research.roadmap --output artifacts/crest/roadmap-audit ablate
-python -m src.research.roadmap --output artifacts/crest/roadmap-audit demand-transfer
-python -m src.research.roadmap --output artifacts/crest/roadmap-audit advisory-sweep
-```
-
-`operational-validation.json` records a fixed arrival cutoff, source digests, 30- and 60-minute detector blackouts, 15-minute added delays, decision and observation recovery, and a time-blocked detector-proxy queue comparison. The replay scores graph reconstruction and latest-reading persistence on the same observed targets. Recoveries outside the observation window are censored. The replay also measures the effect of late edits on longer measured and synthetic traces. Use `replay --log-dir` to reopen a run from its manifest in `long-event-log`.
-
-The November 20 rerun scored 58 injected fault cases. Incremental replay matched full recomputation for both lookahead settings on the 240- and 241-window measured traces and the 576-window synthetic trace. [Expanded operational validation](../results/crest-roadmap/operational-validation-expanded.json)
-
-`ablations.json` compares matched storage priors with and without balance, narrower inlet and outlet bounds, and hard instead of soft observation handling. It also tests lagged neighbor features at the same tree budget and pairs each synthetic blackout with a random mask of exactly the same size. `demand-transfer.json` evaluates light and surge junction traffic using priors and calibration fitted on nominal-demand chains. `advisory-sweep.json` tests delivery delay and probe penetration on disjoint five-minute blocks from the existing US-101 development recording, with I-80 used for training. These blocks share one evaluation recording.
-
 ## Incremental replay and benchmark exchange
 
 Take the first site's `baseline_manifest` and an outage `time_ms` from the measured report. This command lets a reviewer remove a detector value and see the affected windows, source partition hashes, reconstructed values and recomputation count.
@@ -57,12 +42,7 @@ The benchmark export writes `inputs/`, `scorer-only/`, and a checksummed manifes
 
 ```powershell
 python -m src.research.roadmap score-benchmark --scenario evaluation-241-0 --prediction predictions.npz
-python -m src.research.roadmap verify-benchmark
-python -m src.research.roadmap export-benchmark --source ngsim
-python -m src.research.roadmap verify-benchmark --source ngsim
 ```
-
-The NGSIM export uses complete recordings as split units and publishes derived, one-minute observations without vehicle identifiers. It carries FHWA attribution, the source catalog link, the transformations, and the catalog's CC BY-SA 3.0 license. The measured export omits capacity values because the source does not supply them. Add `--source ngsim` when scoring one of its cases. The verifier checks each participant-input checksum and visibility array and evaluates historical median, persistence and interpolation, with an observed-only submission as an abstention check. The source recordings and synthetic seeds are public, so a blind evaluation requires a fresh evaluator-controlled cohort. [FHWA source and license](https://data.transportation.gov/api/views/8ect-6jqj.json)
 
 ## Freezing the ITSC experiment
 
@@ -78,19 +58,15 @@ Readiness checks completed days using observation availability and the same outa
 
 The freeze records code, configuration, topology and source hashes. Final execution checks them and reserves each evaluation station-day in the local registry, so an overlapping corridor or a subset cannot be used to repeat a consumed cohort. It compares 30- and 60-minute masks with a random-dropout control and reports paired day-level intervals against the comparator selected on calibration data. Each comparison needs ten paired evaluation days to pass its gate.
 
-The November 20 readiness check found zero of ten eligible evaluation days for the candidate dates. The proposed training date also had no archived snapshots. The check used the two development corridors to diagnose archive coverage. A final protocol still needs an untouched evaluation corridor, usable training and calibration dates, and margins derived from development data. The synthetic receipt verifies the freeze and scoring workflow. A learned graph-recurrent imputer is included in the development comparison. The frozen measured run and an independently held trajectory reserve remain open. [Readiness check](../results/crest-roadmap/itsc-readiness.json) · [Synthetic workflow check](../results/crest-roadmap/synthetic-freeze-check.json)
-
-The [roadmap results](../results/crest-roadmap/) include the development and stress-test receipts, the shadow summary, and both participant benchmark archives. The participant archives contain masked inputs, manifests and, for NGSIM, attribution. The local archive retains raw PeMS snapshots and evaluator-only targets.
-
 ## Submission evidence
 
 | Venue | Available evidence | Remaining gate |
 | --- | --- | --- |
-| ITE | Scored injected outage and separate congestion case, with the larger retrospective replay available for context. | Author approval and portal submission. |
-| ACM SIGMOD demo | Exact parity for incremental and full replay after duplicate and out-of-order edits on two 199-window PeMS traces and one 576-window synthetic trace. | Verify the archival overlap rules and assess the demo on a larger archive if claiming a general speedup. |
-| ITS World Congress | 113 prospective polls and 46 injected-fault cases across two corridors. Graph reconstruction scored 5.20 km/h MAE on 372 targets versus 6.58 for persistence. Both methods missed ten queue-proxy cases. | Collect independent operating periods and operator-confirmed incident evidence before advancing a technical paper. |
-| IEEE IV workshop | Sweep across penetration and delay on nine five-minute blocks from a single US-101 recording. The gate detected 9 of 235 proxy encounters at a 7.5-second delay. | A fitting workshop call and useful encounter coverage on independent recordings. |
-| IEEE ITSC | Matched synthetic ablations and measured development transfer, including source-separated queue proxies. The readiness check qualified zero evaluation days. | Freeze development-derived margins and a ten-day cohort on untouched stations. The two development corridors already have exploratory results. Existing NGSIM development recordings also cannot serve as an unseen reserve. |
-| ACM KDD | Synthetic and CC BY-SA 3.0 NGSIM-derived exports, target-isolated scorer, and a synthetic ranking reversal under equal-size random and contiguous masks. | Confirm Cycle 2 and establish generality on additional independent cohorts. |
+| ITE | Scored injected outage, separate congestion window, and a draft abstract. | Author approval and portal submission. |
+| ACM SIGMOD demo | Interactive CLI correction, versioned partitions, and exact parity with full replay. | Repeat the demo on representative longer traces and verify the intellectual and archival overlap rules. |
+| ITS World Congress | Two-corridor retrospective replay and prospective shadow logs with feed availability and capture lag. | Complete the independent multi-period shadow pilot before a Technical Paper. |
+| IEEE IV workshop | Causal advisory messages with expiry, availability and location limits, plus trajectory and simulated-probe reports. | A fitting workshop call and evidence of useful warning performance under its criteria. |
+| IEEE ITSC | Sparse point estimator, conditional LP, baselines and freeze checks. | Collect the held-out cohort and clear the frozen measured gates. |
+| ACM KDD | Synthetic benchmark export, target-isolated scorer and common-mask comparisons. | Confirm Cycle 2, find a redistributable measured release and establish an independently reproducible benchmark finding. |
 
 [Architecture and submission plan](crest-roadmap-2027.md) · [ITE abstract draft](crest-ite-abstract.md)
