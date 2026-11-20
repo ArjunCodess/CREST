@@ -1,5 +1,5 @@
 \documentclass[10pt,letterpaper]{article}
-\usepackage[hmargin=1in,vmargin=0.85in]{geometry}
+\usepackage[hmargin=1in,vmargin=0.75in]{geometry}
 \date{}
 \usepackage{xurl}
 \setlength{\emergencystretch}{2em}
@@ -13,12 +13,11 @@ draft}
 \begin{abstract}
 An operations display can retain a speed estimate after its source feed stops producing current
 readings. A shadow pilot on southbound I-880 and westbound I-10 records feed availability
-separately from the estimate and retains the detector evidence behind each decision. During 52
-observed polling cycles on 19 November 2026 Pacific time, the I-880 corridor was classified
-current in 20 polls and stale in 32. The I-10 corridor was classified current in all 52 polls,
-covering 47 distinct current measurement windows. Capture lag differed between the two feeds.
-The pilot demonstrates how to make delayed data visible to operators and provides a basis for
-evaluating recovery and alert quality across more operating periods.
+separately from the estimate and retains the detector evidence behind each decision. Across
+113 prospective polls spanning 19--20 November 2026 Pacific time, I-880 was current in 26
+polls and I-10 in 87. A separate replay of 46 injected fault cases scored 372 speed targets.
+Graph reconstruction achieved 5.20 km/h mean absolute error, compared with 6.58 km/h for
+latest-reading persistence. Both approaches missed all ten low-speed queue-proxy cases.
 \end{abstract}
 
 \section*{Shadow workflow}
@@ -29,27 +28,27 @@ available for an operator action, and a status for stale feeds, missing feeds, o
 speed values. Per-window decisions can be replayed for review. The shadow system issues no
 traffic-control commands.
 
-\section*{First operating period}
-The I-880 stream was current in 20 of 52 polls and supplied 20 distinct current windows. Its
-capture-lag p95 was 9.4 minutes across those distinct windows. The I-10 stream was current in 52
-of 52 polls and supplied 47 distinct current windows, with a capture-lag p95 of 6.5 minutes.
-Capture lag measures the time from the close of the measurement window to file capture. It
-includes source and collection delays and is distinct from estimator runtime. The two corridors
-were observed on the same Pacific day.
+\section*{Observed availability}
+I-880 contributed 26 distinct current windows, with a capture lag of 9.9 minutes at the
+95th percentile on 19 November. It was stale throughout the observed segment on
+20 November. I-10 contributed 56 distinct current windows on 19 November and 25 on
+20 November, with capture-lag p95 values of 6.4 and 4.4 minutes. Capture lag runs from
+the close of the measurement window to file capture. Two-corridor cycle processing had a
+0.39-second p95 on the pilot host.
 
-In a separate retrospective replay on these corridors, one hidden speed reading per corridor
-triggered a detector inspection recommendation. The persistence and graph-reconstruction
-absolute errors were 1.77 and 1.85 km/h on I-880, and 3.22 and 3.27 km/h on I-10. A separate
-observed low-speed window on I-880 triggered a queue corroboration recommendation. The
-retrospective cases use injected detector loss and selected congestion evidence.
+\section*{Injected fault replay}
+We applied 30- and 60-minute blackouts and separate 15-minute delivery delays to archived
+detector readings. An original reading qualified as a target only when the detector and its
+two neighbors had usable reference speeds. Both methods emitted estimates for all 372 targets.
+Fresh readings returned within the observation window in 24 of 46 cases. The remaining 22
+recovery times are censored. Both methods had zero false queue checks and missed every
+proxy-positive target.
 
 \section*{Operational implications}
-Poll counts and distinct measurement windows describe different aspects of availability.
-Repeated polls can display the same current window, so counting polls alone would overstate
-fresh measurements on I-10. An incident ledger lets a reviewer trace a suggested action back to
-its source and check whether the feed was within its age limit. A multi-period pilot is still
-needed to estimate bad-alert rate, time to recovery, and end-to-end update latency against the
-five-minute input cadence.
+The incident ledger links each action to its source readings and feed age. The retrospective
+results describe two corridors over a short time span and use a detector-derived proxy for
+queues. A longer prospective pilot with operator-confirmed incidents is needed to assess
+whether the workflow improves decisions.
 
 \section*{References}
 [1] Caltrans. Performance Measurement System. \url{https://pems.dot.ca.gov/}
