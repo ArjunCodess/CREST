@@ -1,0 +1,3177 @@
+{
+  "scope": "retrospective_measured_development_and_synthetic_replay",
+  "code_hash": "7b3543781a4fa246",
+  "available_by_ms": 1795181079022,
+  "inputs": [
+    {
+      "source": "PeMS",
+      "site": "D4-880S-401557",
+      "start_ms": 1795108200000,
+      "end_ms": 1795180200000,
+      "topology": [
+        "e133801b93110b90183792d61bafbc17e1fdd7cd2a545cea5f6f62959896601a"
+      ],
+      "source_hashes": [
+        "749f9f885311de572fb77dc9783ee25de9645274917fb4b2e65e0034a8191274",
+        "c3cb240363fed67255c132e814bd12d90562ac77029dcae1fa3fb4cb5cc1efb6",
+        "f566f1617d46727d856ce933574d12301439e42b649784d06c539d83e413108f",
+        "693b4697bfbc58869af9fc1c6e7dcd91b0d88a58d0b707c55483c336e7f6398f",
+        "fe9e1497410a0b8d13d6d2b6aeb13729a554c28c55d5ae1d782f2c67eac07340",
+        "25e567c26fc209ab0466c56355b7e44a4384cf0e0963dd46f61f29f616a6fa7a",
+        "0a252fd4a57bd92b666725de8bda9aa08cc04d10e96e54ca0d45ad262869e96f",
+        "ec4206808d702e1b4c79cd55e76099701e6da8bbd5f7c8aff0572e4db1666587",
+        "12aaefb7732187a5797a4ac9c0b4af44eb5804ebe74adf345fad75dc60784e42",
+        "44818fe8ac4aa68ace61abce37d562093f6a9e681c08435fafa8bc24fefae85d",
+        "e3ee90312e662a549fd2ee03474d660c70e031af185f5e50745f9dd3747357eb",
+        "890a1ad693cb382e52e62f88eae9e60917b7e76b090442d48eedb8a815e6c2a8",
+        "2296bffe6c74312f5fac08520118ef4f20ec1c53529be0c78153fa8e5fd934fb",
+        "b5e07b4abd941b63dbca8b26220454c072b10863317e012c484143d177677c02",
+        "50dd91c36dd8ac3b72f3a6fc8f4ea98e00dd2488c23e09ff1dc3f4732e6f94ed",
+        "c6e3128afae842ddd46d85c15baa3569c53639477e79155a6d11396c1b2d2a02",
+        "d693a28a980853e6bdc73708cce077286785811bf4b8ac9573dbc4f4a63847d7",
+        "46714c3f6028cc18220a78add0adb107afbfd7eccbd6b2183ec73921d2aadd3e",
+        "89b02372beaa1d9e241eb3328c67e742e9a234c3a0c484d566470e935ad08410",
+        "741b2fc3ecc88e4091fd7a325d0bb7d3369eae047c4e440cf451bfb0a7b3c4bf",
+        "5b4f16b7505c5ff7ad7e29cc0ccd46ea9b58ea2f781887c006147c67d8e7ee8a",
+        "63af158e4db2e256791e0014c9248b2768ba5a973a5dd4c5b1171c607fe569be",
+        "3b7545f8847705059ae7c04db4d6bc0a143df4db3ca6179fc6c17230cb6f26f5",
+        "038d9b14b2d12ef0cd2eaded0b1917dce955e9a531feb47a99b758facf95352f",
+        "c4ba835b7304e88f8be0bd0e0d0856665188e41b72f9a55fb207406725974ae5",
+        "af61505fc1f43b8356906b2a9ab536fa390957fc97fee82932586b6d8f294ef3",
+        "2b00ad843c0c3e607bf40e45fc124535fcec612f9421bb0fc05eb366cea10327",
+        "1e98402ff02023f9c30994bd1c34bbf39c9dbef71ce6eaec80ed2614f6c3f5f7",
+        "2a5e07275240b262ec9baf294510d4c6d40246f4de6f6a92396f41133c165523",
+        "37481ee35f1e042a9deef07bedea3068279d62c9d97cad26eb4e93a68dc3005a",
+        "7fa078fddbffe7cffa979d30f1930e50ee84e4dc467c9b28cc89da81d746aecf",
+        "798062d193e90655cad7e0f6ee7fa180ed574e593fd68ff4bf452938da6eba36",
+        "6f813b551eba293b2ec9baa319f90a57208a343d3361051eb73e9abfde5895bc",
+        "9256e520fa54567dae7cb28f2ebb447073320adeb8ac19896e49df45a44ae520",
+        "1fc3a24b6a48d074fe9e8f89743a3fc9bd275e0e5068f7d427f8c2a46d6e1f61",
+        "bb9d41fd71fa723ad027a394aa2fcc69ae3fdf2a0fb4a4f2ee0f4b84f096236f",
+        "f5b1da65adee01e42e21fb480e18ad6b05709adaeb6ff36db5c7da62a900c1eb",
+        "0151310ef29a2fc7b0a1ee5a5695a7e9dbc0564b56065eb708b8423b53c39a68",
+        "08d645e6649cc0b9d42d8e4b80d89bbdba7e34f5b66d0143454f991768503547",
+        "0e50a34d05f49e7969c1a28c870b417bb519f079ce10b340d3bfcbc7bf5b492f",
+        "2088853897c246cbe0215ca0506292a7c5ec48c7629af2d2c87ad5a1f545d33a",
+        "a80cf38b18b10d1b7d8e6208b666c5db4e9bd32e917155c3895677d352d8df24",
+        "092534f21804817bd7120a6ad731c72588c6b38724ed3ab6795baebfb7e9060f",
+        "d5b60ce9a3b678a298d9b96299ee9b70c5016068a2296137be58e8c144eae5f3",
+        "32692fc6a9e070f3ca0670d27c8d90b5aa8cf29df00bf53411d3387725f2a682",
+        "a00e083ccbfeffeb3ae48349baa0b24f29c3a6c7e083c4766893bafbb1201554",
+        "4157e1e132c51a0409e5be9f3e1c6725166c60559bf89f0771366917dbcc9fe5",
+        "5ca01818c42fde00cbf7cd0096de4b30be52ac95890c247bb4033418899534c0",
+        "cdb19f16066b97f913421f9f9040b4f1f3a7d1fd98607801a36c70c1a1d173e0",
+        "25dee37a7a6d29a8349f67e25dff0b089d1e829b4463b98978d26b3f52c16b53",
+        "0b03236778204bdca08cd4fd4f8febfa0aa701de9ec8abef997700fe5e74e8e2",
+        "4cfaa7e18db9c61af0e02990190e414de512a9909203a0118f5ab2d2e3ad5a0d",
+        "66995346fdff3c774951f2f7e8a27a70ff681f7ee989b97f80cc857ae970fd5e",
+        "6e887d6568f6e36e553c94d8812805bd9cdff4a3c67f20c6a200cb454dc3ce9b",
+        "b023ab28924a06305711b44e05e4958ef78f5cfe4545989dbd86ba8ce3567056",
+        "2f82b09887860b2befad7d149aea8c5faf27959a35960d73d9dd7ab0b96df4c6",
+        "d08223951b7080d05866b88ddf319834eb613d9c0afce6449f8f209a16cf2bf7",
+        "91f1bdb1fec0a677b6bb58598c58eea202f59c789869b73025e89f382f97d403",
+        "96a184c33a3fa0fbdce70a9c207dc3f24dc4d6966a5b5f531f224ba9821bd0cd",
+        "a626629987624f7fd8dcfbb4e2927e2f9ed78c4e9b6b0d9cac59b6555a611b2c",
+        "7ee1ed1f5867bb91ea61138649428cbce0053e4833582c421184ca5be0034510",
+        "3c9f45c9df12c80700d5f78a79d1c594f64d0985b6362dec8d78d3f0d58a811c",
+        "ce1c8d4b2986146ded384789442a3d7f0755b7a16a600653688f70c6b77d313a",
+        "4f5dd0ffc94295e698216f0cfb3eb12a72526b93e14d66fa7a1ea1d88bfc444e",
+        "f71a4f3b21682b15500c39dbf7625b030564bbffab57bffa0fcc84a4d7ec44d2",
+        "ef13e59c7cf069a64b9694bf589a5e7237af4cd230b39065174a02e23f226b20",
+        "a7e59d49dd77504fc17d650bb91ccbc271aac460373bcfc348a9dac3255b6e60",
+        "254db4f5f5fdb9538287d8bb61b882ea9e843e922fe16dd1ed453c62c05541f2",
+        "4f371f52d89579c017990d33466967c23527be13fbd46955caaca270576ee15f",
+        "7aaf6003fbb70ac7bdf9e76366c2476ead4cc3ea2e240b394e72efd547329f8c",
+        "3a9629b277b3aa671d36041e92e135bd89a97907d773dce7092c69971a60e66f",
+        "4e3c4538a180942de12e9558aebd5390aa69f434ee711319da6505482020a268",
+        "81b8f6890b97b8dd6b4ec1b8ffae6349cbf1b2e7f4ec9f22672cad6204f6ff3f",
+        "2c4b334921d45345d9769c75e2402bccbd0c38feb2e7a637812726a8240a6dca",
+        "d0253e9a1ddcfc1233fd00765f922cb2717e26ba34590b6c0721c69878a48919",
+        "98b149c1d6af3049745854f4864be96ea1ca580a6036d2d3327a50607f8c4bfb",
+        "3a205db59d82e0e98303ef201ee00fedeab8f4409ca3ab7fbb54044b23aeb7ec",
+        "506fd6cdcc0455601b0ab88847c2dfa34798fad48273ec239db642e9207ad658",
+        "357d7d1bf428ef7c10b77a3cfef5913974fc9c35aa909cb7610fdbec65e15f30",
+        "3db6a394083e6b013250b94d0c1ad56525e8c8f975164c737e28b9bd1156568f",
+        "bb9bfbe8270e35564a04b71f23eecc04fe6cb0eb890c7f9561a56246aba78839",
+        "6b45335d7f4ba284de4cb43022c04ebad6daf6d084e5ec50e1ecb16f83d5e826",
+        "ac9d52fb0ec967918e79f42e70c3e02b396c3cd54c3d76a0680fea1722b1fcc1",
+        "9104b839f0897abbf12bffae14022e06a27e178595c0256fa082478acfb4d330",
+        "e197adaeb74a48e7e7cbb544946f3e9565a3cb29a5eb0130544776ec256cb58f",
+        "8841bacf5090cc7db5030ac5c00f41b3a11fe8817947e8c76db2d3d6cec3d161",
+        "0c033c1804425bf374396537f13fa015a681b05d06ae5dd46ce48cafad70f048",
+        "29982fbf435c68afc7955fdf6885907569baccc5a6f14c4e2ea524a1f48231af",
+        "b8bbfa86571afa2483a59ef8de5bdb9e9b9eb7dd674e05c8c1b27ba4455f80a8",
+        "e1e49d1572bf6d9de5314eae5af6e06e6c65f5fef9d2fecf8fdf233b37cb38e9",
+        "2eb24c75779cc504de2c4c4656c8187d1e4b7e48e7c2fbed368d13db229ead84",
+        "8acb8faaf2325fb7f2d0e853a008ae2c60d3b59a9e254e9990a631860a49a206",
+        "fca2470c187dc1e89af30243a21dce803e1604f4089e4456f3c1ed923a5ba4b0",
+        "0de41bad225efb7f58aad9e2faaf732274f55abb37f6e6a8bc14a7bd678966b0",
+        "d2166b7bb9c67838f86ac616dfc17b0feedc3bf509e0da0f898c1b842b85b26b",
+        "52d4c37bb0efb17555f222792580a7455586bac2e958a6ce92aff14f90d3524a",
+        "3e933d8c7e1e7c5f20fe782525f0bbd864559bc22efbf196aeca12f56a1244f7",
+        "c38f661de2af5bc84111b6054f24f81afbfc494c77ff7560412f3ba151033bb3",
+        "b0ed5a60dc89fda07af6cd417d638c7c52b09f7c1fbc60dda066ff21441231e4",
+        "859aad1fd7c1ad971b9ed5af90bce11bdc82a1b42dc9385dac1b0c6ff082f94f",
+        "eb38cdbe8e4ce103f4c308a230056ff94c495df6539b2a8bec4401a15a866d5e",
+        "53f5d01429407793d88cbf1d2b9b1ea82e4a036975781716eceafa82c997998b",
+        "9ba3e63efb2703063957bbc97a5568e0403af0ac5f401e0317a1229e91919849",
+        "1f70fe7282615be55c865b43f6c756b74c99c32e1ac6e459cbd2286254b6c2e9",
+        "25e076cd7790419a5cb076e10901d327294a968beadb8a4b49544763c1332453",
+        "7d6eb30436bb42dbe54152f99f445496f5654e19ddb687c2335119f844a67d5f",
+        "48d724c5045480d8dbf9a4c80445b3becf67f31d1e50b71bc3e85ed23b732e57",
+        "943552aa6d4c5643b85b80887f3d7dda80c933255f9f10c0b65db75f98875fd4",
+        "db681548016711b975e35a3c16a9b9d402c5871a1c1223078cb9cd8825b5a489",
+        "ae0a8565e0c8a1ea701da8e1a5b94dd0f68ee7b626995ebcdcff29b0467b9549",
+        "3869f0bb93395a0cae9d01df297bc0e4fa07c139c4df35e968eb659df6e685ab",
+        "d3729cdc14c6653b726459cb633355a0900a34a550ca5bda256eedc77c04e9d9",
+        "b3b873a3ba680dc27e61f32b828290b8feb4d7350918b66d72c3961d8684a22e",
+        "0379f61353a2fe36fc0002cfcaeefc0698911b4bbcd9dd8bc4a9413c89acbf71",
+        "c01d2b445e5c66e5b26ef793d99433ccab3fe974d551734482d27fbc3079e3fc",
+        "4dd9c07b76b7001ec631eef3ddcadde3c2b82f8908e3754047b8c5d8f2def394",
+        "2a448e173695317f86a008186bcd84f1915ffb7ab3f806b2748dd338720b3561",
+        "da52f1d9a2108170e0e0b36a3f6f49a1ed830da674e257dacfcc0c4bae03fa42",
+        "a8c26fc1f7788dc6bab72ca20b1c753c755c89f270cf38d12047c6f29c1670c4",
+        "8e0f82c8f83b83de9e8139fdacf2106dbd4804ecc534df1110763cda73ab5da8",
+        "f66392f4ad296a468fbf3d325240e764634e744a646fc446084a65a1c70a8123",
+        "b9537e80b33d7558d0cf7acfa2f3e9567168341d27cd3bd6462a2dd1145d964a",
+        "2827e7f1b197ab2839a4c4ba30290b855abdd5abaf6ee49448106eb034916d57",
+        "2a58f26d941c711a8df642cf648dac15a678642647961ab4509fbb14eea74119",
+        "c153b6fd40e9be4c90c989988f715e33393774459654596f736e175e40348261",
+        "f507ddac77b52740da4283b60d88d5ca3dcfdac092ae718dcbbb1f29fb944d30",
+        "a7700cc6184a56802c7a5b0d47b7f71db63ff5facf8852320abd4f41a886de45",
+        "e7ba690e6ae69cf66c5392ad35ad19a12805579ec21bb12fbc858c05c0ded1be",
+        "d883c6f3f080f1cacad13bd20c8c903e909b86fdcddbf3f917265fc96cc04c26",
+        "6f7371077f78bb52263bc6bf58a591b6facc1cfc302899ff4cafe4db9d06dedb",
+        "70de24a51785e0abb06a7c713d7232789a79aab8e9d94d7998f22392864f914a",
+        "469b27063ef1cd627a954cc741c0d967f5ddff3353fe428b321ba22424e38196",
+        "3854a031f9ebe0a468e16cf63345ab3566b0259a969f061ad70153ec897afbb9",
+        "95a831df2b85a2400776ed2644d9d0c1c80ef231808198f9bb633c475aad8cc3",
+        "b92b37dfb9d214e34374f167660656791e5f29edc5453b6dab6a738d7f1d2560",
+        "ebc20e82ee7c9d1a292654bba3f22dd8d6e4d43e828d19eb8ae69eb6562bd379",
+        "cb953c1e8db771da2af809eda02d60adb44e5b0d88a6c7a03338dc5b2c560485",
+        "6a300bb8e7b9ac585dd7ef2b9380c8c55d58e11b566bfb94ab21636e9b0cc01e",
+        "77a79f4c6336bff1447e7140072b2a831f91752ee3cd8b32c8fcd3b018becce2",
+        "00ad7da2183397ae9f2e04f3fd818f16b839ed511bde9300c8ca349685f84d08",
+        "2439338ab2189aef123dc3d617c3b40460a26f34430e7e81ebee2ea2875ab70b",
+        "2d3c1df94863d9a88197622339c3ec0eaf1cb46cfaa9abf54052a2d714d62ed8",
+        "c8cb4ee94cfa925e243fa6fd7dfb95dee5635294d7f2d2c6fdf78c45724157ce",
+        "233b43070d9ac14581d22ed7459fc7442e42d92bca2a1a7773bc6b1029f61704",
+        "6c83fb04cd42175ff9ed903ef008a59fb49e960bf20ed61a41c19c6714a2120c",
+        "5a68d636a74f82cc3838e8d44c7beede99284c091e0a6c8251a5afc2c8960928",
+        "fb61fbf319aa612b02c1d0a6c89e07b411b9cbc58313c60b1365ef2ae3ec0b1b",
+        "b2cc0849231c599e21d5890f6fe58a5937122bf2e5051f7678301aa85adf0e2c",
+        "2dafa2d17ec0f961382840de61baeeccbf174b731028d9137b1cb3b9b7112856",
+        "3758911635b47f587556acaac6e5ce48318b80bfdaf3ec033d9972252bb52f7e",
+        "8dcbbd5dade9a024a770a54075549ebe01f69081a81c8fb745b2c8a5ffc9a399",
+        "ff0b3807c787c401c57ecfb67cbf4e29ac3ecd6eb78fb22f5d388a6b519c22bf",
+        "3b6bb5d766dec3d006ed6b42f385fda79bc1e60ea6eec3b513707e402d7680e2",
+        "932fb4468877acccb9c990dd431c04a96739fe4d6573d11d0e5a6606082a6792",
+        "fb59011b480ca9e412e656a2b3a37bdbf33ebceb89237669cf34487e02bc22bb",
+        "eaeeb934be4ee7ad30c29d1b9dbed95a0d9d62981bed29b3b7d45c7b4ca28bab",
+        "d723ef5a66e8455a245829ba8add05ecdc0198b6735318d59dbf3a8e24b1a5ff",
+        "5f845b436894d22c4c6d6a78a5773a3ec9ce2f2044f1ccc95439979b71205bdf",
+        "34346125dc3a09f15a65378bf33d74595112d155bfc2babed4c5891375facb5f",
+        "232db8bf9ca4ce269e9af2c135ed57d372c441f62e52474fd5fd9636eeb83ae3",
+        "7ea50384f341575993d75ff4f5daf38a94fe05e785f2ebbbec9f2fe13642919a",
+        "09a8bc0e83ab24aa173446065d986c1bcda47d5bdb995b17932806a17006d40b",
+        "d43522b156ca24d8ba58bd36cf68eaad83a16a04ec771415aaac78a62a41af2e",
+        "7bc8773a77fb14954d4625d32da58f526b6266fb520cefde0ebc38521065e95b",
+        "d468281cb990b316535915da4147d56f6a11f0dd23f490157a48aec21a56f692"
+      ]
+    },
+    {
+      "source": "PeMS",
+      "site": "D7-10W-717258",
+      "start_ms": 1795108500000,
+      "end_ms": 1795180800000,
+      "topology": [
+        "e133801b93110b90183792d61bafbc17e1fdd7cd2a545cea5f6f62959896601a"
+      ],
+      "source_hashes": [
+        "0c1b996ffcfbded592a9258719bc8b1c2184b618faba4b2582b7ef47c7cd03f9",
+        "5c642b43c5922d374f5ccae8d8fddb826223412d96f368e7382173e1c4b0d73c",
+        "38f5c3a4f209c8b9ae6f709faa446f9a958f71924d2b459f372f22281a59c8ea",
+        "0ad6c92121017305ffbbfe07c69e129405e5e1e592ced3aeadcb8a367eb6fc61",
+        "e53e55c49f9d14679fa72087b37af0cfc033f63ef566685707e1373356fd7344",
+        "69d4284a595f38ece30f3cfe9674326061fe570dbae57a0d14235666f32b738e",
+        "28e9e4c3b2e399fd898e70f228184468060618046eb6d844cbdfc16cf27fae14",
+        "2095a439f144230f15d0553f26ffb872535363a877a28fd8d8647c7ec86728b9",
+        "91f5ed4f3f2f007082dc2fdfdbd6c59ff4c160720e22e0fd58ad7149858dd7dc",
+        "93fae60bc913547e9be5bbc3303a26177caa959ff1663f2ce21d36946622bc5e",
+        "382a1ce1ccc4678cbc284507a774c96f371174a2d46126a69159d3e336004667",
+        "20501c4df022e8fc2e3ceb5c6e3c80eb8295a9fbe2e3f4748693d0c3c00f419b",
+        "8796b588997edf4ffab0c97b16f604f7b80a058cfdb10e28ad6f4429ade77a5c",
+        "f6148a32bfe56e44183a79615f85bf9053362d387908d07afbae9e191802fde9",
+        "8187513a2d551aa61602492268b90389f8fa52c48c14509de203c59e24b7c876",
+        "38a5d31072bc3b8d296b1350d94f56e2ea85946870bffb824a8a1c9d020fb10e",
+        "f762eba648ccf5ad2e605078c9ddcbc6e2b98720c8ad9adff766ee7ce485a5be",
+        "ce8745795913a2b439c22d33d0f3ce21e071a35fffb6e293ed758d4c2388ca3d",
+        "edd5287533ed39f756d6c05d776c0d936716b367df5fbe4c0a39efc9bb83c331",
+        "b108946da8c4ea2f761778de91999d6e9a490b62d05ba9dfeb14fc279b776ed2",
+        "3063b8f9bfcb154ec5fe8bb383cda3a886107e4af3e131039e42455eb8762bce",
+        "ec4fddcebbc54ee6769640ce084282a6c758817a6b28b51a420b21606b16acb3",
+        "532bd2138fc4e7cade15dc247a4c784499e98efdab1e4c7be69e7eb7a9ee3f69",
+        "934112e8364d061305f75534911e81dc0da45f280266411d3f6542092e2a3952",
+        "bb8e3142f9c32be83ca2df3f7423bd16266ef8ad64a66fd6e5c1f0e89d909625",
+        "ab924f67f6c341746e0c5eabc888550e7dee059b76618ab83e97ba7c0166a705",
+        "65f395133c308c9412c1f2ef1283fa11a3ea726608a6e382f9e9bba2b3710fcc",
+        "76fc0cf19304c417680f4ecb90644c9690106066ee8f23adbb5c7036dadd0a87",
+        "f79ab5617abd81090fdf44e42ecbae9a7af9eef7b19b1129f305b3e9b6630dfb",
+        "fd56422130d79a718c816b5cbb7559602acf7fceb362a9037ff4c333897ed5b9",
+        "f986e3bf69e6bd9fef91920864cb3ea98fa7692b16e97da3402fbf0cf5720670",
+        "6b9fe72480ac526045902c9da27503c277089516f7662c6f9c0fd9f652e89772",
+        "126904af5299f1ed02fc2d6a804eb22b40b25e7586d75c0eb32d92af522f13e4",
+        "6c6f5b620a35dbbd2546d35914a556bdb77193aea26d0216b4d14d6319671e9e",
+        "b21c3a2d4889a53df9e9fef1337d5b9f981bfd034ecc868e3cd8fc78b1ffe88d",
+        "4c605f0a8a717bb0da0d48c6c1159e92312e5488b49288e1801429e7bb1a416a",
+        "112d8708123e1e688ce52bbe6eca5db7b0575c19592e698358e7e705b1b9802c",
+        "0f9c9dd6a1ca79bdea61146aa331960440ea7538b14a66bbbdf1f3f3b4e73384",
+        "add483b99a9356ec9ff6e14f6c0cbf0da4a74f0fc0f880c88ef2e1598bbd3424",
+        "1f388069669dfd42a4d3339904aa7b65dd817e0e8af0c0a76748625a77192199",
+        "144f08ca28ebc1f1b90f675c41089b4710e974d0532636e81ead32f3abff1009",
+        "fba8d023888ea019c2dac565224d3ed395dbf02097aebd4d76bebdb0569d1ffd",
+        "725a9f8baa5490200041651f4b1f12ed4bb1b9f5048865691689b29512610c98",
+        "4ef8de4b05c41ae7996aa6c6c4ef1ded7f60b0ca7e2746d7c4ef33b041bbfd64",
+        "0776c85332202fb8ac5ad5500b76c1437103333cc06dabfb67341222ecf3214a",
+        "e93ec5a8eb977ea068da1330d44ac152e9ab288a8838bfb7105d14a09cb8ae55",
+        "9c077a091d5b12baf344c9c9dcf1933212270d1ef13f85448cc8960e8379a61e",
+        "aa3b5c6e9daa83097c24cbcc7cd6e61f210d9201d9dbb934007e774575545a6f",
+        "87f7b2a5fb61a1f23450f77000dcee9df34d53fad1f5a3c11cf77e1e24007a75",
+        "5e197879cb000e2e1b23a1d404b00f07a543c2e8adea1bc28d65931d7139f516",
+        "53a0703c971f85742cc39d30f96b1d96dc2d0862decdd504bedbec7d81b187d6",
+        "e4776e96dfc2f11d1308ff86e783636be972dd6c669d61c3961d7d6490b4c10b",
+        "0c406e4f6b883ead2fbc605c23407f081c7aa5929ca297fd6bd33f88840e6544",
+        "eb966e47f71d0d525bf53366f7254616059478b69f7c7433a3cd23e665da3f58",
+        "ceb84cd3b6e9f82a36932ae5f0879e77dc85eb0c68d5149cc100d170fe1c4c7a",
+        "5f99c2f68c2546e053b1e744bfe0889e11fe34ebc3693789c9c6e8e914838dd2",
+        "bd59344d4433e4f866ed55dc5c1e4636482a226664f55ed364cfe8930a4d8566",
+        "8a17be675ea0e570d99d2506eda824e73bea8a631e13cd17790b2bf73bc91a8d",
+        "f92f29f6975d32a23ba3244a4c0995dc1861f7d6e567b64cf25e47f13b7481cc",
+        "94b85a6aab2e93816ee84a2def31c1e992c7a015badd9d00f4624ca64ad8be3c",
+        "4b2fd52c772d82efc57817381812c4ea53b50fffaf67e971837422903cc51455",
+        "2e3d3154e787fed6da281c1d47e3715f990a26f631a70fc9d3d421a97152eee2",
+        "941d1cfe8de76c232164b65f9aed92cafe81dbc172f2b8b75cf00d160e81ea18",
+        "6451b43a9132c250a7c3c0fbd4d6b58159e6037aa68097c14f3610514f6e1777",
+        "b5cde9b2f561e5083afa1c651b310aadd4fd6c932b65377d9abe34a790ecc747",
+        "9a031fa253716a805f3c980505c9835bdf2e36817de651aceb9e4c79982f1be1",
+        "7e4cc8bf9f1ef516d37f1f022ed8af6dddeab0405d1c1c1c7926ff1a08fd8e3b",
+        "71f72cba6a02426ad699255597cc49d2ae8e0e4bf2cc1e52abc99294ba405956",
+        "b392b0a10bd52deae2c58cf6f3d0fbb12ffc02fa7423220da35176d4749719a9",
+        "b055675ba6d603e413fb5d5aeff2e42d5e37fd146fe0f59c272f8be91e37028e",
+        "b9aeab3e9e995b163fd28fb1dab23f8a05b37067e4ff51787667a60d36181445",
+        "edb717d25ac69d1504d70f584c74ca08db6f7dd622ee2c8b12a6de7da17063f9",
+        "4aea597a6e800cf0e6719101caebba36adb3c3f8cf68c2adf64cf63b76ed7778",
+        "a071210c1a068a177e8f50393130089a7b49554d8fb4565072107a3c7f5334fa",
+        "5b8ef177bd0c89906550f220f079d765b49f2ac4784d865d55bb95f21d173f1e",
+        "a73798143439ab040fec213b1a0a583933c0a6806a7ae260d7086a8ad9b83c94",
+        "038a0aa82a08779766bb48fb8efa168de855d02fe9c5e48f8ad97c8e8a755bb2",
+        "24f0f4f40d93150be18c9344b10b1911818aa96f0db1b7b25ab6a0d86ff0d84a",
+        "c1ccc005db961335360e40f6e16280f661a38e8c9e5464f6cdb357e00442e211",
+        "2e7b3104f0128a10e67895aa78a29d9e3b6decce95d17f400e05c6bbb1f52341",
+        "549a80354dbcddaca6369d2dd915b894b504e436e50c1ae10d318a302c726411",
+        "1f44fa97fdebf5056572145a17edd83b17dd71e0a19ccb005920d463161d0509",
+        "f8573c224ab6b52ff409e0c73ccb61c32e0d5ad54c9fe1327b945e9234f1f76a",
+        "931f39a9e814521082a5cb968e2d513a1d06e17003030f4825515d140a8a5798",
+        "00e39bb34f27c9bc2433d078d087fef323a3bd64f718ba19bd9f4dbb91e054d9",
+        "c2426c178d19e02b1cfb32f143ae5b1dc77e225e3610d82af6f2e78d0131d59d",
+        "8f6c9b55c635387b9bd36741780b10c8cedee19444c8abb41fadcc4b350a1188",
+        "75801cbc5adf1075dca86f64be3a51de73dd679f99abb9f89ecd09897b51eeae",
+        "d04bbf919a49910f7a56c1ea65709369798db4802746f88134b9134098c4910e",
+        "8c33d30622030c55ea16876b0f2e2657dcdcf240e8b1f43bf6ffcd4ba3d2e5c5",
+        "2c6ec70b8a60f234a5980d79c48c7059a990c4c4b5ad655709c678061e0151f0",
+        "5443173cb28812651c5472f20e0b4ea80173249e4cde8e612fad9243c69b9b46",
+        "16262c2e946d2e0e5eadefc61b56496e5b788015bdb29ff9bdae50c12d941703",
+        "b3e97bc177e7f7e1a6a9a9ab6a0e402acab60807b71fe07ca92d4fa96b4170ad",
+        "3d24df99774bc5f7cfe3ca3e836a782c451acd114da89c2545396f8e530b24d7",
+        "718495c1b4f7ab6dfcf1ee975aa6aefa44c28e3f21124a57768d0022272b9d9c",
+        "144023ac6c75f54d4058b0ff0be4322c3c05bd2facc0da891a7160c130ae0ff8",
+        "b33c0e4aafc5e6251c0ec552abc39312a52e5b5540db6e789948365a8a8df8b8",
+        "39b512930db208397acaeb87228c56c8f24af3b7b0fd0cdf1fbf18e8e3b9293a",
+        "e4b2c257e6868d2d7fa1a0c9e31b33bbf1fde7f79c48bce5f73a7d18a5d82aa6",
+        "5163119bdfbb4be3c99d6e8b2410552ecb344fff5f1150e9c844fd449cb5900f",
+        "86eee1f3a7f974fdd36a70a1c916bd8690a79f65766174e609ffbd0ce922b210",
+        "05e4e67094f01622923440aa4a21beae7eb3b5e44381bbbef7cfa49cfbef0ddc",
+        "6be60a0cbb6b7ed71e2abaf8eda739a0a4fbbb06e43c4a1b10a8a70c79c8bb6b",
+        "743b149b63a7a910d09d5cb3c149d4cf99150556b50ed96aab61f952484e1fbd",
+        "ca090d8b62e34d10147f7475a0ad4e8d88f2b4d36dc3de2c4f5d5764e7a2b8f0",
+        "56208d363fab31c92a41782fa06087d3e0d7db69cb98dc8dc538a60a7b068df8",
+        "7c08e7d73898a897b69d912cf54695a150999aff804b15aed4ea1a3c298aca8c",
+        "c570b1c99f45160552a03e656a6adcd5812c343b649e097ee2d7100d4c3dacfa",
+        "6236de0e40122d3513dd1d5d7145cd53a55196d2706cdbb268fdce6b7c2e7949",
+        "d068d4309ed8a8907e0fb8a29488fc788e896e69f7a43bab1d5c50f95cd1153d",
+        "287084f23c2c6feb23e108287139ed83b85c9daba6f7318539761f7ec0d5e56a",
+        "d255ab2931af723951f90c9b1f5f1982f11a6d45071dde6d03e6bd5af869b600",
+        "c3fb76e497529a48fcfe14c62705ad9a29e7d3b4e5ef59e9ef23419817164f0a",
+        "520b4b7f4793d84600226150d993931e0491d27b426f0ac7c8145e6f421a92df",
+        "00875542441a1a10d9addcfe44ae2e2fdbc3800bc176149fea8c1dbeeefe52e7",
+        "62ce94f5ff75b5cc7bf004b0c08c3fa31b09dad1adba8c335cbeadc4d633a480",
+        "26771dee06715c6c18f097364a164d1393a3a9ce70084e069f5c63d5ccb5c709",
+        "cce5e26ef6d4a1e2076cad8bdd9dedb9097a61ae4c4e258892c1e9dc7d882a98",
+        "b30f17ceedc365f94803913e432dd208f1f58665122a3bfa7eac0d28a2f904be",
+        "951748e758281af923b5a12832ffad378a1430c4926b7f70e5dfdd97faa90229",
+        "4683d5935efed1c6fa535d20f4e3e1200722005bb5364608ec1b3c7bd4a0a7ff",
+        "696acbeb23b9f71ef0abc7f2ceb608533e9fbbcd43fb5945db6fdb76e19411fe",
+        "fcc36b71a74c12ed2611fb6c510b6d7ab9e2ce111f4a8c7d0ba3041c468358d3",
+        "bf00bce51373480ee531c693dee80333849bf7b673f15b8770612f10647cad71",
+        "c4369abc930d154a1c25d924c8fb36d2df48ea16c5189564d9b2443adf1e00e9",
+        "e33728a7a08490f8fcbee3412ffebe9b4028d43fed51ba25101c7cd3a297e7f1",
+        "c76a0327405466d934ec634929a42b185a2ab71f5040f867443eb54be3139e42",
+        "4f90e55f6e5101abcf4cca0b3cece27dd38ca4b6ff0cb27cf95c948237c85f69",
+        "74aca6e04f39cbb865bf913637dc9d1d916fb680cfd9e845fe71a8eb68c2058e",
+        "21877f9f33ded1012c76b36e1579bc7bbd9d2c2ed96fb4c9f770278f47ee16b3",
+        "6a99a9aab30625fff7bd4f5fab7dc08439b625aeb392ae48e05aa29cbd23721e",
+        "9e3b4c08141c0d70dca924069df913716c6f522e8d43bee84753a2a49c7e6b37",
+        "28e03436eaec810564c29a4c2e251e2e2a5079d9866c2d1d1c36d6b19a113594",
+        "1a6b711c679164b4c3bc51ae0125e9f952d3eeba4f365b32a6797ed37dddd485",
+        "fac153259f2f3d98cf4e425b93f271666f6e5ccbaa6dbb1245c9d8cd766ffcb2",
+        "e011462735b57ed71beafbea3f20c4c96eaa63bd75db5e862c0c1cba5ca87f5a",
+        "511aadd42cc2fb788f58995671b3013ea011da6d72e1b929ee2e49e16588fb91",
+        "87a80f8215a685ce001ef8ce0f490d92f6aa71dd27ab8a13ca002bf4dc60ebb0",
+        "ac19148cde9e016d16faf8d02a4e8b8ed5d8cf4343534d082ef0060f7ac824aa",
+        "12340e8392005ee079d385b775f911379aaeaa75f075c3c3857d62fc9a257943",
+        "f3de158a61a3d86ed031845a19d155d509baeca210a3f47b92d0b828f4c3e0aa",
+        "915bc3f3a9979e4fab9f8bd928860e2c4c9ceb9d425f0aee81352a2ad24747cd",
+        "5df8c2a866f20821ede34deefaa10f6d016588d3f55979894b5dc0347d9b3374",
+        "89c554c4553ea5cdbe921121e4c101f3b8dab8ca6bd1b77a9eaa09b8fbc6928b",
+        "0ef11768e82aad56e83fcfb48e420e9c97e5d4fcd251641ca2d9ba7b52344458",
+        "d20fd7a613defc42b3d706af1976a9594f6eba8caf694e96b069ddfb168db11d",
+        "a0db4433794809fef2c4744bb1027cdb0cb7c7ce5e327d592e7b7f0c78fc79a4",
+        "4623a6307ea7c882fb8b746aa2e0b1a8d8599ef6eb5ecd728d258019a382f06b",
+        "f09453c3c0867deef858a6bca269b9f6a5fca6094408059af2ff8b0fb97fe58a",
+        "2958eda858f7aeef6139aa8486dc50f92172e6c1c0f91a6bc42f22bf5576c245",
+        "62cf332035d665e8a5aabf3555a781fb9f9609cea1c4693a064aa884cfa96a0b",
+        "7d2c63f9874a3ee248cd2cba3e5ff990ebb0e1c848360fe541b2e6a999474703",
+        "4af7106dad757c15621391ae9842e09e2adf94ffdc3571e7ae1bf101f0b9f69a",
+        "3f6fe23160a672181a7b21f0d680bec6a257af3b0d0355c1f10c6ad05993ff09",
+        "e8ace3389c6d086df07c222b991f1250e4141e9f31a9463b5f64fd6b5cc8b8c0",
+        "c38b66a61160410bc7321ed036ea684b66a435a6ccffd0de97ec11d17ccb6e15",
+        "1f77921d75b8662c14b9ed26198ca7e82789202460ee1f825a2930820e2391a0",
+        "babe7b31e030e3cc7f9770a96219398d8d8c71bb3fb5983f8b3864b5ac2d81a4",
+        "5266c4fb68872bd3a7f41565ccfb1c9779fa379b07374110035b960f04f5b840",
+        "42f48dee9a447f145355edb6e69c6a05eca14630a357b755281c16e824ceaecf",
+        "3d5a5622ad5b7109d8483576162aaaa55ddd664e77f67b2c5b737286a35ca26a",
+        "0c78b66fff1c960020e89cc47ae6096f1bc80b504c5d8d3bf599f1f62e98b73c",
+        "38dff73f53be4c496f804653b0ee1e608dda093eb9de5bf322999c243ed9ba37",
+        "75d78e14d0e46f97a6a1a0233cc83c4ec5225354582595d000a61904ef28856c"
+      ]
+    }
+  ],
+  "outages": [
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795145100000,
+      "site": "D4-880S-401557",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 21.202218891493004,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 26.23230719999995,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795145100000,
+      "site": "D4-880S-401557",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 18.5455558952999,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 22.53081599999996,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795147800000,
+      "site": "D4-880S-401557",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 13.779574303506394,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 16.737177600000038,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795147800000,
+      "site": "D4-880S-401557",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 14.127972853942723,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 17.219980800000016,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795150500000,
+      "site": "D4-880S-401557",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 10.704129503275311,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 10.621670400000014,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795150500000,
+      "site": "D4-880S-401557",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 9.778984888140172,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 9.33419520000001,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795153200000,
+      "site": "D4-880S-401557",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 10.173302526603479,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 9.816998400000003,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795153200000,
+      "site": "D4-880S-401557",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 9.173101766124091,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 10.138867199999979,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795146000000,
+      "site": "D4-880S-401557",
+      "fault": "blackout",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 55.41089583577097,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 74.83449599999989,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 1
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795146000000,
+      "site": "D4-880S-401557",
+      "fault": "delay",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 33.70197573760166,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 44.578828799999954,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795150500000,
+      "site": "D4-880S-401557",
+      "fault": "blackout",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 27.678558469752033,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 28.00258560000006,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 1
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795150500000,
+      "site": "D4-880S-401557",
+      "fault": "delay",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 17.293869215340592,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 15.449702399999964,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795166100000,
+      "site": "D4-880S-401557",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 3.365841034916116,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 3.057753599999984,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795166100000,
+      "site": "D4-880S-401557",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 3.8254209895597313,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 3.7014911999999924,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795168800000,
+      "site": "D4-880S-401557",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 7.129231833100576,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 9.012326399999992,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795168800000,
+      "site": "D4-880S-401557",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 6.264290236733544,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 6.920179199999978,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795167900000,
+      "site": "D4-880S-401557",
+      "fault": "blackout",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 10.882845370392715,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 9.495129600000041,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 1
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795167900000,
+      "site": "D4-880S-401557",
+      "fault": "delay",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 9.059754133495147,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 9.495129600000027,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795113000000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 83.9836679691034,
+          "queue_proxy": 3,
+          "false_queue_checks": 0,
+          "missed_queues": 3,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 117.48211199999999,
+          "queue_proxy": 3,
+          "false_queue_checks": 0,
+          "missed_queues": 3,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795113000000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 54.24643138123314,
+          "queue_proxy": 3,
+          "false_queue_checks": 0,
+          "missed_queues": 3,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 75.3172992,
+          "queue_proxy": 3,
+          "false_queue_checks": 0,
+          "missed_queues": 3,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795137300000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 150.25137218183386,
+          "queue_proxy": 1,
+          "false_queue_checks": 0,
+          "missed_queues": 1,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 205.0304256000001,
+          "queue_proxy": 1,
+          "false_queue_checks": 0,
+          "missed_queues": 1,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795137300000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 147.23844944742177,
+          "queue_proxy": 1,
+          "false_queue_checks": 0,
+          "missed_queues": 1,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 188.61511680000007,
+          "queue_proxy": 1,
+          "false_queue_checks": 0,
+          "missed_queues": 1,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795140000000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 5,
+        "inspect_detector": 1
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 47.44467620860783,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 52.94741759999998,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795140000000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 5,
+        "inspect_detector": 1
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 43.34384679132705,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 47.15377919999999,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795142700000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 600000,
+      "decision_recovery_ms": {
+        "triage_graph": 600000,
+        "latest_reading": 600000
+      },
+      "actions": {
+        "inspect_detector": 4,
+        "insufficient_evidence": 2
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 9.920230173159538,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 11.909145599999974,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795142700000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 600000,
+      "decision_recovery_ms": {
+        "triage_graph": 600000,
+        "latest_reading": 600000
+      },
+      "actions": {
+        "inspect_detector": 4,
+        "insufficient_evidence": 2
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 8.3284391263945,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 9.173260799999966,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795145400000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 11.483493229922274,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 12.07007999999999,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795145400000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 14.985643789149549,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 18.668390399999964,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795148100000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 13.316541360635,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 17.05904640000007,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795148100000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 15.24875960574154,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 18.346521600000003,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795150800000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 14.374859290020751,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 18.82932479999998,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795150800000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 13.03213516676584,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 16.898111999999998,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795153500000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 34.86614989975138,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 46.83191039999997,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795153500000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 25.28190917207027,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 33.47435519999999,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795156200000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 25.896940145776128,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 28.163519999999963,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795156200000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "insufficient_evidence": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 36.766256541312984,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 43.29135359999998,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795158900000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "insufficient_evidence": 4,
+        "inspect_detector": 2
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 26.095906123833856,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 26.715110399999986,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795158900000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "insufficient_evidence": 4,
+        "inspect_detector": 2
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 28.981213197342385,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 30.738470399999983,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795137300000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 900000,
+      "decision_recovery_ms": {
+        "triage_graph": 900000,
+        "latest_reading": 900000
+      },
+      "actions": {
+        "insufficient_evidence": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 198.73898320677523,
+          "queue_proxy": 1,
+          "false_queue_checks": 0,
+          "missed_queues": 1,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 277.7727744000001,
+          "queue_proxy": 1,
+          "false_queue_checks": 0,
+          "missed_queues": 1,
+          "fallbacks": 1
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795137300000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 900000,
+      "decision_recovery_ms": {
+        "triage_graph": 900000,
+        "latest_reading": 900000
+      },
+      "actions": {
+        "insufficient_evidence": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 252.95037852187718,
+          "queue_proxy": 1,
+          "false_queue_checks": 0,
+          "missed_queues": 1,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 312.6955392,
+          "queue_proxy": 1,
+          "false_queue_checks": 0,
+          "missed_queues": 1,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795141800000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "insufficient_evidence": 6,
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 18.980367512777974,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 27.03697920000006,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 1
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795141800000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "insufficient_evidence": 6,
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 17.858403780778957,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 21.243340800000027,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795146300000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 21.978495686994123,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 25.58856959999997,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 1
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795146300000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 33.25901673073865,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 40.39453439999993,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795150800000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "inspect_detector": 9,
+        "insufficient_evidence": 3
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 29.402409085869138,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 36.371174399999944,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 1
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795150800000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "inspect_detector": 9,
+        "insufficient_evidence": 3
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 29.59124358331495,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 37.98051839999998,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795155300000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 900000,
+      "decision_recovery_ms": {
+        "triage_graph": 900000,
+        "latest_reading": 900000
+      },
+      "actions": {
+        "insufficient_evidence": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 58.59036805966949,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 71.6158080000002,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 1
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-19",
+      "start_ms": 1795155300000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 900000,
+      "decision_recovery_ms": {
+        "triage_graph": 900000,
+        "latest_reading": 900000
+      },
+      "actions": {
+        "insufficient_evidence": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 65.58682264406082,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 79.82346240000003,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795163400000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 33.9479012306919,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 49.40686079999993,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795163400000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 23.533418953587457,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 30.255667199999976,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795166100000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 23.876851104514742,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 24.6229632,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795166100000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 29.126917340641356,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 36.049305600000025,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795168800000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 26.451078374580163,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 38.946124800000035,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795168800000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 30.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 6
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 19.198309197740812,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 6,
+          "scored": 6,
+          "abs_error_kmh": 26.232307200000065,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795163400000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 49.89681707459097,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 69.28225919999994,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 1
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795163400000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": 300000,
+      "decision_recovery_ms": {
+        "triage_graph": 300000,
+        "latest_reading": 300000
+      },
+      "actions": {
+        "inspect_detector": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 54.141856770937565,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 64.37376,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795167900000,
+      "site": "D7-10W-717258",
+      "fault": "blackout",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 0,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "inspect_detector": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 51.99591672772095,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 71.29393919999993,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 1
+        }
+      }
+    },
+    {
+      "day_pacific": "2026-11-20",
+      "start_ms": 1795167900000,
+      "site": "D7-10W-717258",
+      "fault": "delay",
+      "fault_minutes": 60.0,
+      "added_delay_ms": 900000,
+      "fresh_reading_recovery_ms": null,
+      "decision_recovery_ms": {
+        "triage_graph": null,
+        "latest_reading": null
+      },
+      "actions": {
+        "inspect_detector": 12
+      },
+      "methods": {
+        "triage_graph": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 47.93424745063773,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        },
+        "latest_reading": {
+          "eligible": 12,
+          "scored": 12,
+          "abs_error_kmh": 57.29264640000005,
+          "queue_proxy": 0,
+          "false_queue_checks": 0,
+          "missed_queues": 0,
+          "fallbacks": 0
+        }
+      }
+    }
+  ],
+  "detector_queue_transfer": {
+    "status": "scored",
+    "label": "detector_low_speed_proxy",
+    "processing_lag_ms": 300000,
+    "training": {
+      "site": "D4-880S-401557",
+      "start_ms": 1795108200000,
+      "stop_ms": 1795161300000
+    },
+    "evaluation": {
+      "site": "D7-10W-717258",
+      "start_ms": 1795161600000,
+      "stop_ms": 1795180500000
+    },
+    "site": "D7-10W-717258",
+    "source": "PeMS",
+    "probe_model": "simulated_one_cell_advance",
+    "warning_position_basis": "origin position and speed projected to the forecast horizon",
+    "probe_penetration": 0.35,
+    "communication_delay_ms": 150000,
+    "horizon_steps": 3,
+    "event_rows": [
+      {
+        "origin_ms": 1795162800000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795163100000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795163400000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795163700000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795164000000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795164300000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795164600000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795164900000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795165200000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795165500000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795165800000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795166100000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795166400000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795166700000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795167000000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795167300000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795167600000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795167900000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795168200000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795168500000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795168800000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795169100000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795169400000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795169700000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795170000000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795170300000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795170600000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795170900000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795171200000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795171500000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795171800000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795172100000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795172400000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795172700000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795173000000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795173300000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795173600000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795173900000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795174200000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795174500000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795174800000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795175100000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795175400000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795175700000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795176000000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795176300000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795176600000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795176900000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795177200000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795177500000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795177800000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795178100000,
+        "eligible_cells": 0,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795178400000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795178700000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795179000000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795179300000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795179600000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795179900000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      },
+      {
+        "origin_ms": 1795180200000,
+        "eligible_cells": 7,
+        "true_queue_cells": 0,
+        "peak_queue_probability": 0.0,
+        "true_onset_cells": 0,
+        "forecast_onset_cells": 0,
+        "advisory_reason": "no_confident_queue"
+      }
+    ],
+    "methods": {
+      "gated_infrastructure": {
+        "trips": 190,
+        "encounters": 0,
+        "withheld": 0,
+        "false_warnings": 0,
+        "detected_encounters": 0,
+        "false_warnings_per_trip": 0.0,
+        "median_lead_seconds": null
+      },
+      "ungated_infrastructure": {
+        "trips": 190,
+        "encounters": 0,
+        "withheld": 0,
+        "false_warnings": 0,
+        "detected_encounters": 0,
+        "false_warnings_per_trip": 0.0,
+        "median_lead_seconds": null
+      },
+      "probe_speed": {
+        "trips": 190,
+        "encounters": 0,
+        "withheld": 124,
+        "false_warnings": 0,
+        "detected_encounters": 0,
+        "false_warnings_per_trip": 0.0,
+        "median_lead_seconds": null
+      }
+    },
+    "onset_and_tail": {
+      "eligible_cell_origins": 266,
+      "onset_cell_origins": 0,
+      "detected_onsets": 0,
+      "false_onset_alarms": 0,
+      "queue_tail_scored": 0,
+      "queue_tail_mae_m": null
+    },
+    "advisory_reasons": {
+      "no_confident_queue": 59
+    },
+    "scope": "detector_proxy"
+  },
+  "replay": [
+    {
+      "site": "D4-880S-401557",
+      "source": "PeMS",
+      "windows": 240,
+      "lookahead": 0,
+      "baseline_manifest": "2ad6e495554ed78f9c808a976c13baa7b7e3bd11c36713881666a432eb53f88e",
+      "corrected_manifest": "1ba311b63dc140ba531847fe002c112800254d43c298853e09a8fbe0a3f77123",
+      "edited_times_ms": [
+        1795162500000,
+        1795137600000
+      ],
+      "recomputed": 8,
+      "unchanged": 232,
+      "matches_full": true,
+      "independent_of_edit_order": true,
+      "duplicate_idempotent": true,
+      "cold_full_seconds": 2.634364800000185,
+      "full_seconds": 1.8902201999999306,
+      "incremental_seconds": 0.8173727000003055
+    },
+    {
+      "site": "D4-880S-401557",
+      "source": "PeMS",
+      "windows": 240,
+      "lookahead": 2,
+      "baseline_manifest": "18cd7a6d6b3910a73716407220c18a2c7cff6063c5cbd73e74d1f570e30d5d39",
+      "corrected_manifest": "e0e969b7eeebd95a840d663866d2044a0ac9c31bd19a8c954f6816655e1dc8c7",
+      "edited_times_ms": [
+        1795162500000,
+        1795137600000
+      ],
+      "recomputed": 12,
+      "unchanged": 228,
+      "matches_full": true,
+      "independent_of_edit_order": true,
+      "duplicate_idempotent": true,
+      "cold_full_seconds": 2.110574899999847,
+      "full_seconds": 1.8976878000003126,
+      "incremental_seconds": 0.854349899999761
+    },
+    {
+      "site": "D7-10W-717258",
+      "source": "PeMS",
+      "windows": 241,
+      "lookahead": 0,
+      "baseline_manifest": "27324d78301fdabb144b08f1491047ecf439437fe9c1ae88ed8be8dbf88aba3e",
+      "corrected_manifest": "f1d6248dc260465f20db373933f508d55a49cf41c08f2457bbd6def7b263bcef",
+      "edited_times_ms": [
+        1795162800000,
+        1795137900000
+      ],
+      "recomputed": 8,
+      "unchanged": 233,
+      "matches_full": true,
+      "independent_of_edit_order": true,
+      "duplicate_idempotent": true,
+      "cold_full_seconds": 2.6554525999999896,
+      "full_seconds": 2.002944199999547,
+      "incremental_seconds": 1.0388731000002736
+    },
+    {
+      "site": "D7-10W-717258",
+      "source": "PeMS",
+      "windows": 241,
+      "lookahead": 2,
+      "baseline_manifest": "cf86ba8ad33bc5795da5c20201926e15b04fcbab51e6f239a01b0579740a68ed",
+      "corrected_manifest": "a54b0988455a02da919dd0a75ce806f2e2d2338892739509d34f5aab20608c88",
+      "edited_times_ms": [
+        1795162800000,
+        1795137900000
+      ],
+      "recomputed": 12,
+      "unchanged": 229,
+      "matches_full": true,
+      "independent_of_edit_order": true,
+      "duplicate_idempotent": true,
+      "cold_full_seconds": 2.2681093000001056,
+      "full_seconds": 2.045274099999915,
+      "incremental_seconds": 0.9136766000001444
+    },
+    {
+      "site": "junction-811",
+      "source": "synthetic_ctm",
+      "windows": 576,
+      "lookahead": 0,
+      "baseline_manifest": "2b1e463f4380d9552468e110a51bb9cbf8aafccfc8a7d693152edefe4eee7435",
+      "corrected_manifest": "47076bd87f7de60ce24a98ae16d93740ecf457367e9259285643df9e1302106c",
+      "edited_times_ms": [
+        12960000,
+        4320000
+      ],
+      "recomputed": 8,
+      "unchanged": 568,
+      "matches_full": true,
+      "independent_of_edit_order": true,
+      "duplicate_idempotent": true,
+      "cold_full_seconds": 7.522217699999601,
+      "full_seconds": 5.125425600000199,
+      "incremental_seconds": 2.1465790000002016
+    },
+    {
+      "site": "junction-811",
+      "source": "synthetic_ctm",
+      "windows": 576,
+      "lookahead": 2,
+      "baseline_manifest": "7fe61a7532e7b98d3374eee782cf18a530e8ea0d3e1b48e2a4227df38efcba0b",
+      "corrected_manifest": "bce8250fadfa587ed0bd51e5c7831ef5135bca0bb32c5e3153e194902fb94e60",
+      "edited_times_ms": [
+        12960000,
+        4320000
+      ],
+      "recomputed": 12,
+      "unchanged": 564,
+      "matches_full": true,
+      "independent_of_edit_order": true,
+      "duplicate_idempotent": true,
+      "cold_full_seconds": 5.985005700000329,
+      "full_seconds": 5.0352130999999645,
+      "incremental_seconds": 2.3054959000000963
+    }
+  ]
+}
