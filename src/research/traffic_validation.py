@@ -14,7 +14,7 @@ import numpy as np
 from .observations import Window, ngsim_window, read_recording
 from .pems import PEMS_TIMEZONE
 from .traffic_decisions import evaluate_queues
-from .traffic_estimation import QueueHead, congested, graph_reconstruct, persistence
+from .traffic_estimation import QueueHead, congested, graph_reconstruct, outage_masks, persistence
 from .traffic_replay import Replay, outage_triage
 from .traffic_simulator import simulate
 
@@ -187,6 +187,58 @@ def episode_profile(windows: list[Window]) -> dict:
         "congestion_proxy_runs": len(congestion),
         "congestion_proxy_p50_p90_minutes": np.quantile(congestion, (.5, .9)).tolist() if congestion else None,
     }
+
+
+def queue_event_comparison(model: QueueHead, window: Window) -> dict:
+    """Compare causal warnings against per-cell observed queue onsets."""
+    speed = window.inputs("speed")
+    truth = congested(speed, model.threshold)
+    hidden = outage_masks(speed.shape)[1]
+    forecasts = {name: np.zeros_like(truth) for name in ("queue_head", "causal_graph_trend")}
+    origins = np.arange(2, len(speed) - model.horizon)
+    for i in origins:
+        prediction = model.predict(window, i, hidden)
+        forecasts["queue_head"][i] = prediction.onset_probability >= .6
+        prefix = window.inputs("speed", hidden=hidden, as_of_ms=prediction.origin_ms)[max(0, i - 5):i + 1]
+        prior = persistence(prefix, model.level)
+        state = graph_reconstruct(prefix, prior, window.graph, 25.).values
+        projected = state[-1] + model.horizon * (state[-1] - state[-2])
+        forecasts["causal_graph_trend"][i] = congested(projected, model.threshold) & ~congested(
+            state[-1], model.threshold,
+        )
+
+    # Evaluate onsets only across two fully observed, consecutive windows.
+    known = np.isfinite(speed).all(axis=1)
+    event_known = np.r_[False, known[1:] & known[:-1]]
+    onset = np.zeros_like(truth)
+    onset[1:] = truth[1:] & ~truth[:-1] & event_known[1:, None]
+    scorable = np.zeros(len(speed), dtype=bool)
+    for i in origins:
+        scorable[i] = event_known[i + 1:i + model.horizon + 1].all()
+    eligible_onset = np.zeros(len(speed), dtype=bool)
+    for i in origins[scorable[origins]]:
+        eligible_onset[i + 1:i + model.horizon + 1] = True
+    methods = {}
+    for name, predicted in forecasts.items():
+        warnings = predicted & scorable[:, None]
+        starts = warnings & ~np.vstack((np.zeros_like(warnings[:1]), warnings[:-1]))
+        leads = []
+        false_alarms = 0
+        for cell in range(speed.shape[1]):
+            observed = set(np.flatnonzero(onset[:, cell] & eligible_onset))
+            for i in np.flatnonzero(starts[:, cell]):
+                match = next((future for future in range(i + 1, i + model.horizon + 1) if future in observed), None)
+                if match is None:
+                    false_alarms += 1
+                else:
+                    observed.remove(match)
+                    leads.append((window.time_ms[match] - window.time_ms[i]) / 1000)
+        event_count = int(onset[eligible_onset].sum())
+        methods[name] = {"events": event_count, "detected": len(leads), "missed": event_count - len(leads),
+                         "false_alarm_episodes": false_alarms,
+                         "median_lead_seconds": float(np.median(leads)) if leads else None}
+    return {"site": window.site, "source": window.source, "horizon_steps": model.horizon,
+            "eligible_origins": int(scorable.sum()), "methods": methods}
 
 
 def detector_queue_transfer(windows: list[Window]) -> dict:

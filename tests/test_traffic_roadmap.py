@@ -3,8 +3,10 @@ import hashlib
 import json
 from dataclasses import replace
 from datetime import UTC, datetime
+from types import SimpleNamespace
 
 import numpy as np
+import pandas as pd
 import pytest
 from scipy import sparse
 
@@ -13,14 +15,14 @@ from src.research.conservation_constraints import assemble_conservation_polytope
 from src.research.lp_core import linprog_interval
 from src.research.pems import compact_rows, local_interval
 from src.research import roadmap
-from src.research.observations import load_pems_corridor
+from src.research.observations import load_pems_corridor, ngsim_window
 from src.research.roadmap import reserve_evaluation
 from src.research.sparse_traffic import conditional_interval, conservation_system, robust_fit
 from src.research.traffic_estimation import QueueHead, QueuePrediction, fit_storage
 from src.research.traffic_exchange import evaluate_export, export_suite, score_submission
 from src.research.traffic_replay import Replay, outage_triage, queue_advisory
 from src.research.traffic_simulator import simulate
-from src.research.traffic_validation import operational_outages
+from src.research.traffic_validation import operational_outages, queue_event_comparison
 
 
 def test_missing_od_count_differs_from_zero():
@@ -84,7 +86,7 @@ def test_causal_queue_ignores_future_and_late_values():
 
 def test_incremental_correction_matches_full_and_is_idempotent(tmp_path):
     pytest.importorskip("osqp")
-    graph = sparse.diags([1., 1.], -1, shape=(3, 3))
+    graph = sparse.coo_matrix(([1., 1.], ([2, 1], [1, 0])), shape=(3, 3))
     replay = Replay(tmp_path, graph, "fixture", 60., 25., history=2, lookahead=1)
     values = np.full((8, 3), 60.)
     stamps = np.arange(8) * 300_000
@@ -102,6 +104,10 @@ def test_incremental_correction_matches_full_and_is_idempotent(tmp_path):
     assert new["outputs"][stamps[-1]] == old["outputs"][stamps[-1]]
     assert replay.run(corrected)["recomputed"] == 0
     assert replay.run(corrected, previous=original)["recomputed"] == 4
+    comparison = replay.compare(original, corrected)
+    assert [row["time_ms"] for row in comparison["affected_windows"]] == stamps[1:5].tolist()
+    assert comparison["unaffected_windows"] == 4
+    assert comparison["affected_windows"][1]["after"] == full["outputs"][stamps[2]]
     assert outage_triage(np.array([[90, 90, 90], [90, np.nan, 90]]), 90, 1)["action"] == "inspect_detector"
     assert outage_triage(np.array([[90, 90, 90], [20, 30, 20]]), 90, 1)["action"] == "corroborate_queue"
 
@@ -115,6 +121,20 @@ def test_compact_pems_station_rows_and_ambiguous_clock():
         compact_rows(content + content.splitlines(keepends=True)[1])
     with pytest.raises(ValueError, match="Ambiguous"):
         local_interval("11/01/2026 01:15:00")
+
+
+def test_trajectory_aggregation_keeps_segments_across_time_windows():
+    ticks = np.arange(8) * 1000
+    tracks = pd.DataFrame({"vehicle_id": np.repeat([1, 2], 8), "global_time": np.r_[ticks, ticks + 500],
+                           "local_y": np.r_[ticks, ticks + 500] * .01})
+    window, _ = ngsim_window(tracks.sample(frac=1, random_state=7), (), "fixture",
+                             cadence_ms=1000, cells=2, max_gap_ms=1000)
+    assert len(window.time_ms) == 6
+    speeds = window.inputs("speed")
+    finite = speeds[np.isfinite(speeds)]
+    assert len(finite) > 6
+    assert finite == pytest.approx(np.full(len(finite), 10.9728))
+    assert window.values["count"][:, 1].sum() == 2
 
 
 def test_shadow_only_uses_arrived_snapshots_and_counts_distinct_windows(tmp_path, monkeypatch):
@@ -185,6 +205,43 @@ def test_cohort_readiness_checks_outage_targets_before_freezing(monkeypatch, tmp
     cohorts, report = roadmap.inspect_cohorts(config, tmp_path)
     assert report["ready"]
     assert len(cohorts["evaluation"]) == report["ready_evaluation_days"] == 10
+
+
+def test_trajectory_reserve_rejects_development_and_changed_partitions(tmp_path):
+    def write_archive(site):
+        directory = tmp_path / site
+        directory.mkdir()
+        content = f"fixture for {site}".encode()
+        compressed = gzip.compress(content, mtime=0)
+        (directory / "part.csv.gz").write_bytes(compressed)
+        (directory / "recordings.json").write_text(json.dumps({"site": site, "periods": [{
+            "first": 0, "last": 900_000, "files": [{
+                "filename": "part.csv.gz", "sha256": hashlib.sha256(content).hexdigest(),
+                "gzip_sha256": hashlib.sha256(compressed).hexdigest(),
+            }],
+        }]}))
+        return {"site": site, "recording": 0}
+
+    train, calibrate, reserve_a, reserve_b = map(write_archive, ("i-80", "us-101", "reserve-a", "reserve-b"))
+    cohorts = {"train": [train], "calibration": [calibrate], "evaluation": [reserve_a, reserve_b]}
+    config = tmp_path / "protocol.json"
+    receipt = tmp_path / "frozen.json"
+    config.write_text(json.dumps({"cohorts": cohorts, "minimum_evaluation_recordings": 2}))
+    roadmap.freeze_trajectory(config, tmp_path, receipt)
+    frozen = json.loads(receipt.read_bytes())
+    assert frozen["primary"]["outage_minutes"] == [4, 8]
+    with pytest.raises(FileExistsError):
+        roadmap.freeze_trajectory(config, tmp_path, receipt)
+    (tmp_path / "reserve-a" / "part.csv.gz").write_bytes(b"changed")
+    with pytest.raises(ValueError, match="checksum changed"):
+        roadmap.run_final_trajectory(config, tmp_path, receipt, tmp_path / "results")
+    assert not (tmp_path / "trajectory-final-runs").exists()
+    cohorts["evaluation"][0] = train
+    config.write_text(json.dumps({"cohorts": cohorts, "minimum_evaluation_recordings": 2}))
+    with pytest.raises(ValueError, match="development site"):
+        roadmap.freeze_trajectory(config, tmp_path, receipt)
+
+
 def test_junction_truth_balances_storage():
     sim = simulate(7, "junction")
     assert len(sim.boundary_channels) == 4
@@ -216,6 +273,30 @@ def test_export_baselines_share_eligibility_and_count_unemitted_cells(tmp_path):
             assert scores["eligible"] > 0
             assert scores["point_scored"] + scores["abstained"] == scores["eligible"]
             assert scores["abstained"] == (scores["eligible"] if row["method"] == "observed_only" else 0)
+            half, _, full = scores["matched_coverage"]
+            assert half["required_points"] == (scores["eligible"] + 1) // 2
+            if scores["point_mae"] is None:
+                assert full["mae"] is None
+            else:
+                assert full["mae"] == pytest.approx(scores["point_mae"])
+
+
+def test_queue_event_scoring_counts_warning_episodes_once(monkeypatch):
+    window = simulate(1, cells=4, steps=12).window
+    speed = np.full((12, 4), 70.)
+    speed[5:7, :2] = 20.
+    window = replace(window, values={**window.values, "speed": speed})
+
+    def predict(window, index, hidden):
+        onset = np.array([float(index in (3, 4, 8, 9)), 0., 0., 0.])
+        return SimpleNamespace(origin_ms=window.time_ms[index] + window.cadence_ms, onset_probability=onset)
+
+    model = SimpleNamespace(horizon=2, threshold=50., level=70., predict=predict)
+    monkeypatch.setattr("src.research.traffic_validation.graph_reconstruct",
+                        lambda values, *args: SimpleNamespace(values=np.nan_to_num(values, nan=70.)))
+    report = queue_event_comparison(model, window)["methods"]["queue_head"]
+    assert report == {"events": 2, "detected": 1, "missed": 1, "false_alarm_episodes": 1,
+                      "median_lead_seconds": 60.}
 
 
 def test_hard_observation_ablation_preserves_fallback_denominator():

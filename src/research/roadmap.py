@@ -5,7 +5,7 @@ import argparse
 import hashlib
 import json
 import time
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -14,7 +14,7 @@ import numpy as np
 import torch
 from threadpoolctl import threadpool_limits
 
-from .observations import NoSnapshots, Window, load_pems_corridor, ngsim_window, read_recording
+from .observations import NoSnapshots, Window, load_pems_corridor, ngsim_window, read_recording, recording_partition
 from .pems import CADENCE_MS, PEMS_TIMEZONE, atomic_write
 from .protocol import registry_file_lock
 from .provenance import research_code_content_hash
@@ -26,7 +26,8 @@ from .traffic_exchange import evaluate_export, export_suite, export_trajectory_s
 from .traffic_replay import Replay, outage_triage, replay_case
 from .traffic_simulator import simulate
 from .traffic_validation import (
-    detector_queue_transfer, episode_profile, operational_outages, replay_benchmark, trajectory_advisory_sweep,
+    detector_queue_transfer, episode_profile, operational_outages, queue_event_comparison, replay_benchmark,
+    trajectory_advisory_sweep,
 )
 
 DEVELOP = (11, 12, 13, 14)
@@ -34,6 +35,7 @@ CALIBRATE = (101, 102, 103)
 FIXTURE = (241, 242, 243, 244)
 PEMS = ((4, 880, "S", "401557"), (7, 10, "W", "717258"))
 FINAL_DURATIONS = (6, 12)
+TRAJECTORY_DURATIONS = (4, 8)
 MIN_EVALUATION_DAYS = 10
 
 
@@ -157,6 +159,75 @@ def run_fixture(output: Path) -> None:
               "queue": evaluate_queues(model, test[0][1]), "routes": route_suite(),
               "replay": replay_case(test[0][1], output / "event-log", 3)}
     json_write(output / "fixture.json", result)
+
+
+def _window_slice(window: Window, rows: slice) -> Window:
+    return replace(window, time_ms=window.time_ms[rows], arrival_ms=window.arrival_ms[rows],
+                   quality=window.quality[rows], values={name: data[rows] for name, data in window.values.items()})
+
+
+def run_trajectory_transfer(output: Path, root: Path) -> None:
+    sites = {}
+    for site in ("i-80", "us-101"):
+        directory = root / site
+        manifest = json.loads((directory / "recordings.json").read_text(encoding="utf-8"))
+        sites[site] = [ngsim_window(*read_recording(directory, i))[0] for i in range(len(manifest["periods"]))]
+
+    comparisons = []
+    for source, destination in (("i-80", "us-101"), ("us-101", "i-80")):
+        *training, calibration = sites[source]
+        calibration_split = "separate_recording"
+        if not training:
+            window = calibration
+            start = 2 * len(window.time_ms) // 3
+            if start - 6 < 12 or len(window.time_ms) - start < 12:
+                raise ValueError(f"Need two usable blocks separated by six windows for {source}")
+            training = [_window_slice(window, slice(0, start - 6))]
+            calibration = _window_slice(window, slice(start, None))
+            calibration_split = "same_recording_with_six_window_buffer"
+        test = [(window.site, window) for window in sites[destination]]
+        queue = QueueHead(training)
+        comparisons.append({
+            "train_site": source, "test_site": destination,
+            "calibration_split": calibration_split,
+            "training": [_cohort_signature(window) for window in training],
+            "calibration": _cohort_signature(calibration),
+            "evaluation": [_cohort_signature(window) for _, window in test],
+            "state": run_state(training, [(calibration.site, calibration)], test, durations=TRAJECTORY_DURATIONS),
+            "queue_events": [queue_event_comparison(queue, window) for _, window in test],
+        })
+    json_write(output / "trajectory-transfer.json", {
+        "scope": "archived_ngsim_development_transfer", "code_hash": research_code_content_hash(),
+        "comparisons": comparisons,
+    })
+
+
+def run_detector_transfer(output: Path, root: Path, cutoff_ms: int) -> None:
+    zone = ZoneInfo(PEMS_TIMEZONE)
+    corridors = measured_pems(root, available_by_ms=cutoff_ms)
+    first_day_end = []
+    for window in corridors:
+        first_day = datetime.fromtimestamp(window.time_ms[0] / 1000, zone).date()
+        midnight = datetime.combine(first_day + timedelta(days=1), datetime.min.time(), tzinfo=zone)
+        first_day_end.append(int(np.searchsorted(window.time_ms, int(midnight.timestamp() * 1000))))
+    comparisons = []
+    for origin, destination in ((0, 1), (1, 0)):
+        split = 2 * first_day_end[origin] // 3
+        training = _window_slice(corridors[origin], slice(0, split - 6))
+        calibration = _window_slice(corridors[origin], slice(split, first_day_end[origin]))
+        evaluation = _window_slice(corridors[destination], slice(first_day_end[destination], None))
+        if min(len(window.time_ms) for window in (training, calibration, evaluation)) <= max(FINAL_DURATIONS):
+            raise ValueError("Detector transfer needs enough windows in each split for both outage lengths")
+        comparisons.append({
+            "training": _cohort_signature(training), "calibration": _cohort_signature(calibration),
+            "evaluation": _cohort_signature(evaluation),
+            "state": run_state([training], [(calibration.site, calibration)], [(evaluation.site, evaluation)],
+                               durations=FINAL_DURATIONS),
+        })
+    json_write(output / "detector-transfer.json", {
+        "scope": "archived_pems_development_transfer", "code_hash": research_code_content_hash(),
+        "available_by_ms": cutoff_ms, "history_buffer_windows": 6, "comparisons": comparisons,
+    })
 
 
 def run_measured(output: Path, pems_root: Path, ngsim_root: Path) -> None:
@@ -422,6 +493,104 @@ def run_final(config_path: Path, pems_root: Path, receipt: Path, output: Path) -
     json_write(output / "frozen-evaluation.json", result)
 
 
+def trajectory_protocol(config_path: Path, root: Path) -> dict:
+    """Freeze recording identities and validate their files without reading outcomes."""
+    content = config_path.read_bytes()
+    config = json.loads(content)
+    cohorts = config["cohorts"]
+    required = config["minimum_evaluation_recordings"]
+    if type(required) is not int or required < 2:
+        raise ValueError("Declare at least two independent evaluation recordings for paired inference")
+    if set(cohorts) != {"train", "calibration", "evaluation"} or not all(cohorts.values()):
+        raise ValueError("Declare nonempty train, calibration and evaluation recording lists")
+
+    archives = {}
+    signatures = {}
+    used_hashes = set()
+    periods_by_site = {}
+    development_sites = {"i-80", "us-101"}
+    for role in ("train", "calibration", "evaluation"):
+        signatures[role] = []
+        for entry in cohorts[role]:
+            site, index = entry["site"], entry["recording"]
+            if not isinstance(site, str) or not site or not all(c.isascii() and (c.isalnum() or c in "-_") for c in site):
+                raise ValueError("Use a site slug for each trajectory archive")
+            if role == "evaluation" and site in development_sites:
+                raise ValueError(f"{site} is a development site and cannot enter the trajectory reserve")
+            if role != "evaluation":
+                development_sites.add(site)
+            directory = root / site
+            if site not in archives:
+                archives[site] = json.loads((directory / "recordings.json").read_bytes())
+            archive = archives[site]
+            if archive["site"] != site or type(index) is not int or not 0 <= index < len(archive["periods"]):
+                raise ValueError(f"Unknown trajectory recording at {site}: {index}")
+            period = archive["periods"][index]
+            first, last = period["first"], period["last"]
+            same_site = periods_by_site.setdefault(site, [])
+            if last - first < (max(TRAJECTORY_DURATIONS) + 2) * 60_000:
+                raise ValueError(f"Trajectory recording is too short for the declared outage lengths at {site}")
+            if any(first <= right and left <= last for left, right in same_site):
+                raise ValueError(f"Require disjoint recording times at {site}")
+            same_site.append((first, last))
+            hashes = []
+            for part in period["files"]:
+                recording_partition(directory, part)
+                hashes.append(part["sha256"])
+            if not hashes or len(hashes) != len(set(hashes)) or used_hashes.intersection(hashes):
+                raise ValueError("Require disjoint, nonempty trajectory recordings")
+            used_hashes.update(hashes)
+            signatures[role].append({"site": site, "recording": index, "first_ms": first,
+                                     "last_ms": last, "source_sha256": hashes})
+    if len(signatures["evaluation"]) < required:
+        raise ValueError("Too few declared evaluation recordings")
+    return {"mode": "trajectory_reserve", "config_sha256": hashlib.sha256(content).hexdigest(),
+            "code_hash": research_code_content_hash(), "cohorts": signatures,
+            "primary": {"channel": "speed", "metric": "paired_recording_mae_kmh", "mask": "contiguous",
+                        "outage_minutes": list(TRAJECTORY_DURATIONS), "confidence": .95,
+                        "minimum_paired_recordings": required}}
+
+
+def freeze_trajectory(config_path: Path, root: Path, receipt: Path) -> None:
+    manifest = trajectory_protocol(config_path, root)
+    manifest["frozen_at"] = datetime.now(UTC).isoformat()
+    receipt.parent.mkdir(parents=True, exist_ok=True)
+    with receipt.open("x", encoding="utf-8") as stream:
+        json.dump(manifest, stream, indent=2)
+
+
+def run_final_trajectory(config_path: Path, root: Path, receipt: Path, output: Path) -> None:
+    manifest = trajectory_protocol(config_path, root)
+    frozen = json.loads(receipt.read_bytes())
+    if {key: value for key, value in frozen.items() if key != "frozen_at"} != manifest:
+        raise ValueError("The frozen trajectory code, protocol or inputs changed")
+    recording_keys = {(entry["site"], str(entry["first_ms"])) for entry in manifest["cohorts"]["evaluation"]}
+    recording_keys.update(("source_sha256", checksum) for entry in manifest["cohorts"]["evaluation"]
+                          for checksum in entry["source_sha256"])
+    registry = reserve_evaluation(root / "trajectory-final-runs", recording_keys, frozen)
+    cohorts = {}
+    for role, entries in manifest["cohorts"].items():
+        cohorts[role] = []
+        for entry in entries:
+            site = f"{entry['site']}-{entry['first_ms']}"
+            tracks, hashes, recording = read_recording(root / entry["site"], entry["recording"])
+            times = tracks["global_time"]
+            if (list(hashes) != entry["source_sha256"] or recording != site
+                    or times.min() != entry["first_ms"] or times.max() != entry["last_ms"]):
+                raise ValueError(f"Trajectory recording changed after freeze validation: {site}")
+            cohorts[role].append(ngsim_window(tracks, hashes, recording)[0])
+    calibration, evaluation = ([(window.site, window) for window in cohorts[role]]
+                               for role in ("calibration", "evaluation"))
+    results = run_state(cohorts["train"], calibration, evaluation, durations=TRAJECTORY_DURATIONS)
+    primary = [results["speed"]["outages"][str(width)]["contiguous"] for width in TRAJECTORY_DURATIONS]
+    result = {"mode": "trajectory_final", "run_id": registry.name, "frozen": frozen, "state": results,
+              "speed_gate": all(group["paired_clusters"] >= manifest["primary"]["minimum_paired_recordings"]
+                                and group["graph_huber_minus_reference_95ci"] is not None
+                                and group["graph_huber_minus_reference_95ci"][1] < 0 for group in primary)}
+    json_write(registry / "completed.json", result)
+    json_write(output / "frozen-trajectory-evaluation.json", result)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pems", type=Path, default=Path("data/crest/pems"))
@@ -430,6 +599,9 @@ def main() -> None:
     sub = parser.add_subparsers(dest="mode", required=True)
     sub.add_parser("fixture")
     sub.add_parser("measured")
+    sub.add_parser("trajectory-transfer")
+    detector = sub.add_parser("detector-transfer")
+    detector.add_argument("--available-by-ms", type=int, required=True)
     operational = sub.add_parser("operational-validation")
     operational.add_argument("--available-by-ms", type=int, help="Freeze archive visibility at a UTC Unix timestamp")
     sub.add_parser("ablate")
@@ -452,11 +624,13 @@ def main() -> None:
         action = sub.add_parser(label)
         action.add_argument("--config", type=Path, required=True)
         action.add_argument("--receipt", type=Path, required=True)
+        action.add_argument("--source", choices=("pems", "trajectory"), default="pems")
     inspect = sub.add_parser("replay")
     inspect.add_argument("--manifest", required=True)
     inspect.add_argument("--site-index", type=int, choices=(0, 1), default=0)
     inspect.add_argument("--log-dir", type=Path, help="Open an explicit replay directory, including a long replay")
     inspect.add_argument("--correct", nargs=3, metavar=("TIME_MS", "CELL", "SPEED_KMH_OR_MISSING"))
+    inspect.add_argument("--compare", metavar="MANIFEST", help="Show changed estimates and dependencies against this base")
     args = parser.parse_args()
     torch.set_num_threads(1)
     with threadpool_limits(1):
@@ -464,6 +638,10 @@ def main() -> None:
             run_fixture(args.output)
         elif args.mode == "measured":
             run_measured(args.output, args.pems, args.ngsim)
+        elif args.mode == "trajectory-transfer":
+            run_trajectory_transfer(args.output, args.ngsim)
+        elif args.mode == "detector-transfer":
+            run_detector_transfer(args.output, args.pems, args.available_by_ms)
         elif args.mode == "operational-validation":
             windows = measured_pems(args.pems, available_by_ms=args.available_by_ms)
             json_write(args.output / "operational-validation.json", {
@@ -545,9 +723,15 @@ def main() -> None:
                     break
                 time.sleep(args.poll_seconds)
         elif args.mode == "freeze":
-            freeze_run(args.config, args.pems, args.receipt)
+            if args.source == "trajectory":
+                freeze_trajectory(args.config, args.ngsim, args.receipt)
+            else:
+                freeze_run(args.config, args.pems, args.receipt)
         elif args.mode == "final":
-            run_final(args.config, args.pems, args.receipt, args.output)
+            if args.source == "trajectory":
+                run_final_trajectory(args.config, args.ngsim, args.receipt, args.output)
+            else:
+                run_final(args.config, args.pems, args.receipt, args.output)
         else:
             district, freeway, direction, first = PEMS[args.site_index]
             site = f"D{district}-{freeway}{direction}-{first}"
@@ -556,7 +740,8 @@ def main() -> None:
             if args.correct:
                 stamp, cell, speed = args.correct
                 manifest = replay.correct(manifest, int(stamp), int(cell), None if speed == "missing" else float(speed))
-            print(json.dumps(replay.run(manifest), indent=2, allow_nan=False))
+            result = replay.compare(args.compare, manifest) if args.compare else replay.run(manifest)
+            print(json.dumps(result, indent=2, allow_nan=False))
 
 
 if __name__ == "__main__":
