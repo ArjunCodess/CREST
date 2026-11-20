@@ -19,9 +19,14 @@ class Simulation:
     boundary_channels: tuple[int, ...]
 
 
-def simulate(seed: int, layout: str = "junction", cells: int = 6, steps: int = 72) -> Simulation:
+def simulate(
+    seed: int, layout: str = "junction", cells: int = 6, steps: int = 72, *, demand_regime: str = "nominal",
+) -> Simulation:
     if cells < 4 or steps < 12 or layout not in ("chain", "junction"):
         raise ValueError("Need at least four cells, twelve steps, and a chain or junction")
+    demand_bands = {"nominal": (2300, 3500), "light": (900, 1500), "surge": (3600, 4100)}
+    if demand_regime not in demand_bands:
+        raise ValueError(f"Unknown demand regime {demand_regime!r}")
     random = np.random.default_rng(seed)
     # Every channel has one sending and/or receiving cell. None is outside the network.
     edges = [(i, i + 1) for i in range(cells - 1)]
@@ -48,7 +53,7 @@ def simulate(seed: int, layout: str = "junction", cells: int = 6, steps: int = 7
         max_flow[:, internal + 2:] = 1100
     max_flow[steps // 4:steps * 3 // 4, internal - 1] = random.uniform(900, 1600)
     flux = np.zeros_like(max_flow)
-    inlet_scale = random.uniform(2300, 3500)
+    inlet_scale = random.uniform(*demand_bands[demand_regime])
     for t in range(steps):
         demand = np.minimum(4200, storage[t] * 45)
         supply = np.minimum(4200, (capacity - storage[t]) * 16)
