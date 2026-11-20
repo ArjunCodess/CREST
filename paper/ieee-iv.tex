@@ -10,15 +10,11 @@ working draft}
 
 \maketitle
 \begin{abstract}
-An infrastructure warning can give a moving vehicle more time to react to a queue, but stale or
-weakly localized warnings can reach vehicles that will never encounter it. CREST sends a
-direction, forecast horizon, expiry, and queue-tail location interval. A receiver can check
-availability and the projected position of its probe against the warned intervals. In a
-retrospective replay of nine five-minute blocks from one US-101 recording, the gated method
-reduced false warnings from 9,404 to 136 across 9,639 vehicle-and-forecast-origin pairs at a
-7.5-second delay. It detected only 9 of 235 proxy encounters. At 30 seconds the advisory expired
-before delivery on every pair. The replay identifies a recall failure that limits the
-vehicle-facing utility of this advisory.
+The gated advisory detected 9 of 235 proxy queue encounters on US-101. At a 7.5-second
+delay, it issued 136 false warnings over 9,639 vehicle-origin pairs. The ungated rule
+warned on every pair. The gate limits where a message applies and drops it at expiry,
+but recall at the tested setting was 3.8\%. All pairs lost the advisory at 30 seconds.
+The study uses nine blocks from one recording and simulated delivery.
 \end{abstract}
 
 \section*{Advisory and causal replay}
@@ -33,7 +29,9 @@ the experiment uses replay.
 \section*{Development setup}
 The model trained on nine five-minute blocks from two I-80 recordings and tested on nine
 nonoverlapping blocks from one US-101 recording. It forecast two 15-second steps ahead.
-We crossed 15\%, 35\%, and 70\% probe penetration with 0-, 7.5-, and 30-second delivery delays.
+We crossed 15\%, 35\%, and 70\% probe reporting for the probe-speed rule with delivery
+delays of 0, 7.5, and 30 seconds. The infrastructure methods used the same detector inputs at
+each reporting rate.
 The reference uses contiguous low-speed cells calculated from NGSIM trajectories.
 
 We compared an infrastructure advisory that requires a fresh, localized interval intersecting
@@ -42,19 +40,21 @@ probe-speed rule. A proxy encounter starts outside a queue and ends inside one a
 horizon. Warnings on pairs without a proxy encounter count as false warnings.
 
 \section*{Development results}
-At 35\% penetration and 7.5 seconds of delay, the gated and ungated infrastructure methods
-detected 9 and 235 encounters and produced 136 and 9,404 false warnings, respectively.
-The probe-speed rule detected 55 encounters, gave 3,172 false warnings, and withheld output
-on 6,335 pairs. Median lead time was 22.5 seconds among each method's detections because
-the replay fixes the forecast horizon. At 30 seconds the gated advisory withheld all
-9,639 pairs. The blocks share one test recording, so the counts describe this transfer and
-cannot establish performance across independent recordings.
+At 35\% reporting and 7.5 seconds of delay, the probe-speed rule detected 55 encounters,
+gave 3,172 false warnings, and withheld output on 6,335 pairs. Median lead among detections
+was 22.5 seconds, set by the forecast horizon and arrival time in this replay. Gated warning
+counts were identical at zero and 7.5 seconds. The 30-second result reflects the expiry
+rule.
+
+A separate three-minute onset study on the one-minute aggregates found 11 eligible US-101
+cell onsets. The queue head detected none and a causal graph trend detected two.
+Neither I-80 recording had an eligible onset.
 
 \section*{References}
 [1] Federal Highway Administration. Next Generation Simulation vehicle trajectories and
 supporting data.
 \url{https://catalog.data.gov/dataset/next-generation-simulation-ngsim-vehicle-trajectories-and-supporting-data}
 
-[2] CREST measured development receipt.
-\url{https://github.com/ArjunCodess/CREST/blob/main/research_manuscript/generated/roadmap_development.json}
+[2] Development evaluation and receipts.
+\url{https://github.com/ArjunCodess/CREST/blob/main/docs/crest-evaluation.md}
 \end{document}

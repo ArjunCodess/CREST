@@ -9,67 +9,71 @@
 
 \maketitle
 \begin{abstract}
-CREST combines graph-based state reconstruction, sparse vehicle balance, and bounds conditional
-on observation and boundary intervals. On 33 withheld speed values in an I-80 to US-101
-development transfer, graph Huber reconstruction achieved 7.27 km/h mean absolute error (MAE)
-and the tree achieved 8.06. A separate trajectory storage fit became feasible after allowing
-bounded tracking discrepancies. It achieved 6.25 vehicles MAE versus 6.36 for persistence.
-The frozen PeMS protocol requires ten independent evaluation days. Zero days qualified in
-the readiness check.
+Persistence had lower speed and flow mean absolute error (MAE) than graph Huber reconstruction
+in both directions of archived PeMS transfer under 30- and 60-minute detector outages.
+On NGSIM trajectory aggregates, graph Huber improved speed recovery from I-80 to US-101,
+but trailed the selected baseline in the reverse direction. A separate sparse storage model
+became feasible when it allowed bounded tracking discrepancies. The PeMS readiness check
+qualified zero of the ten days required for a frozen evaluation.
 \end{abstract}
 
 \section*{Problem and estimator}
-Detector counts, flow rates, speeds, occupancy, and trajectory-derived storage have different
-units and scopes. CREST aligns them on a directed time grid, preserves an observation mask, and
-tracks arrival time and topology versions. Corrections to historical readings can enter offline
-reconstruction. Queue inference uses only observations that had arrived by its forecast origin.
+The observation grid keeps speed, flow, counts, occupancy, and storage in their original
+units. It records missing values, arrival times, and topology versions. Queue forecasts use
+only readings that had arrived by issuance.
 
-The graph reconstruction applies robust loss to observed state with a temporal prior and
-directed neighborhood structure. A separate sparse vehicle-accounting model links adjacent times
-by conservation. At each cell, the change in storage equals the signed sum of incident flows
-integrated over the interval. Each internal, inlet, outlet, and ramp flow has its own column in
-the incidence matrix. Storage and flow have nonnegative bounds, with capacities and boundary
-uncertainty specified per instance. The point fit uses soft observation residuals and a prior,
-while preserving the balance equations. An interval solve optimizes an operator-relevant
-quantity over the admissible state and flow polytope using hard observation intervals. An empty
-feasible set is reported explicitly, and a separately computed soft point estimate can be
-flagged as degraded. Conditional feasibility bounds and empirical prediction intervals have
-different interpretations.
+The graph smoother uses a tree prior and penalizes differences across neighboring cells
+and times. A separate sparse model sets each change in storage equal to the integrated
+net flow, with distinct internal, inlet, outlet, and ramp flows. Its point fit uses soft
+observation residuals. A linear program uses hard observation intervals to bound selected
+quantities and reports infeasibility when those intervals conflict.
 
-\section*{Measured development study}
-The NGSIM state study used I-80 recordings for training and calibration and a US-101 recording
-for development testing. For contiguous masks, all five methods scored 33 eligible targets per
-channel. Speed MAE in km/h was 8.09 for historical median, 11.11 for persistence, 8.06 for the
-tree, 8.25 for graph recurrent, and 7.27 for graph Huber. Flow MAE in veh/h was 978.06, 1199.87,
-948.40, 727.65, and 864.75 in the same order. These values come from graph state reconstruction
-and do not attribute the speed difference to hard conservation.
+\section*{Archived transfer}
+PeMS training and calibration used first-day blocks separated by 30 minutes. The other
+corridor supplied the next day's evaluation windows. All methods scored the same targets.
+NGSIM used complete destination recordings at one-minute cadence. US-101 training and
+calibration blocks were six minutes apart within one recording.
 
-In the distinct storage test, track-derived inlet and outlet counts were observed while interior
-storage was masked. A strict tracked chain was infeasible. Signed discrepancies capped at 17
-vehicles per cell per step, chosen from I-80 accounting residuals, produced a feasible US-101
-fit. Its 6.25-vehicle MAE was close to persistence at 6.36. The discrepancies account for
-mismatch between tracked crossings and storage snapshots. They do not measure physical sources
-or sinks.
+\begin{table}[h]
+\centering\small
+\caption{Contiguous-mask speed MAE in km/h. Reference selected on calibration.}
+\begin{tabular}{lrrrr}
+\hline
+Transfer & min & $n$ & Huber & Ref. \\
+\hline
+I-880 to I-10 & 30 & 24 & 12.13 & 3.56 \\
+ & 60 & 48 & 14.14 & 4.21 \\
+I-10 to I-880 & 30 & 30 & 22.41 & 2.20 \\
+ & 60 & 60 & 24.35 & 2.07 \\
+I-80 to US-101 & 4 & 12 & 6.11 & 10.28 \\
+ & 8 & 24 & 7.53 & 10.43 \\
+US-101 to I-80 & 4 & 24 & 7.41 & 6.95 \\
+ & 8 & 48 & 8.86 & 6.38 \\
+\hline
+\end{tabular}
+\end{table}
+
+Calibration selected persistence for both PeMS directions and NGSIM US-101, and graph
+recurrent for NGSIM I-80. Nominal 90\% PeMS flow intervals covered zero of 162 target
+instances. Each PeMS direction supplied one paired group. Reverse NGSIM transfer had two.
+
+\section*{Storage and boundary assumptions}
+The strict US-101 storage chain was infeasible with track-derived boundary counts. A
+discrepancy cap of 17 vehicles per cell and step, calibrated on I-80, restored feasibility.
+Storage MAE was 6.25 vehicles versus 6.36 for persistence.
 
 \section*{Matched development ablations}
-Across four junction seeds and three outage masks per seed, soft storage fits solved all
-twelve cases with or without balance. Hard observation intervals were infeasible in all four
-biased-sensor cases and used the same scored persistence fallback. Narrowing boundary flows
-with training-derived limits reduced mean inlet interval width from 2,454 to 326 vehicles
-across eight feasible interval cases. Both sets of bounds covered the simulated inlet totals
-in those eight cases. The directed-lag tree reduced synthetic speed MAE from 8.65 to
-7.93 km/h but left the measured development speed MAE at 8.06 km/h.
+Hard observation intervals failed in four biased-sensor cases. The scored fallback was
+persistence. Tighter boundary limits cut mean inlet interval width from 2,454 to 326
+vehicles and covered the simulated total in all eight feasible cases. The speed smoother
+trailed the tree on contiguous masks under light and surge demand. Its nominal 90\%
+intervals covered 66\% and 59\% of targets.
 
 \section*{Planned frozen evaluation}
-The primary outcome is five-minute speed MAE on 30- and 60-minute outages, evaluated against the
-strongest comparator selected on development data. The protocol requires disjoint development
-and evaluation dates, held-out stations, and at least ten independent eligible evaluation days.
-Every corridor-day must contain actually observed targets under the scored masks. Comparisons
-use paired day-level uncertainty intervals alongside flow and random-mask error margins set
-before evaluation. Fallback predictions count in the main denominator. The frozen receipt binds
-source content, code, topology, and configuration before execution.
-
-The readiness check has yet to qualify a final cohort for the primary outcome.
+The frozen protocol needs ten eligible days on held-out stations. It scores 30- and
+60-minute outages with paired day-level intervals and prespecified flow and random-mask
+margins. A separate 4- and 8-minute trajectory protocol requires an independent archive.
+Both runners bind code, input content, and configuration before evaluation.
 
 \section*{References}
 [1] Federal Highway Administration. Next Generation Simulation vehicle trajectories and
@@ -78,6 +82,6 @@ supporting data.
 
 [2] Caltrans. Performance Measurement System. \url{https://pems.dot.ca.gov/}
 
-[3] CREST measured development receipt.
-\url{https://github.com/ArjunCodess/CREST/blob/main/research_manuscript/generated/roadmap_development.json}
+[3] Development evaluation and receipts.
+\url{https://github.com/ArjunCodess/CREST/blob/main/docs/crest-evaluation.md}
 \end{document}
