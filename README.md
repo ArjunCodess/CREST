@@ -129,7 +129,11 @@ python -m src.research.runner --mode development --output results/research --for
 
 Default runner mode is **development** (bundled `dev_pilot.json` when `--config` is omitted). Development overwrites require `--force`. Final holdout **v3** is **archived** (`retired_failed`, not rerun). **v4** is the amended active reserve (`configs/research/final_protocol_v4.json`); a single completed run is recorded under `results/research_final_v4/` with receipt and registry guard (repeat blocked without override). See [docs/research_results.md](docs/research_results.md).
 
-The 2027 research uses separate synthetic fixtures and archived PeMS and NGSIM data. The evaluation explains where persistence wins, what the queue replay measures, and which claims still need an independent holdout. [Evaluation](docs/crest-evaluation.md) · [Reproduction commands](docs/crest-implementation.md) · [Venue roadmap](docs/crest-roadmap-2027.md)
+### 2027 research status
+
+The offline work is complete. The repository contains the experiment code, scored results from synthetic fixtures and archived PeMS and NGSIM data, and the analysis and interpretation used to revise the papers. All eight PDFs were rebuilt and checked. [Results](results/crest-roadmap/) · [Evaluation](docs/crest-evaluation.md) · [Venue drafts](paper/) · [Preprint](research_manuscript/main.pdf)
+
+The frozen real-data evaluation is still open. The candidate PeMS schedule has zero of ten eligible holdout days, and the tested trajectory fallback requires an independent archive. The live pilot is outside the current scope. [Readiness report](results/crest-roadmap/itsc-readiness.json) · [Reproduction commands](docs/crest-implementation.md)
 
 ## Repository layout
 
